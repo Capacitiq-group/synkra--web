@@ -11,12 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RoiCalculatorRouteImport } from './routes/roi-calculator'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as HelpRouteImport } from './routes/help'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as PartnerIndexRouteImport } from './routes/partner.index'
+import { Route as ServicesVirtualPhotoshootRouteImport } from './routes/services.virtual-photoshoot'
 import { Route as ServicesSpeedToLeadRouteImport } from './routes/services.speed-to-lead'
 import { Route as ServicesLeadReactivationRouteImport } from './routes/services.lead-reactivation'
 import { Route as ServicesAutomatedHiringRouteImport } from './routes/services.automated-hiring'
@@ -24,6 +26,7 @@ import { Route as ServicesAiWhatsappAgentRouteImport } from './routes/services.a
 import { Route as ServicesAiWebWidgetRouteImport } from './routes/services.ai-web-widget'
 import { Route as ServicesAiVoiceAgentRouteImport } from './routes/services.ai-voice-agent'
 import { Route as ServicesAiKnowledgeBaseRouteImport } from './routes/services.ai-knowledge-base'
+import { Route as PortfolioSlugRouteImport } from './routes/portfolio.$slug'
 import { Route as PartnerReferralRouteImport } from './routes/partner.referral'
 import { Route as PartnerAgencyRouteImport } from './routes/partner.agency'
 import { Route as LegalTermsOfServiceRouteImport } from './routes/legal.terms-of-service'
@@ -39,6 +42,11 @@ const RoiCalculatorRoute = RoiCalculatorRouteImport.update({
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortfolioRoute = PortfolioRouteImport.update({
+  id: '/portfolio',
+  path: '/portfolio',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HelpRoute = HelpRouteImport.update({
@@ -71,6 +79,12 @@ const PartnerIndexRoute = PartnerIndexRouteImport.update({
   path: '/partner/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesVirtualPhotoshootRoute =
+  ServicesVirtualPhotoshootRouteImport.update({
+    id: '/services/virtual-photoshoot',
+    path: '/services/virtual-photoshoot',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ServicesSpeedToLeadRoute = ServicesSpeedToLeadRouteImport.update({
   id: '/services/speed-to-lead',
   path: '/services/speed-to-lead',
@@ -106,6 +120,11 @@ const ServicesAiKnowledgeBaseRoute = ServicesAiKnowledgeBaseRouteImport.update({
   id: '/services/ai-knowledge-base',
   path: '/services/ai-knowledge-base',
   getParentRoute: () => rootRouteImport,
+} as any)
+const PortfolioSlugRoute = PortfolioSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => PortfolioRoute,
 } as any)
 const PartnerReferralRoute = PartnerReferralRouteImport.update({
   id: '/partner/referral',
@@ -143,6 +162,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/help': typeof HelpRoute
+  '/portfolio': typeof PortfolioRouteWithChildren
   '/pricing': typeof PricingRoute
   '/roi-calculator': typeof RoiCalculatorRoute
   '/api/submit-form': typeof ApiSubmitFormRoute
@@ -151,6 +171,7 @@ export interface FileRoutesByFullPath {
   '/legal/terms-of-service': typeof LegalTermsOfServiceRoute
   '/partner/agency': typeof PartnerAgencyRoute
   '/partner/referral': typeof PartnerReferralRoute
+  '/portfolio/$slug': typeof PortfolioSlugRoute
   '/services/ai-knowledge-base': typeof ServicesAiKnowledgeBaseRoute
   '/services/ai-voice-agent': typeof ServicesAiVoiceAgentRoute
   '/services/ai-web-widget': typeof ServicesAiWebWidgetRoute
@@ -158,6 +179,7 @@ export interface FileRoutesByFullPath {
   '/services/automated-hiring': typeof ServicesAutomatedHiringRoute
   '/services/lead-reactivation': typeof ServicesLeadReactivationRoute
   '/services/speed-to-lead': typeof ServicesSpeedToLeadRoute
+  '/services/virtual-photoshoot': typeof ServicesVirtualPhotoshootRoute
   '/partner/': typeof PartnerIndexRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -166,6 +188,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/help': typeof HelpRoute
+  '/portfolio': typeof PortfolioRouteWithChildren
   '/pricing': typeof PricingRoute
   '/roi-calculator': typeof RoiCalculatorRoute
   '/api/submit-form': typeof ApiSubmitFormRoute
@@ -174,6 +197,7 @@ export interface FileRoutesByTo {
   '/legal/terms-of-service': typeof LegalTermsOfServiceRoute
   '/partner/agency': typeof PartnerAgencyRoute
   '/partner/referral': typeof PartnerReferralRoute
+  '/portfolio/$slug': typeof PortfolioSlugRoute
   '/services/ai-knowledge-base': typeof ServicesAiKnowledgeBaseRoute
   '/services/ai-voice-agent': typeof ServicesAiVoiceAgentRoute
   '/services/ai-web-widget': typeof ServicesAiWebWidgetRoute
@@ -181,6 +205,7 @@ export interface FileRoutesByTo {
   '/services/automated-hiring': typeof ServicesAutomatedHiringRoute
   '/services/lead-reactivation': typeof ServicesLeadReactivationRoute
   '/services/speed-to-lead': typeof ServicesSpeedToLeadRoute
+  '/services/virtual-photoshoot': typeof ServicesVirtualPhotoshootRoute
   '/partner': typeof PartnerIndexRoute
   '/services': typeof ServicesIndexRoute
 }
@@ -190,6 +215,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/help': typeof HelpRoute
+  '/portfolio': typeof PortfolioRouteWithChildren
   '/pricing': typeof PricingRoute
   '/roi-calculator': typeof RoiCalculatorRoute
   '/api/submit-form': typeof ApiSubmitFormRoute
@@ -198,6 +224,7 @@ export interface FileRoutesById {
   '/legal/terms-of-service': typeof LegalTermsOfServiceRoute
   '/partner/agency': typeof PartnerAgencyRoute
   '/partner/referral': typeof PartnerReferralRoute
+  '/portfolio/$slug': typeof PortfolioSlugRoute
   '/services/ai-knowledge-base': typeof ServicesAiKnowledgeBaseRoute
   '/services/ai-voice-agent': typeof ServicesAiVoiceAgentRoute
   '/services/ai-web-widget': typeof ServicesAiWebWidgetRoute
@@ -205,6 +232,7 @@ export interface FileRoutesById {
   '/services/automated-hiring': typeof ServicesAutomatedHiringRoute
   '/services/lead-reactivation': typeof ServicesLeadReactivationRoute
   '/services/speed-to-lead': typeof ServicesSpeedToLeadRoute
+  '/services/virtual-photoshoot': typeof ServicesVirtualPhotoshootRoute
   '/partner/': typeof PartnerIndexRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -215,6 +243,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/help'
+    | '/portfolio'
     | '/pricing'
     | '/roi-calculator'
     | '/api/submit-form'
@@ -223,6 +252,7 @@ export interface FileRouteTypes {
     | '/legal/terms-of-service'
     | '/partner/agency'
     | '/partner/referral'
+    | '/portfolio/$slug'
     | '/services/ai-knowledge-base'
     | '/services/ai-voice-agent'
     | '/services/ai-web-widget'
@@ -230,6 +260,7 @@ export interface FileRouteTypes {
     | '/services/automated-hiring'
     | '/services/lead-reactivation'
     | '/services/speed-to-lead'
+    | '/services/virtual-photoshoot'
     | '/partner/'
     | '/services/'
   fileRoutesByTo: FileRoutesByTo
@@ -238,6 +269,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/help'
+    | '/portfolio'
     | '/pricing'
     | '/roi-calculator'
     | '/api/submit-form'
@@ -246,6 +278,7 @@ export interface FileRouteTypes {
     | '/legal/terms-of-service'
     | '/partner/agency'
     | '/partner/referral'
+    | '/portfolio/$slug'
     | '/services/ai-knowledge-base'
     | '/services/ai-voice-agent'
     | '/services/ai-web-widget'
@@ -253,6 +286,7 @@ export interface FileRouteTypes {
     | '/services/automated-hiring'
     | '/services/lead-reactivation'
     | '/services/speed-to-lead'
+    | '/services/virtual-photoshoot'
     | '/partner'
     | '/services'
   id:
@@ -261,6 +295,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/help'
+    | '/portfolio'
     | '/pricing'
     | '/roi-calculator'
     | '/api/submit-form'
@@ -269,6 +304,7 @@ export interface FileRouteTypes {
     | '/legal/terms-of-service'
     | '/partner/agency'
     | '/partner/referral'
+    | '/portfolio/$slug'
     | '/services/ai-knowledge-base'
     | '/services/ai-voice-agent'
     | '/services/ai-web-widget'
@@ -276,6 +312,7 @@ export interface FileRouteTypes {
     | '/services/automated-hiring'
     | '/services/lead-reactivation'
     | '/services/speed-to-lead'
+    | '/services/virtual-photoshoot'
     | '/partner/'
     | '/services/'
   fileRoutesById: FileRoutesById
@@ -285,6 +322,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   HelpRoute: typeof HelpRoute
+  PortfolioRoute: typeof PortfolioRouteWithChildren
   PricingRoute: typeof PricingRoute
   RoiCalculatorRoute: typeof RoiCalculatorRoute
   ApiSubmitFormRoute: typeof ApiSubmitFormRoute
@@ -300,6 +338,7 @@ export interface RootRouteChildren {
   ServicesAutomatedHiringRoute: typeof ServicesAutomatedHiringRoute
   ServicesLeadReactivationRoute: typeof ServicesLeadReactivationRoute
   ServicesSpeedToLeadRoute: typeof ServicesSpeedToLeadRoute
+  ServicesVirtualPhotoshootRoute: typeof ServicesVirtualPhotoshootRoute
   PartnerIndexRoute: typeof PartnerIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
 }
@@ -318,6 +357,13 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portfolio': {
+      id: '/portfolio'
+      path: '/portfolio'
+      fullPath: '/portfolio'
+      preLoaderRoute: typeof PortfolioRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/help': {
@@ -360,6 +406,13 @@ declare module '@tanstack/react-router' {
       path: '/partner'
       fullPath: '/partner/'
       preLoaderRoute: typeof PartnerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/virtual-photoshoot': {
+      id: '/services/virtual-photoshoot'
+      path: '/services/virtual-photoshoot'
+      fullPath: '/services/virtual-photoshoot'
+      preLoaderRoute: typeof ServicesVirtualPhotoshootRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/speed-to-lead': {
@@ -411,6 +464,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesAiKnowledgeBaseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/portfolio/$slug': {
+      id: '/portfolio/$slug'
+      path: '/$slug'
+      fullPath: '/portfolio/$slug'
+      preLoaderRoute: typeof PortfolioSlugRouteImport
+      parentRoute: typeof PortfolioRoute
+    }
     '/partner/referral': {
       id: '/partner/referral'
       path: '/partner/referral'
@@ -456,11 +516,24 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface PortfolioRouteChildren {
+  PortfolioSlugRoute: typeof PortfolioSlugRoute
+}
+
+const PortfolioRouteChildren: PortfolioRouteChildren = {
+  PortfolioSlugRoute: PortfolioSlugRoute,
+}
+
+const PortfolioRouteWithChildren = PortfolioRoute._addFileChildren(
+  PortfolioRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   HelpRoute: HelpRoute,
+  PortfolioRoute: PortfolioRouteWithChildren,
   PricingRoute: PricingRoute,
   RoiCalculatorRoute: RoiCalculatorRoute,
   ApiSubmitFormRoute: ApiSubmitFormRoute,
@@ -476,19 +549,10 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesAutomatedHiringRoute: ServicesAutomatedHiringRoute,
   ServicesLeadReactivationRoute: ServicesLeadReactivationRoute,
   ServicesSpeedToLeadRoute: ServicesSpeedToLeadRoute,
+  ServicesVirtualPhotoshootRoute: ServicesVirtualPhotoshootRoute,
   PartnerIndexRoute: PartnerIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
