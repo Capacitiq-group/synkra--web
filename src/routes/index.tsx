@@ -5,6 +5,7 @@ import Problem from "@/components/sections/Problem";
 import ServicesGrid from "@/components/sections/ServicesGrid";
 import WhySynkra from "@/components/sections/WhySynkra";
 import HowItWorks from "@/components/sections/HowItWorks";
+import PortfolioPreview from "@/components/sections/PortfolioPreview";
 import ROILink from "@/components/sections/ROILink";
 import PricingOverview from "@/components/sections/PricingOverview";
 import PartnerSection from "@/components/sections/PartnerSection";
@@ -29,6 +30,7 @@ function HomePage() {
       <ServicesGrid />
       <WhySynkra />
       <HowItWorks />
+      <PortfolioPreview />
       <ROILink />
       <PricingOverview />
       <PartnerSection />
