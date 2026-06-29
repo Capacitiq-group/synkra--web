@@ -1,16 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { buildHead } from "@/lib/seo";
-import ServiceDetail from "@/components/sections/ServiceDetail";
-import { SERVICES } from "@/data/services";
+import ServicePageLayout from "@/components/layout/ServicePageLayout";
+import { SERVICE_CONTENT } from "@/data/serviceContent";
 
-const data = SERVICES["ai-knowledge-base"];
+const data = SERVICE_CONTENT["ai-knowledge-base"];
 
 export const Route = createFileRoute("/services/ai-knowledge-base")({
   head: () =>
     buildHead({
-      title: "AI Knowledge Base",
-      description: data.short,
+      title: data.serviceLabel,
+      description: data.subtitle,
       path: "/services/ai-knowledge-base",
     }),
-  component: () => <ServiceDetail data={data} />,
+  component: () => <ServicePageLayout data={data} />,
 });

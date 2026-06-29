@@ -1,16 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { buildHead } from "@/lib/seo";
-import ServiceDetail from "@/components/sections/ServiceDetail";
-import { SERVICES } from "@/data/services";
+import ServicePageLayout from "@/components/layout/ServicePageLayout";
+import { SERVICE_CONTENT } from "@/data/serviceContent";
 
-const data = SERVICES["ai-voice-agent"];
+const data = SERVICE_CONTENT["ai-voice-agent"];
 
 export const Route = createFileRoute("/services/ai-voice-agent")({
   head: () =>
     buildHead({
-      title: "AI Voice Agent",
-      description: data.short,
+      title: data.serviceLabel,
+      description: data.subtitle,
       path: "/services/ai-voice-agent",
     }),
-  component: () => <ServiceDetail data={data} />,
+  component: () => <ServicePageLayout data={data} />,
 });

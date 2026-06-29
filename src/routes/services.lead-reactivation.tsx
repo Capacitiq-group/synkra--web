@@ -1,16 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { buildHead } from "@/lib/seo";
-import ServiceDetail from "@/components/sections/ServiceDetail";
-import { SERVICES } from "@/data/services";
+import ServicePageLayout from "@/components/layout/ServicePageLayout";
+import { SERVICE_CONTENT } from "@/data/serviceContent";
 
-const data = SERVICES["lead-reactivation"];
+const data = SERVICE_CONTENT["lead-reactivation"];
 
 export const Route = createFileRoute("/services/lead-reactivation")({
   head: () =>
     buildHead({
-      title: "Lead Reactivation Campaign",
-      description: data.short,
+      title: data.serviceLabel,
+      description: data.subtitle,
       path: "/services/lead-reactivation",
     }),
-  component: () => <ServiceDetail data={data} />,
+  component: () => <ServicePageLayout data={data} />,
 });

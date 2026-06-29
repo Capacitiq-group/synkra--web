@@ -10,6 +10,7 @@ const TITLES: Record<string, string> = {
   "lead-reactivation": "Lead Reactivation",
   "ai-knowledge-base": "AI Knowledge Base",
   "automated-hiring": "Automated Hiring",
+  "virtual-photoshoot": "Virtual Photoshoot",
 };
 
 export const Route = createFileRoute("/services/")({

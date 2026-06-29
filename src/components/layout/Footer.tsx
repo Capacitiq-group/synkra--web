@@ -12,6 +12,7 @@ const SERVICES = [
 
 const COMPANY = [
   { to: "/about", label: "About" },
+  { to: "/portfolio", label: "Portfolio" },
   { to: "/partner", label: "Partner With Us" },
   { to: "/contact", label: "Client Login" },
   { to: "/partner", label: "Partner Login" },
