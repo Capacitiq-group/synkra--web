@@ -1,59 +1,91 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { z } from "zod";
 
-const ContactSchema = z.object({
-  name: z.string().trim().min(1, "Name is required").max(120),
+const INTEREST_OPTIONS = [
+  "AI Voice Agent",
+  "AI Web Widget Agent",
+  "AI WhatsApp Agent",
+  "Speed to Lead System",
+  "Lead Reactivation Campaign",
+  "AI Knowledge Base",
+  "Automated Hiring System",
+  "Virtual Photoshoot",
+  "Virtual Photoshoot Sample Request",
+  "Partnership opportunity",
+  "Something else",
+];
+
+// Map URL-param service values (from ServicePageLayout) to the contact
+// dropdown labels above.
+const SERVICE_ALIASES: Record<string, string> = {
+  "AI Voice Agent": "AI Voice Agent",
+  "AI Web Widget": "AI Web Widget Agent",
+  "AI WhatsApp Agent": "AI WhatsApp Agent",
+  "Speed to Lead": "Speed to Lead System",
+  "Lead Reactivation": "Lead Reactivation Campaign",
+  "AI Knowledge Base": "AI Knowledge Base",
+  "Automated Hiring": "Automated Hiring System",
+  "Virtual Photoshoot": "Virtual Photoshoot",
+  "Virtual Photoshoot Sample Request": "Virtual Photoshoot Sample Request",
+};
+
+const Schema = z.object({
+  full_name: z.string().trim().min(1, "Required").max(120),
+  business_name: z.string().trim().min(1, "Required").max(200),
   email: z.string().trim().email("Enter a valid email").max(200),
-  phone: z.string().trim().max(40).optional().or(z.literal("")),
-  company: z.string().trim().max(200).optional().or(z.literal("")),
-  service: z.string().max(80).optional().or(z.literal("")),
+  phone: z.string().trim().min(1, "Required").max(40),
+  interest: z.string().min(1, "Required"),
   message: z.string().trim().min(10, "Tell us a little about your project").max(4000),
+  referral_source: z.string().optional(),
 });
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-const SERVICE_OPTIONS = [
-  "Not sure yet",
-  "AI Voice Agent",
-  "AI Web Widget",
-  "AI WhatsApp Agent",
-  "Speed to Lead",
-  "Lead Reactivation",
-  "AI Knowledge Base",
-  "Automated Hiring",
-];
-
-export default function ContactForm() {
+export default function ContactForm({
+  preselectService,
+  preselectTier,
+}: {
+  preselectService?: string;
+  preselectTier?: string;
+}) {
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [interest, setInterest] = useState<string>("");
+
+  useEffect(() => {
+    if (preselectService) {
+      const mapped =
+        SERVICE_ALIASES[preselectService] ??
+        (INTEREST_OPTIONS.includes(preselectService)
+          ? preselectService
+          : "Something else");
+      setInterest(mapped);
+    }
+  }, [preselectService]);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setErrors({});
-    setErrorMessage("");
-
     const fd = new FormData(e.currentTarget);
     const raw = {
-      name: String(fd.get("name") ?? ""),
+      full_name: String(fd.get("full_name") ?? ""),
+      business_name: String(fd.get("business_name") ?? ""),
       email: String(fd.get("email") ?? ""),
       phone: String(fd.get("phone") ?? ""),
-      company: String(fd.get("company") ?? ""),
-      service: String(fd.get("service") ?? ""),
+      interest: String(fd.get("interest") ?? ""),
       message: String(fd.get("message") ?? ""),
+      referral_source: String(fd.get("referral_source") ?? ""),
     };
-
-    const parsed = ContactSchema.safeParse(raw);
+    const parsed = Schema.safeParse(raw);
     if (!parsed.success) {
       const map: Record<string, string> = {};
-      for (const issue of parsed.error.issues) {
-        const key = issue.path[0];
-        if (typeof key === "string" && !map[key]) map[key] = issue.message;
+      for (const i of parsed.error.issues) {
+        const k = i.path[0];
+        if (typeof k === "string" && !map[k]) map[k] = i.message;
       }
       setErrors(map);
       return;
     }
-
     setStatus("submitting");
     try {
       const res = await fetch("/api/submit-form", {
@@ -61,45 +93,41 @@ export default function ContactForm() {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           form_type: "contact",
-          name: parsed.data.name,
+          name: parsed.data.full_name,
           email: parsed.data.email,
-          phone: parsed.data.phone || undefined,
-          company: parsed.data.company || undefined,
+          phone: parsed.data.phone,
+          company: parsed.data.business_name,
           message: parsed.data.message,
-          payload: { service: parsed.data.service || null },
+          payload: {
+            interest: parsed.data.interest,
+            referral_source: parsed.data.referral_source || null,
+            tier: preselectTier || null,
+          },
         }),
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok || !data?.ok) {
-        throw new Error(data?.error ?? "Submission failed");
-      }
+      if (!res.ok || !data?.ok) throw new Error(data?.error ?? "Failed");
       setStatus("success");
-      (e.target as HTMLFormElement).reset();
-    } catch (err) {
+    } catch {
       setStatus("error");
-      setErrorMessage(
-        err instanceof Error ? err.message : "Something went wrong. Please try again.",
-      );
     }
   }
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl border border-white/10 bg-[#0f0f0f] p-10">
-        <p className="label-tag green-text">Message sent</p>
-        <h2 className="heading-section mt-4">Thanks — we'll be in touch.</h2>
-        <p className="body-text mt-4 max-w-prose">
-          Your enquiry is in. A member of the Synkra team will reply from{" "}
-          <span className="text-white">Synkra@capacitiqgroup.co.za</span> within
-          one business day.
+      <div className="card-dark text-left">
+        <p className="heading-card green-text">Message received.</p>
+        <p className="body-sm mt-4">
+          We will be in touch within 24 hours on business days. If your enquiry
+          is urgent, email us directly at{" "}
+          <a
+            href="mailto:synkra@capacitiqgroup.co.za"
+            className="green-text underline"
+          >
+            synkra@capacitiqgroup.co.za
+          </a>
+          .
         </p>
-        <button
-          type="button"
-          onClick={() => setStatus("idle")}
-          className="btn-secondary mt-8"
-        >
-          Send another message
-        </button>
       </div>
     );
   }
@@ -110,67 +138,99 @@ export default function ContactForm() {
   const errCls = "mt-1 text-xs text-red-400";
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-6">
-      <div className="grid gap-6 md:grid-cols-2">
-        <div>
-          <label htmlFor="name" className={labelCls}>Full name *</label>
-          <input id="name" name="name" autoComplete="name" required className={inputCls} />
-          {errors.name && <p className={errCls}>{errors.name}</p>}
-        </div>
-        <div>
-          <label htmlFor="email" className={labelCls}>Email *</label>
-          <input id="email" name="email" type="email" autoComplete="email" required className={inputCls} />
-          {errors.email && <p className={errCls}>{errors.email}</p>}
-        </div>
-        <div>
-          <label htmlFor="phone" className={labelCls}>Phone</label>
-          <input id="phone" name="phone" type="tel" autoComplete="tel" className={inputCls} />
-          {errors.phone && <p className={errCls}>{errors.phone}</p>}
-        </div>
-        <div>
-          <label htmlFor="company" className={labelCls}>Company</label>
-          <input id="company" name="company" autoComplete="organization" className={inputCls} />
-          {errors.company && <p className={errCls}>{errors.company}</p>}
-        </div>
+    <form onSubmit={onSubmit} noValidate className="space-y-6 text-left">
+      <div>
+        <label htmlFor="full_name" className={labelCls}>Full name *</label>
+        <input id="full_name" name="full_name" required className={inputCls} />
+        {errors.full_name && <p className={errCls}>{errors.full_name}</p>}
       </div>
       <div>
-        <label htmlFor="service" className={labelCls}>What are you interested in?</label>
-        <select id="service" name="service" defaultValue="Not sure yet" className={inputCls}>
-          {SERVICE_OPTIONS.map((s) => (
-            <option key={s} value={s} className="bg-[#0f0f0f]">{s}</option>
+        <label htmlFor="business_name" className={labelCls}>Business name *</label>
+        <input id="business_name" name="business_name" required className={inputCls} />
+        {errors.business_name && <p className={errCls}>{errors.business_name}</p>}
+      </div>
+      <div>
+        <label htmlFor="email" className={labelCls}>Email address *</label>
+        <input id="email" name="email" type="email" required className={inputCls} />
+        {errors.email && <p className={errCls}>{errors.email}</p>}
+      </div>
+      <div>
+        <label htmlFor="phone" className={labelCls}>Phone number *</label>
+        <input id="phone" name="phone" type="tel" required className={inputCls} />
+        {errors.phone && <p className={errCls}>{errors.phone}</p>}
+      </div>
+      <div>
+        <label htmlFor="interest" className={labelCls}>
+          What are you interested in *
+        </label>
+        <select
+          id="interest"
+          name="interest"
+          required
+          value={interest}
+          onChange={(e) => setInterest(e.target.value)}
+          className={inputCls}
+        >
+          <option value="" disabled>Select an option</option>
+          {INTEREST_OPTIONS.map((o) => (
+            <option key={o} value={o} className="bg-[#0f0f0f]">
+              {o}
+            </option>
           ))}
         </select>
+        {preselectTier && (
+          <p className="body-sm green-text mt-2">
+            You selected the {preselectTier} tier. You can change this below if
+            needed.
+          </p>
+        )}
+        {errors.interest && <p className={errCls}>{errors.interest}</p>}
       </div>
       <div>
-        <label htmlFor="message" className={labelCls}>Tell us about your project *</label>
+        <label htmlFor="message" className={labelCls}>
+          Tell us about your business and what you are trying to solve *
+        </label>
         <textarea
           id="message"
           name="message"
+          rows={5}
           required
-          rows={6}
           className={inputCls}
-          placeholder="What does your business do, what are you trying to automate, and what does success look like?"
         />
         {errors.message && <p className={errCls}>{errors.message}</p>}
       </div>
-
-      {status === "error" && (
-        <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
-          {errorMessage || "Something went wrong. Please try again."}
-        </div>
-      )}
+      <div>
+        <label htmlFor="referral_source" className={labelCls}>
+          How did you hear about Synkra
+        </label>
+        <select id="referral_source" name="referral_source" defaultValue="" className={inputCls}>
+          <option value="">Select an option</option>
+          {["Google", "LinkedIn", "Referred by someone", "Social media", "Other"].map((o) => (
+            <option key={o} value={o} className="bg-[#0f0f0f]">{o}</option>
+          ))}
+        </select>
+      </div>
 
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="btn-primary justify-center disabled:opacity-60"
+        className="btn-primary w-full justify-center disabled:opacity-60"
       >
-        {status === "submitting" ? "Sending…" : "Send message"}
+        {status === "submitting" ? "Sending…" : "Send Message"}
       </button>
-      <p className="body-sm">
-        By submitting you agree to be contacted by the Synkra team. We never
-        share your details.
-      </p>
+
+      {status === "error" && (
+        <p className="body-sm text-red-400">
+          Something went wrong. Please try again or email us directly at{" "}
+          <a
+            href="mailto:synkra@capacitiqgroup.co.za"
+            className="green-text underline"
+          >
+            synkra@capacitiqgroup.co.za
+          </a>
+          .
+        </p>
+      )}
     </form>
   );
 }
