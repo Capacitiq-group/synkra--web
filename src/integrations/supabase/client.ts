@@ -48,9 +48,11 @@ function createSupabaseClient() {
       fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY),
     },
     auth: {
-      storage: typeof window !== 'undefined' ? localStorage : undefined,
-      persistSession: true,
-      autoRefreshToken: true,
+      storage: typeof window !== 'undefined' && typeof window.localStorage !== 'undefined'
+        ? window.localStorage
+        : undefined,
+      persistSession: typeof window !== 'undefined',
+      autoRefreshToken: typeof window !== 'undefined',
     }
   });
 }
