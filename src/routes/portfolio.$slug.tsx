@@ -45,10 +45,13 @@ function Gallery({
   fit: "cover" | "contain";
 }) {
   const fitClass = fit === "contain" ? "object-contain" : "object-cover";
+  // Portrait-friendly aspect ratios when images are 9:16 (fit=contain).
+  const sideAspect = fit === "contain" ? "aspect-[9/16]" : "aspect-[3/4]";
+  const heroAspect = fit === "contain" ? "aspect-[4/5]" : "aspect-[16/9]";
   const n = images.length;
 
-  const Img = ({ src, idx, h }: { src: string; idx: number; h?: string }) => (
-    <div className={`relative w-full bg-[#0a0a0a] ${h ?? "aspect-[16/9]"}`}>
+  const Img = ({ src, idx, h }: { src: string; idx: number; h: string }) => (
+    <div className={`relative w-full bg-[#0a0a0a] ${h}`}>
       <img
         src={src}
         alt={`Portfolio image ${idx + 1}`}
@@ -60,16 +63,14 @@ function Gallery({
 
   if (n === 1) {
     return (
-      <div className="flex flex-col gap-1">
-        <Img src={images[0]} idx={0} h="max-h-[80vh] aspect-auto" />
-      </div>
+      <Img src={images[0]} idx={0} h="max-h-[80vh] aspect-auto" />
     );
   }
   if (n === 2) {
     return (
       <div className="grid grid-cols-1 gap-1 md:grid-cols-2">
         {images.map((s, i) => (
-          <Img key={i} src={s} idx={i} h="aspect-[3/4]" />
+          <Img key={i} src={s} idx={i} h={sideAspect} />
         ))}
       </div>
     );
@@ -77,10 +78,10 @@ function Gallery({
   if (n === 3) {
     return (
       <div className="flex flex-col gap-1">
-        <Img src={images[0]} idx={0} h="aspect-[16/9]" />
+        <Img src={images[0]} idx={0} h={heroAspect} />
         <div className="grid grid-cols-1 gap-1 md:grid-cols-2">
-          <Img src={images[1]} idx={1} h="aspect-[3/4]" />
-          <Img src={images[2]} idx={2} h="aspect-[3/4]" />
+          <Img src={images[1]} idx={1} h={sideAspect} />
+          <Img src={images[2]} idx={2} h={sideAspect} />
         </div>
       </div>
     );
@@ -88,10 +89,10 @@ function Gallery({
   if (n === 4) {
     return (
       <div className="flex flex-col gap-1">
-        <Img src={images[0]} idx={0} h="aspect-[16/9]" />
+        <Img src={images[0]} idx={0} h={heroAspect} />
         <div className="grid grid-cols-1 gap-1 md:grid-cols-3">
           {images.slice(1).map((s, i) => (
-            <Img key={i} src={s} idx={i + 1} h="aspect-[3/4]" />
+            <Img key={i} src={s} idx={i + 1} h={sideAspect} />
           ))}
         </div>
       </div>
@@ -100,18 +101,19 @@ function Gallery({
   // 5+
   return (
     <div className="flex flex-col gap-1">
-      <Img src={images[0]} idx={0} h="aspect-[16/9]" />
+      <Img src={images[0]} idx={0} h={heroAspect} />
       <div className="grid grid-cols-1 gap-1 md:grid-cols-2">
-        <Img src={images[1]} idx={1} h="aspect-[3/4]" />
-        <Img src={images[2]} idx={2} h="aspect-[3/4]" />
+        <Img src={images[1]} idx={1} h={sideAspect} />
+        <Img src={images[2]} idx={2} h={sideAspect} />
       </div>
       <div className="grid grid-cols-1 gap-1 md:grid-cols-2">
-        <Img src={images[3]} idx={3} h="aspect-[3/4]" />
-        <Img src={images[4]} idx={4} h="aspect-[3/4]" />
+        <Img src={images[3]} idx={3} h={sideAspect} />
+        <Img src={images[4]} idx={4} h={sideAspect} />
       </div>
     </div>
   );
 }
+
 
 function PortfolioItemPage() {
   const { item } = Route.useLoaderData();
