@@ -293,8 +293,7 @@ function PricingPage() {
                 <tr key={r.slug} className="border-b border-white/10">
                   <td className="body-sm py-5 pr-4">
                     <Link
-                      to={"/services/$slug" as never}
-                      params={{ slug: r.slug } as never}
+                      to={`/services/${r.slug}` as string as "/services"}
                       className="text-[#56d722] hover:underline"
                     >
                       {r.name}
