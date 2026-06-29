@@ -1,62 +1,85 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { z } from "zod";
 import { buildHead } from "@/lib/seo";
 import ContactForm from "@/components/forms/ContactForm";
 
+const SearchSchema = z.object({
+  service: z.string().optional(),
+  tier: z.string().optional(),
+  type: z.string().optional(),
+});
+
 export const Route = createFileRoute("/contact")({
+  validateSearch: (s) => SearchSchema.parse(s),
   head: () =>
     buildHead({
       title: "Contact Synkra",
       description:
-        "Get in touch with the Synkra team. We respond to every enquiry within one business day.",
+        "Get in touch with the Synkra team. We respond to every enquiry within 24 hours on business days.",
       path: "/contact",
     }),
   component: ContactPage,
 });
 
 function ContactPage() {
+  const { service, tier } = Route.useSearch();
+
   return (
-    <>
-      <section className="bg-[#0a0a0a]">
-        <div className="container-main section-padding">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-5">
-              <p className="label-tag">Contact</p>
-              <h1 className="heading-display mt-6">Let's build it.</h1>
-              <p className="body-text mt-8 max-w-md text-lg">
-                Tell us what you are trying to automate. We will reply within
-                one business day with the right next step — usually a 30-minute
-                discovery call.
-              </p>
+    <section className="bg-[#0a0a0a]">
+      <div className="container-main section-padding">
+        <p className="label-tag text-left">Get in touch</p>
+        <h1 className="heading-section mt-4 max-w-[640px] text-left">
+          Let us know what you need and we will get back to you within 24 hours
+          on business days.
+        </h1>
 
-              <div className="mt-12 space-y-6">
-                <div>
-                  <p className="label-tag">Email</p>
-                  <a
-                    href="mailto:Synkra@capacitiqgroup.co.za"
-                    className="mt-2 block text-white hover:text-[#56d722] transition-colors"
-                  >
-                    Synkra@capacitiqgroup.co.za
-                  </a>
-                </div>
-                <div>
-                  <p className="label-tag">Response time</p>
-                  <p className="mt-2 text-white">Within one business day</p>
-                </div>
-                <div>
-                  <p className="label-tag">Based in</p>
-                  <p className="mt-2 text-white">South Africa · Working globally</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-7">
-              <div className="rounded-2xl border border-white/10 bg-[#141320] p-8 md:p-10">
-                <ContactForm />
-              </div>
+        <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-7">
+            <div className="max-w-[560px]">
+              <ContactForm
+                preselectService={service}
+                preselectTier={tier}
+              />
             </div>
           </div>
+
+          <aside className="lg:col-span-5">
+            <div className="card-dark text-left">
+              <div>
+                <p className="label-tag">Response time</p>
+                <p className="body-sm mt-3">
+                  We respond to every enquiry within 24 hours on business days.
+                  Urgent matters are typically handled the same day.
+                </p>
+              </div>
+              <div className="hairline my-8" />
+              <div>
+                <p className="label-tag">What happens next</p>
+                <p className="body-sm mt-3">
+                  After you submit we review your message and come back with
+                  either a direct answer, a quote, or a time to talk depending
+                  on what you need.
+                </p>
+              </div>
+              <div className="hairline my-8" />
+              <div>
+                <p className="label-tag">Already a client</p>
+                <p className="body-sm mt-3">
+                  If you are an existing client with a support request, log into
+                  your client portal and submit a request there for faster
+                  handling.
+                </p>
+                <a
+                  href="/help"
+                  className="arrow-link mt-4 inline-flex"
+                >
+                  Go to Client Portal <span className="arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </aside>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
