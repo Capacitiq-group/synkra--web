@@ -1,0 +1,63 @@
+const STATS = [
+  {
+    figure: "24/7",
+    label: "Always available",
+    body: "Your AI systems work every hour of every day including weekends and public holidays without overtime or absence.",
+  },
+  {
+    figure: "Under R700",
+    label: "Starting monthly fee",
+    body: "Less than the cost of a part-time employee for a system that outperforms one in availability and consistency.",
+  },
+  {
+    figure: "2 weeks",
+    label: "Time to go live",
+    body: "From payment to a live running system in under two weeks including build, testing, and your approval.",
+  },
+];
+
+export default function WhySynkra() {
+  return (
+    <section className="bg-[#0a0a0a]">
+      <div className="container-main section-padding">
+        <div className="max-w-[820px]">
+          <p className="label-tag">Why Synkra</p>
+          <h2 className="heading-display mt-6">
+            Built to be affordable for the businesses that need it most.
+          </h2>
+          <p className="body-text mt-8 max-w-[640px]">
+            Most automation companies price their services for enterprises. We
+            built our infrastructure differently so we can offer the same
+            quality of systems at prices that make sense for a business doing
+            R500,000 a year, not just one doing R50 million. One of our
+            systems running 24 hours a day costs less every month than one
+            employee working 8 hours a day.
+          </p>
+        </div>
+
+        <div className="mt-20 border-t border-white/10">
+          {STATS.map((s) => (
+            <div
+              key={s.label}
+              className="grid grid-cols-1 gap-6 border-b border-white/10 py-10 md:grid-cols-12 md:gap-10"
+            >
+              <div className="md:col-span-5">
+                <p className="text-5xl font-semibold tracking-tight text-white lg:text-6xl">
+                  {s.figure}
+                </p>
+              </div>
+              <div className="md:col-span-2">
+                <p className="label-tag" style={{ color: "#56d722" }}>
+                  {s.label}
+                </p>
+              </div>
+              <div className="md:col-span-5">
+                <p className="body-text">{s.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
