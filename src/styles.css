@@ -330,6 +330,17 @@
   }
 }
 
+@utility display-md {
+  font-size: 3rem;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: var(--color-brand-green);
+  @media (min-width: 1024px) {
+    font-size: 3.75rem;
+  }
+}
+
 @utility divider {
   height: 1px;
   width: 100%;
