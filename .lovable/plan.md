@@ -1,78 +1,113 @@
-## Goals
+# Admin Dashboard — TanStack Start Port
 
-1. Fix the navbar "Get Started" CTA to be brand green (`#56d722`) background with black text.
-2. Restyle the home page to match the dark, editorial, high-contrast aesthetic of the three reference images: oversized display type, generous negative space, thin hairline dividers, monochrome with one accent, subtle device/glass shapes, and pill-shaped chrome.
+Building the full admin dashboard at `/admin/*` using this project's actual stack (TanStack Start + TanStack Query + Supabase). Same features, same UI, idiomatic code. Deferring `admin.synkra.co.za` subdomain to hosting-layer config later.
 
-The structure of the home page (Hero → Problem → ServicesGrid → WhySynkra → HowItWorks → ROILink → PricingOverview → PartnerSection → BottomCTA) and all copy stay exactly as they are today. This pass is style-only.
+## Scope
 
-## Visual language to adopt (distilled from the references)
+Everything from your prompt, minus the Next.js-only pieces (`next.config.js` rewrites, `middleware.ts`, `@supabase/auth-helpers-nextjs`, `next/*`, RSC).
 
-- Pure black canvas (`#0A0A0A`) with charcoal panels (`#252430`) used as framed cards with rounded 2rem corners, like the Devialet and SEOtalos surface treatment.
-- Oversized outlined display numerals (`01`, `02`, `03`) as section anchors, set in a hairline weight, paired with a thin horizontal rule — directly inspired by the Nothing/portfolio image.
-- One enormous wordmark per "anchor" section (Devialet-style `DEVIALET` headline) used sparingly: hero headline scaled up dramatically, plus a faint `SYNKRA` watermark behind the bottom CTA.
-- Thin 1px white/8% dividers everywhere section content breaks, replacing visual clutter.
-- Accent color stays brand green `#56d722`, used only for: the nav CTA, numeric callouts, arrow links, and the primary button. Everything else is white / white-at-opacity.
-- Pill chrome (nav, buttons, small chips) with soft outer shadow, matching the Devialet "BUY" button + the segmented nav we already have.
+## Database (one migration)
 
-## Changes by file
+New tables: `admin_users`, `portfolio_items`, `blog_posts`, `clients`, `credit_transactions`, `approved_partners`, `services`, plus `partner_applications` (referenced by `approved_partners` FK but not in your Day 4 schema — will create).
 
-### `src/components/layout/Navbar.tsx`
-- "Get Started" pill: background `#56d722`, text `#0a0a0a`, font-weight 600. Keep the same height, padding, shadow, and pill shape. Mobile drawer CTA already uses `btn-primary` (green) — leave as-is.
+- Seeds the 8 services with the pricing you listed.
+- RLS: public SELECT for `portfolio_items`/`blog_posts` where `status='published'` and `services` where `active=true`. All admin writes gated by a `has_role(user_id, 'admin')` check (proper role table, per platform rules), not `auth.role() = 'service_role'` as the prompt suggested.
+- `updated_at` triggers.
+- Storage buckets `portfolio-images` and `blog-images` (public, 10 MB, image types).
 
-### `src/styles.css`
-- Add a `display-numeral` utility: very large (clamp 5rem → 9rem), font-weight 300, tight tracking, color `rgba(255,255,255,0.95)`, used for section anchor numerals.
-- Add a `panel-card` utility: `#252430` background, 2rem radius, subtle inner border `rgba(255,255,255,0.05)`, used for the framed section panels.
-- Add a `hairline` utility: 1px full-width `rgba(255,255,255,0.08)` rule.
-- Add a `wordmark-bg` utility for the giant faded `SYNKRA` watermark behind the bottom CTA (similar to the footer treatment but scoped to that section).
-- Tighten `heading-display` letter-spacing slightly and bump the max size to ~6.5rem to match the Devialet-scale hero.
+## Submissions table decision
 
-### `src/components/sections/Hero.tsx`
-- Replace the centered narrow hero with a full-bleed left-aligned hero on desktop:
-  - Tiny label-tag top-left.
-  - Massive display headline ("AI systems that run your business while you grow it.") at heading-display scale, left-aligned, max-width 1100px.
-  - Body copy in a 480px column below.
-  - CTA row: green "Get Started" pill + ghost "See what we build" pill.
-  - A faint hairline rule below the CTA row, with a small "Scroll" affordance on the right.
-- Mobile: same content, stacked, slightly smaller type.
+The prompt references three separate tables (`contact_submissions`, `quote_requests`, `partner_applications`). Your Day 4 build uses a single `form_submissions` with `form_type` + `payload` JSONB.
 
-### `src/components/sections/Problem.tsx`
-- Add the oversized outlined numeral `01` top-left above the label-tag, with a thin hairline rule beneath it spanning the column — Nothing-portfolio styling.
-- Keep heading + body copy unchanged.
+**Plan:** keep `form_submissions` as the write target (no marketing-site changes), and have the admin Submissions/Partners pages read from it filtered by `form_type` (`contact`, `quote`, `partner_agency`, `partner_referral`). Add a `status` column to `form_submissions` for the new/read/archived workflow. Create `partner_applications` as a view over `form_submissions` so the `approved_partners` FK works cleanly.
 
-### `src/components/sections/ServicesGrid.tsx`
-- Wrap the section in a `panel-card` (rounded 2rem on all sides, side margins 1.5rem) instead of only top-rounded, matching the Devialet collection panel.
-- Section header gets the `02` numeral treatment + hairline.
-- Each service card: keep `card-dark`, but replace the small green "01–07" label with a large outlined numeral in the card's top-right corner, and move the title/body to the left. Arrow link stays green.
+## Auth architecture
 
-### `src/components/sections/WhySynkra.tsx`
-- Add `03` numeral + hairline header.
-- Stat cards: restyle so the figure (24/7, Under R700, 2 weeks) is the dominant element, set in white (not green), with a small green underline/dot accent. The label and body sit below in muted white. This matches the Devialet "01 — 02 03 04 05" pagination tone.
+- Path-based `/admin` (subdomain deferred).
+- Sign-in via `supabase.auth.signInWithPassword`, then MFA via `supabase.auth.mfa` (TOTP). No `auth-helpers-nextjs`.
+- Route gating: `src/routes/_admin/route.tsx` pathless layout with `ssr: false` and a client-side `beforeLoad` that checks: session exists → AAL2 achieved → user row exists in `admin_users`. Redirects to `/admin/login` or `/admin/mfa` accordingly.
+- `/admin/login` and `/admin/mfa` are public (top-level routes).
+- Dashboard routes live under `src/routes/_admin/admin.dashboard.*.tsx` so the layout gate protects the whole subtree; URLs still resolve to `/admin/dashboard/...`.
+- Admin-only server fns use `requireSupabaseAuth` + `has_role(userId, 'admin')` check before doing privileged work with `supabaseAdmin` (loaded via `await import(...)` inside the handler, per import-graph rules).
 
-### `src/components/sections/HowItWorks.tsx`
-- Already a charcoal `panel-card` — keep, but replace the per-step green display numbers with large outlined white numerals, and replace the staggered left/right layout with a vertical timeline: hairline rule down the middle on desktop, step cards alternating sides with a connector dot in brand green at each step.
+## Routes
 
-### `src/components/sections/ROILink.tsx`
-- Add a thin hairline above and below the section.
-- Left column heading gets a small "04" eyebrow numeral.
-- Right column arrow link styling unchanged (green).
+```text
+src/routes/
+  admin.tsx                      # redirects to /admin/login
+  admin.login.tsx                # public — email/password
+  admin.mfa.tsx                  # public — TOTP enroll / verify
+  _admin/
+    route.tsx                    # ssr:false gate, MFA + admin_users check
+    admin.dashboard.tsx          # dashboard layout (sidebar + header + Outlet)
+    admin.dashboard.index.tsx    # overview
+    admin.dashboard.clients.tsx  # list
+    admin.dashboard.clients.$id.tsx
+    admin.dashboard.portfolio.tsx
+    admin.dashboard.portfolio.$id.tsx
+    admin.dashboard.blog.tsx
+    admin.dashboard.blog.$id.tsx
+    admin.dashboard.partners.tsx
+    admin.dashboard.submissions.tsx
+    admin.dashboard.services.tsx
+    admin.dashboard.settings.tsx
+  api/
+    upload.ts                    # server route — image upload via supabaseAdmin
+```
 
-### `src/components/sections/PricingOverview.tsx`
-- Panel card stays. Tier cards: switch the background to a flat `#1a1a1f` (cleaner contrast against the panel), add a hairline above each price, and render the price in white with `per month` in muted green. Highlight the middle "Standard" tier with a 1px green border.
+## Server functions
 
-### `src/components/sections/PartnerSection.tsx`
-- Add `06` numeral header. Two CTA buttons unchanged.
+Grouped into `src/lib/admin.functions.ts` (thin — handlers only) with helpers in `src/lib/admin.server.ts`. All check `has_role('admin')`.
 
-### `src/components/sections/BottomCTA.tsx`
-- Keep the panel-card framing. Add a giant faded `SYNKRA` wordmark behind the heading (low opacity, clipped by the panel's rounded corners). Buttons unchanged.
+- `listClients`, `getClient`, `upsertClient`, `setClientStatus`, `addClientCredits`, `recoverClientOverage`
+- `listPortfolio`, `getPortfolio`, `upsertPortfolio`, `deletePortfolio`, `togglePortfolioStatus`
+- `listBlog`, `getBlogPost`, `upsertBlogPost`, `deleteBlogPost`
+- `listSubmissions`, `updateSubmissionStatus`, `convertSubmissionToClient`
+- `listApprovedPartners`, `approvePartnerApplication`, `rejectPartnerApplication`, `updatePartnerCommission`
+- `listServices`, `upsertService`
+- `listAdminUsers`, `inviteAdmin`, `removeAdmin`, `overviewStats`, `recentActivity`
 
-## Out of scope
+Reads use TanStack Query pattern: `queryOptions()` → `ensureQueryData` in loader → `useSuspenseQuery` in component. Writes use `useMutation` + `useServerFn` + `invalidateQueries`.
 
-- No copy changes.
-- No new sections, no new routes.
-- No images or 3D renders (the references use product photography; Synkra has none yet — we'll lean on typography + negative space instead, which is the actual design language those references share).
-- No animation library; existing fade-in utility is enough.
+## Components
 
-## Verification
+```text
+src/components/admin/
+  layout/AdminSidebar.tsx
+  layout/AdminHeader.tsx
+  ui/AdminButton.tsx, AdminInput.tsx, AdminTable.tsx, AdminModal.tsx,
+     AdminBadge.tsx, ImageUpload.tsx, RichTextEditor.tsx, ConfirmDialog.tsx
+  charts/SubmissionsChart.tsx, ClientsChart.tsx    # recharts
+  sections/OverviewStats.tsx, QuickActions.tsx, RecentActivity.tsx
+```
 
-- `vite build` clean.
-- Visual check at 1280, 1024, 768, 390 — confirm the nav CTA is green-on-black, numerals don't overflow on mobile, and the hero headline scales down cleanly.
+`RichTextEditor` uses `@uiw/react-md-editor` inside a `<ClientOnly>` wrapper (TanStack equivalent of Next's `dynamic({ ssr: false })`).
+
+## Design tokens
+
+Admin tokens added to `src/styles.css` under `@theme` (v4 syntax, not `tailwind.config.ts` — this project doesn't have one). Semantic names: `--color-admin-bg`, `--color-admin-surface`, `--color-admin-border`, `--color-admin-accent`, plus text/status variants. Utility classes (`admin-card`, `admin-btn-primary`, `admin-input`, `admin-table`, `status-badge`, etc.) declared via `@utility`.
+
+## Dependencies
+
+`bun add qrcode.react @uiw/react-md-editor recharts react-hook-form @hookform/resolvers zod` (zod, RHF, and resolvers may already be installed — will check first). Skipping `@supabase/auth-helpers-nextjs`.
+
+## Deferred / out of scope
+
+- `admin.synkra.co.za` subdomain — needs Cloudflare route config after publish; can wire once you're ready.
+- Email invites for new admins — Supabase `inviteUserByEmail` requires SMTP configured in Supabase; will wire the button but flag if SMTP isn't set up.
+- Marketing site consuming the `services` table for dynamic pricing — separate task; current pricing page uses hardcoded values. Will note it as a follow-up rather than touch marketing pages in this build.
+
+## Build order (single response batches)
+
+1. Migration (waits on your approval, blocking the rest).
+2. Deps + design tokens + storage buckets.
+3. Auth pages (login, MFA) + `_admin` gate + shared admin UI primitives.
+4. Dashboard layout + overview + charts.
+5. Portfolio (list + editor + upload API + ImageUpload).
+6. Blog (list + editor + RichTextEditor).
+7. Clients (list + detail with credits/status).
+8. Submissions + Partners.
+9. Services + Settings.
+10. Typecheck + smoke test each route with curl.
+
+This is a big build — expect it to span multiple turns after migration approval.
