@@ -14,7 +14,9 @@ import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as HelpRouteImport } from './routes/help'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AdminRouteImport } from './routes/_admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as PartnerIndexRouteImport } from './routes/partner.index'
@@ -33,6 +35,21 @@ import { Route as LegalTermsOfServiceRouteImport } from './routes/legal.terms-of
 import { Route as LegalRefundPolicyRouteImport } from './routes/legal.refund-policy'
 import { Route as LegalPrivacyPolicyRouteImport } from './routes/legal.privacy-policy'
 import { Route as ApiSubmitFormRouteImport } from './routes/api/submit-form'
+import { Route as AdminMfaRouteImport } from './routes/admin.mfa'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as ApiAdminUploadRouteImport } from './routes/api/admin.upload'
+import { Route as AdminAdminDashboardRouteImport } from './routes/_admin.admin.dashboard'
+import { Route as AdminAdminDashboardIndexRouteImport } from './routes/_admin.admin.dashboard.index'
+import { Route as AdminAdminDashboardSubmissionsRouteImport } from './routes/_admin.admin.dashboard.submissions'
+import { Route as AdminAdminDashboardSettingsRouteImport } from './routes/_admin.admin.dashboard.settings'
+import { Route as AdminAdminDashboardServicesRouteImport } from './routes/_admin.admin.dashboard.services'
+import { Route as AdminAdminDashboardPortfolioRouteImport } from './routes/_admin.admin.dashboard.portfolio'
+import { Route as AdminAdminDashboardPartnersRouteImport } from './routes/_admin.admin.dashboard.partners'
+import { Route as AdminAdminDashboardClientsRouteImport } from './routes/_admin.admin.dashboard.clients'
+import { Route as AdminAdminDashboardBlogRouteImport } from './routes/_admin.admin.dashboard.blog'
+import { Route as AdminAdminDashboardPortfolioIdRouteImport } from './routes/_admin.admin.dashboard.portfolio.$id'
+import { Route as AdminAdminDashboardClientsIdRouteImport } from './routes/_admin.admin.dashboard.clients.$id'
+import { Route as AdminAdminDashboardBlogIdRouteImport } from './routes/_admin.admin.dashboard.blog.$id'
 
 const RoiCalculatorRoute = RoiCalculatorRouteImport.update({
   id: '/roi-calculator',
@@ -59,9 +76,18 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/_admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -156,15 +182,103 @@ const ApiSubmitFormRoute = ApiSubmitFormRouteImport.update({
   path: '/api/submit-form',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminMfaRoute = AdminMfaRouteImport.update({
+  id: '/mfa',
+  path: '/mfa',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AdminRoute,
+} as any)
+const ApiAdminUploadRoute = ApiAdminUploadRouteImport.update({
+  id: '/api/admin/upload',
+  path: '/api/admin/upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAdminDashboardRoute = AdminAdminDashboardRouteImport.update({
+  id: '/admin/dashboard',
+  path: '/admin/dashboard',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAdminDashboardIndexRoute =
+  AdminAdminDashboardIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AdminAdminDashboardRoute,
+  } as any)
+const AdminAdminDashboardSubmissionsRoute =
+  AdminAdminDashboardSubmissionsRouteImport.update({
+    id: '/submissions',
+    path: '/submissions',
+    getParentRoute: () => AdminAdminDashboardRoute,
+  } as any)
+const AdminAdminDashboardSettingsRoute =
+  AdminAdminDashboardSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AdminAdminDashboardRoute,
+  } as any)
+const AdminAdminDashboardServicesRoute =
+  AdminAdminDashboardServicesRouteImport.update({
+    id: '/services',
+    path: '/services',
+    getParentRoute: () => AdminAdminDashboardRoute,
+  } as any)
+const AdminAdminDashboardPortfolioRoute =
+  AdminAdminDashboardPortfolioRouteImport.update({
+    id: '/portfolio',
+    path: '/portfolio',
+    getParentRoute: () => AdminAdminDashboardRoute,
+  } as any)
+const AdminAdminDashboardPartnersRoute =
+  AdminAdminDashboardPartnersRouteImport.update({
+    id: '/partners',
+    path: '/partners',
+    getParentRoute: () => AdminAdminDashboardRoute,
+  } as any)
+const AdminAdminDashboardClientsRoute =
+  AdminAdminDashboardClientsRouteImport.update({
+    id: '/clients',
+    path: '/clients',
+    getParentRoute: () => AdminAdminDashboardRoute,
+  } as any)
+const AdminAdminDashboardBlogRoute = AdminAdminDashboardBlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => AdminAdminDashboardRoute,
+} as any)
+const AdminAdminDashboardPortfolioIdRoute =
+  AdminAdminDashboardPortfolioIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => AdminAdminDashboardPortfolioRoute,
+  } as any)
+const AdminAdminDashboardClientsIdRoute =
+  AdminAdminDashboardClientsIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => AdminAdminDashboardClientsRoute,
+  } as any)
+const AdminAdminDashboardBlogIdRoute =
+  AdminAdminDashboardBlogIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => AdminAdminDashboardBlogRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/contact': typeof ContactRoute
   '/help': typeof HelpRoute
   '/portfolio': typeof PortfolioRouteWithChildren
   '/pricing': typeof PricingRoute
   '/roi-calculator': typeof RoiCalculatorRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/mfa': typeof AdminMfaRoute
   '/api/submit-form': typeof ApiSubmitFormRoute
   '/legal/privacy-policy': typeof LegalPrivacyPolicyRoute
   '/legal/refund-policy': typeof LegalRefundPolicyRoute
@@ -182,15 +296,31 @@ export interface FileRoutesByFullPath {
   '/services/virtual-photoshoot': typeof ServicesVirtualPhotoshootRoute
   '/partner/': typeof PartnerIndexRoute
   '/services/': typeof ServicesIndexRoute
+  '/admin/dashboard': typeof AdminAdminDashboardRouteWithChildren
+  '/api/admin/upload': typeof ApiAdminUploadRoute
+  '/admin/dashboard/blog': typeof AdminAdminDashboardBlogRouteWithChildren
+  '/admin/dashboard/clients': typeof AdminAdminDashboardClientsRouteWithChildren
+  '/admin/dashboard/partners': typeof AdminAdminDashboardPartnersRoute
+  '/admin/dashboard/portfolio': typeof AdminAdminDashboardPortfolioRouteWithChildren
+  '/admin/dashboard/services': typeof AdminAdminDashboardServicesRoute
+  '/admin/dashboard/settings': typeof AdminAdminDashboardSettingsRoute
+  '/admin/dashboard/submissions': typeof AdminAdminDashboardSubmissionsRoute
+  '/admin/dashboard/': typeof AdminAdminDashboardIndexRoute
+  '/admin/dashboard/blog/$id': typeof AdminAdminDashboardBlogIdRoute
+  '/admin/dashboard/clients/$id': typeof AdminAdminDashboardClientsIdRoute
+  '/admin/dashboard/portfolio/$id': typeof AdminAdminDashboardPortfolioIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/contact': typeof ContactRoute
   '/help': typeof HelpRoute
   '/portfolio': typeof PortfolioRouteWithChildren
   '/pricing': typeof PricingRoute
   '/roi-calculator': typeof RoiCalculatorRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/mfa': typeof AdminMfaRoute
   '/api/submit-form': typeof ApiSubmitFormRoute
   '/legal/privacy-policy': typeof LegalPrivacyPolicyRoute
   '/legal/refund-policy': typeof LegalRefundPolicyRoute
@@ -208,16 +338,32 @@ export interface FileRoutesByTo {
   '/services/virtual-photoshoot': typeof ServicesVirtualPhotoshootRoute
   '/partner': typeof PartnerIndexRoute
   '/services': typeof ServicesIndexRoute
+  '/api/admin/upload': typeof ApiAdminUploadRoute
+  '/admin/dashboard/blog': typeof AdminAdminDashboardBlogRouteWithChildren
+  '/admin/dashboard/clients': typeof AdminAdminDashboardClientsRouteWithChildren
+  '/admin/dashboard/partners': typeof AdminAdminDashboardPartnersRoute
+  '/admin/dashboard/portfolio': typeof AdminAdminDashboardPortfolioRouteWithChildren
+  '/admin/dashboard/services': typeof AdminAdminDashboardServicesRoute
+  '/admin/dashboard/settings': typeof AdminAdminDashboardSettingsRoute
+  '/admin/dashboard/submissions': typeof AdminAdminDashboardSubmissionsRoute
+  '/admin/dashboard': typeof AdminAdminDashboardIndexRoute
+  '/admin/dashboard/blog/$id': typeof AdminAdminDashboardBlogIdRoute
+  '/admin/dashboard/clients/$id': typeof AdminAdminDashboardClientsIdRoute
+  '/admin/dashboard/portfolio/$id': typeof AdminAdminDashboardPortfolioIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_admin': typeof AdminRouteWithChildren
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/contact': typeof ContactRoute
   '/help': typeof HelpRoute
   '/portfolio': typeof PortfolioRouteWithChildren
   '/pricing': typeof PricingRoute
   '/roi-calculator': typeof RoiCalculatorRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/mfa': typeof AdminMfaRoute
   '/api/submit-form': typeof ApiSubmitFormRoute
   '/legal/privacy-policy': typeof LegalPrivacyPolicyRoute
   '/legal/refund-policy': typeof LegalRefundPolicyRoute
@@ -235,17 +381,33 @@ export interface FileRoutesById {
   '/services/virtual-photoshoot': typeof ServicesVirtualPhotoshootRoute
   '/partner/': typeof PartnerIndexRoute
   '/services/': typeof ServicesIndexRoute
+  '/_admin/admin/dashboard': typeof AdminAdminDashboardRouteWithChildren
+  '/api/admin/upload': typeof ApiAdminUploadRoute
+  '/_admin/admin/dashboard/blog': typeof AdminAdminDashboardBlogRouteWithChildren
+  '/_admin/admin/dashboard/clients': typeof AdminAdminDashboardClientsRouteWithChildren
+  '/_admin/admin/dashboard/partners': typeof AdminAdminDashboardPartnersRoute
+  '/_admin/admin/dashboard/portfolio': typeof AdminAdminDashboardPortfolioRouteWithChildren
+  '/_admin/admin/dashboard/services': typeof AdminAdminDashboardServicesRoute
+  '/_admin/admin/dashboard/settings': typeof AdminAdminDashboardSettingsRoute
+  '/_admin/admin/dashboard/submissions': typeof AdminAdminDashboardSubmissionsRoute
+  '/_admin/admin/dashboard/': typeof AdminAdminDashboardIndexRoute
+  '/_admin/admin/dashboard/blog/$id': typeof AdminAdminDashboardBlogIdRoute
+  '/_admin/admin/dashboard/clients/$id': typeof AdminAdminDashboardClientsIdRoute
+  '/_admin/admin/dashboard/portfolio/$id': typeof AdminAdminDashboardPortfolioIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/admin'
     | '/contact'
     | '/help'
     | '/portfolio'
     | '/pricing'
     | '/roi-calculator'
+    | '/admin/login'
+    | '/admin/mfa'
     | '/api/submit-form'
     | '/legal/privacy-policy'
     | '/legal/refund-policy'
@@ -263,15 +425,31 @@ export interface FileRouteTypes {
     | '/services/virtual-photoshoot'
     | '/partner/'
     | '/services/'
+    | '/admin/dashboard'
+    | '/api/admin/upload'
+    | '/admin/dashboard/blog'
+    | '/admin/dashboard/clients'
+    | '/admin/dashboard/partners'
+    | '/admin/dashboard/portfolio'
+    | '/admin/dashboard/services'
+    | '/admin/dashboard/settings'
+    | '/admin/dashboard/submissions'
+    | '/admin/dashboard/'
+    | '/admin/dashboard/blog/$id'
+    | '/admin/dashboard/clients/$id'
+    | '/admin/dashboard/portfolio/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/admin'
     | '/contact'
     | '/help'
     | '/portfolio'
     | '/pricing'
     | '/roi-calculator'
+    | '/admin/login'
+    | '/admin/mfa'
     | '/api/submit-form'
     | '/legal/privacy-policy'
     | '/legal/refund-policy'
@@ -289,15 +467,31 @@ export interface FileRouteTypes {
     | '/services/virtual-photoshoot'
     | '/partner'
     | '/services'
+    | '/api/admin/upload'
+    | '/admin/dashboard/blog'
+    | '/admin/dashboard/clients'
+    | '/admin/dashboard/partners'
+    | '/admin/dashboard/portfolio'
+    | '/admin/dashboard/services'
+    | '/admin/dashboard/settings'
+    | '/admin/dashboard/submissions'
+    | '/admin/dashboard'
+    | '/admin/dashboard/blog/$id'
+    | '/admin/dashboard/clients/$id'
+    | '/admin/dashboard/portfolio/$id'
   id:
     | '__root__'
     | '/'
+    | '/_admin'
     | '/about'
+    | '/admin'
     | '/contact'
     | '/help'
     | '/portfolio'
     | '/pricing'
     | '/roi-calculator'
+    | '/admin/login'
+    | '/admin/mfa'
     | '/api/submit-form'
     | '/legal/privacy-policy'
     | '/legal/refund-policy'
@@ -315,11 +509,26 @@ export interface FileRouteTypes {
     | '/services/virtual-photoshoot'
     | '/partner/'
     | '/services/'
+    | '/_admin/admin/dashboard'
+    | '/api/admin/upload'
+    | '/_admin/admin/dashboard/blog'
+    | '/_admin/admin/dashboard/clients'
+    | '/_admin/admin/dashboard/partners'
+    | '/_admin/admin/dashboard/portfolio'
+    | '/_admin/admin/dashboard/services'
+    | '/_admin/admin/dashboard/settings'
+    | '/_admin/admin/dashboard/submissions'
+    | '/_admin/admin/dashboard/'
+    | '/_admin/admin/dashboard/blog/$id'
+    | '/_admin/admin/dashboard/clients/$id'
+    | '/_admin/admin/dashboard/portfolio/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
   AboutRoute: typeof AboutRoute
+  AdminRoute: typeof AdminRouteWithChildren
   ContactRoute: typeof ContactRoute
   HelpRoute: typeof HelpRoute
   PortfolioRoute: typeof PortfolioRouteWithChildren
@@ -341,6 +550,7 @@ export interface RootRouteChildren {
   ServicesVirtualPhotoshootRoute: typeof ServicesVirtualPhotoshootRoute
   PartnerIndexRoute: typeof PartnerIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
+  ApiAdminUploadRoute: typeof ApiAdminUploadRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -380,11 +590,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_admin': {
+      id: '/_admin'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -513,8 +737,203 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiSubmitFormRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/mfa': {
+      id: '/admin/mfa'
+      path: '/mfa'
+      fullPath: '/admin/mfa'
+      preLoaderRoute: typeof AdminMfaRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/api/admin/upload': {
+      id: '/api/admin/upload'
+      path: '/api/admin/upload'
+      fullPath: '/api/admin/upload'
+      preLoaderRoute: typeof ApiAdminUploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_admin/admin/dashboard': {
+      id: '/_admin/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminAdminDashboardRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/admin/dashboard/': {
+      id: '/_admin/admin/dashboard/'
+      path: '/'
+      fullPath: '/admin/dashboard/'
+      preLoaderRoute: typeof AdminAdminDashboardIndexRouteImport
+      parentRoute: typeof AdminAdminDashboardRoute
+    }
+    '/_admin/admin/dashboard/submissions': {
+      id: '/_admin/admin/dashboard/submissions'
+      path: '/submissions'
+      fullPath: '/admin/dashboard/submissions'
+      preLoaderRoute: typeof AdminAdminDashboardSubmissionsRouteImport
+      parentRoute: typeof AdminAdminDashboardRoute
+    }
+    '/_admin/admin/dashboard/settings': {
+      id: '/_admin/admin/dashboard/settings'
+      path: '/settings'
+      fullPath: '/admin/dashboard/settings'
+      preLoaderRoute: typeof AdminAdminDashboardSettingsRouteImport
+      parentRoute: typeof AdminAdminDashboardRoute
+    }
+    '/_admin/admin/dashboard/services': {
+      id: '/_admin/admin/dashboard/services'
+      path: '/services'
+      fullPath: '/admin/dashboard/services'
+      preLoaderRoute: typeof AdminAdminDashboardServicesRouteImport
+      parentRoute: typeof AdminAdminDashboardRoute
+    }
+    '/_admin/admin/dashboard/portfolio': {
+      id: '/_admin/admin/dashboard/portfolio'
+      path: '/portfolio'
+      fullPath: '/admin/dashboard/portfolio'
+      preLoaderRoute: typeof AdminAdminDashboardPortfolioRouteImport
+      parentRoute: typeof AdminAdminDashboardRoute
+    }
+    '/_admin/admin/dashboard/partners': {
+      id: '/_admin/admin/dashboard/partners'
+      path: '/partners'
+      fullPath: '/admin/dashboard/partners'
+      preLoaderRoute: typeof AdminAdminDashboardPartnersRouteImport
+      parentRoute: typeof AdminAdminDashboardRoute
+    }
+    '/_admin/admin/dashboard/clients': {
+      id: '/_admin/admin/dashboard/clients'
+      path: '/clients'
+      fullPath: '/admin/dashboard/clients'
+      preLoaderRoute: typeof AdminAdminDashboardClientsRouteImport
+      parentRoute: typeof AdminAdminDashboardRoute
+    }
+    '/_admin/admin/dashboard/blog': {
+      id: '/_admin/admin/dashboard/blog'
+      path: '/blog'
+      fullPath: '/admin/dashboard/blog'
+      preLoaderRoute: typeof AdminAdminDashboardBlogRouteImport
+      parentRoute: typeof AdminAdminDashboardRoute
+    }
+    '/_admin/admin/dashboard/portfolio/$id': {
+      id: '/_admin/admin/dashboard/portfolio/$id'
+      path: '/$id'
+      fullPath: '/admin/dashboard/portfolio/$id'
+      preLoaderRoute: typeof AdminAdminDashboardPortfolioIdRouteImport
+      parentRoute: typeof AdminAdminDashboardPortfolioRoute
+    }
+    '/_admin/admin/dashboard/clients/$id': {
+      id: '/_admin/admin/dashboard/clients/$id'
+      path: '/$id'
+      fullPath: '/admin/dashboard/clients/$id'
+      preLoaderRoute: typeof AdminAdminDashboardClientsIdRouteImport
+      parentRoute: typeof AdminAdminDashboardClientsRoute
+    }
+    '/_admin/admin/dashboard/blog/$id': {
+      id: '/_admin/admin/dashboard/blog/$id'
+      path: '/$id'
+      fullPath: '/admin/dashboard/blog/$id'
+      preLoaderRoute: typeof AdminAdminDashboardBlogIdRouteImport
+      parentRoute: typeof AdminAdminDashboardBlogRoute
+    }
   }
 }
+
+interface AdminAdminDashboardBlogRouteChildren {
+  AdminAdminDashboardBlogIdRoute: typeof AdminAdminDashboardBlogIdRoute
+}
+
+const AdminAdminDashboardBlogRouteChildren: AdminAdminDashboardBlogRouteChildren =
+  {
+    AdminAdminDashboardBlogIdRoute: AdminAdminDashboardBlogIdRoute,
+  }
+
+const AdminAdminDashboardBlogRouteWithChildren =
+  AdminAdminDashboardBlogRoute._addFileChildren(
+    AdminAdminDashboardBlogRouteChildren,
+  )
+
+interface AdminAdminDashboardClientsRouteChildren {
+  AdminAdminDashboardClientsIdRoute: typeof AdminAdminDashboardClientsIdRoute
+}
+
+const AdminAdminDashboardClientsRouteChildren: AdminAdminDashboardClientsRouteChildren =
+  {
+    AdminAdminDashboardClientsIdRoute: AdminAdminDashboardClientsIdRoute,
+  }
+
+const AdminAdminDashboardClientsRouteWithChildren =
+  AdminAdminDashboardClientsRoute._addFileChildren(
+    AdminAdminDashboardClientsRouteChildren,
+  )
+
+interface AdminAdminDashboardPortfolioRouteChildren {
+  AdminAdminDashboardPortfolioIdRoute: typeof AdminAdminDashboardPortfolioIdRoute
+}
+
+const AdminAdminDashboardPortfolioRouteChildren: AdminAdminDashboardPortfolioRouteChildren =
+  {
+    AdminAdminDashboardPortfolioIdRoute: AdminAdminDashboardPortfolioIdRoute,
+  }
+
+const AdminAdminDashboardPortfolioRouteWithChildren =
+  AdminAdminDashboardPortfolioRoute._addFileChildren(
+    AdminAdminDashboardPortfolioRouteChildren,
+  )
+
+interface AdminAdminDashboardRouteChildren {
+  AdminAdminDashboardBlogRoute: typeof AdminAdminDashboardBlogRouteWithChildren
+  AdminAdminDashboardClientsRoute: typeof AdminAdminDashboardClientsRouteWithChildren
+  AdminAdminDashboardPartnersRoute: typeof AdminAdminDashboardPartnersRoute
+  AdminAdminDashboardPortfolioRoute: typeof AdminAdminDashboardPortfolioRouteWithChildren
+  AdminAdminDashboardServicesRoute: typeof AdminAdminDashboardServicesRoute
+  AdminAdminDashboardSettingsRoute: typeof AdminAdminDashboardSettingsRoute
+  AdminAdminDashboardSubmissionsRoute: typeof AdminAdminDashboardSubmissionsRoute
+  AdminAdminDashboardIndexRoute: typeof AdminAdminDashboardIndexRoute
+}
+
+const AdminAdminDashboardRouteChildren: AdminAdminDashboardRouteChildren = {
+  AdminAdminDashboardBlogRoute: AdminAdminDashboardBlogRouteWithChildren,
+  AdminAdminDashboardClientsRoute: AdminAdminDashboardClientsRouteWithChildren,
+  AdminAdminDashboardPartnersRoute: AdminAdminDashboardPartnersRoute,
+  AdminAdminDashboardPortfolioRoute:
+    AdminAdminDashboardPortfolioRouteWithChildren,
+  AdminAdminDashboardServicesRoute: AdminAdminDashboardServicesRoute,
+  AdminAdminDashboardSettingsRoute: AdminAdminDashboardSettingsRoute,
+  AdminAdminDashboardSubmissionsRoute: AdminAdminDashboardSubmissionsRoute,
+  AdminAdminDashboardIndexRoute: AdminAdminDashboardIndexRoute,
+}
+
+const AdminAdminDashboardRouteWithChildren =
+  AdminAdminDashboardRoute._addFileChildren(AdminAdminDashboardRouteChildren)
+
+interface AdminRouteChildren {
+  AdminAdminDashboardRoute: typeof AdminAdminDashboardRouteWithChildren
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAdminDashboardRoute: AdminAdminDashboardRouteWithChildren,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface AdminRouteChildren {
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminMfaRoute: typeof AdminMfaRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminLoginRoute: AdminLoginRoute,
+  AdminMfaRoute: AdminMfaRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface PortfolioRouteChildren {
   PortfolioSlugRoute: typeof PortfolioSlugRoute
@@ -530,7 +949,9 @@ const PortfolioRouteWithChildren = PortfolioRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
   AboutRoute: AboutRoute,
+  AdminRoute: AdminRouteWithChildren,
   ContactRoute: ContactRoute,
   HelpRoute: HelpRoute,
   PortfolioRoute: PortfolioRouteWithChildren,
@@ -552,17 +973,8 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesVirtualPhotoshootRoute: ServicesVirtualPhotoshootRoute,
   PartnerIndexRoute: PartnerIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
+  ApiAdminUploadRoute: ApiAdminUploadRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
