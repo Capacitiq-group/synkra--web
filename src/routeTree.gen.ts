@@ -46,6 +46,7 @@ import { Route as AdminAdminDashboardClientsRouteImport } from './routes/_admin.
 import { Route as AdminAdminDashboardBlogRouteImport } from './routes/_admin.admin.dashboard.blog'
 import { Route as AdminAdminDashboardPortfolioIdRouteImport } from './routes/_admin.admin.dashboard.portfolio.$id'
 import { Route as AdminAdminDashboardClientsIdRouteImport } from './routes/_admin.admin.dashboard.clients.$id'
+import { Route as AdminAdminDashboardBlogIdRouteImport } from './routes/_admin.admin.dashboard.blog.$id'
 
 const RoiCalculatorRoute = RoiCalculatorRouteImport.update({
   id: '/roi-calculator',
@@ -239,6 +240,12 @@ const AdminAdminDashboardClientsIdRoute =
     path: '/$id',
     getParentRoute: () => AdminAdminDashboardClientsRoute,
   } as any)
+const AdminAdminDashboardBlogIdRoute =
+  AdminAdminDashboardBlogIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => AdminAdminDashboardBlogRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -270,11 +277,12 @@ export interface FileRoutesByFullPath {
   '/services/': typeof ServicesIndexRoute
   '/admin/dashboard': typeof AdminAdminDashboardRouteWithChildren
   '/api/admin/upload': typeof ApiAdminUploadRoute
-  '/admin/dashboard/blog': typeof AdminAdminDashboardBlogRoute
+  '/admin/dashboard/blog': typeof AdminAdminDashboardBlogRouteWithChildren
   '/admin/dashboard/clients': typeof AdminAdminDashboardClientsRouteWithChildren
   '/admin/dashboard/portfolio': typeof AdminAdminDashboardPortfolioRouteWithChildren
   '/admin/dashboard/submissions': typeof AdminAdminDashboardSubmissionsRoute
   '/admin/dashboard/': typeof AdminAdminDashboardIndexRoute
+  '/admin/dashboard/blog/$id': typeof AdminAdminDashboardBlogIdRoute
   '/admin/dashboard/clients/$id': typeof AdminAdminDashboardClientsIdRoute
   '/admin/dashboard/portfolio/$id': typeof AdminAdminDashboardPortfolioIdRoute
 }
@@ -307,11 +315,12 @@ export interface FileRoutesByTo {
   '/partner': typeof PartnerIndexRoute
   '/services': typeof ServicesIndexRoute
   '/api/admin/upload': typeof ApiAdminUploadRoute
-  '/admin/dashboard/blog': typeof AdminAdminDashboardBlogRoute
+  '/admin/dashboard/blog': typeof AdminAdminDashboardBlogRouteWithChildren
   '/admin/dashboard/clients': typeof AdminAdminDashboardClientsRouteWithChildren
   '/admin/dashboard/portfolio': typeof AdminAdminDashboardPortfolioRouteWithChildren
   '/admin/dashboard/submissions': typeof AdminAdminDashboardSubmissionsRoute
   '/admin/dashboard': typeof AdminAdminDashboardIndexRoute
+  '/admin/dashboard/blog/$id': typeof AdminAdminDashboardBlogIdRoute
   '/admin/dashboard/clients/$id': typeof AdminAdminDashboardClientsIdRoute
   '/admin/dashboard/portfolio/$id': typeof AdminAdminDashboardPortfolioIdRoute
 }
@@ -347,11 +356,12 @@ export interface FileRoutesById {
   '/services/': typeof ServicesIndexRoute
   '/_admin/admin/dashboard': typeof AdminAdminDashboardRouteWithChildren
   '/api/admin/upload': typeof ApiAdminUploadRoute
-  '/_admin/admin/dashboard/blog': typeof AdminAdminDashboardBlogRoute
+  '/_admin/admin/dashboard/blog': typeof AdminAdminDashboardBlogRouteWithChildren
   '/_admin/admin/dashboard/clients': typeof AdminAdminDashboardClientsRouteWithChildren
   '/_admin/admin/dashboard/portfolio': typeof AdminAdminDashboardPortfolioRouteWithChildren
   '/_admin/admin/dashboard/submissions': typeof AdminAdminDashboardSubmissionsRoute
   '/_admin/admin/dashboard/': typeof AdminAdminDashboardIndexRoute
+  '/_admin/admin/dashboard/blog/$id': typeof AdminAdminDashboardBlogIdRoute
   '/_admin/admin/dashboard/clients/$id': typeof AdminAdminDashboardClientsIdRoute
   '/_admin/admin/dashboard/portfolio/$id': typeof AdminAdminDashboardPortfolioIdRoute
 }
@@ -392,6 +402,7 @@ export interface FileRouteTypes {
     | '/admin/dashboard/portfolio'
     | '/admin/dashboard/submissions'
     | '/admin/dashboard/'
+    | '/admin/dashboard/blog/$id'
     | '/admin/dashboard/clients/$id'
     | '/admin/dashboard/portfolio/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -429,6 +440,7 @@ export interface FileRouteTypes {
     | '/admin/dashboard/portfolio'
     | '/admin/dashboard/submissions'
     | '/admin/dashboard'
+    | '/admin/dashboard/blog/$id'
     | '/admin/dashboard/clients/$id'
     | '/admin/dashboard/portfolio/$id'
   id:
@@ -468,6 +480,7 @@ export interface FileRouteTypes {
     | '/_admin/admin/dashboard/portfolio'
     | '/_admin/admin/dashboard/submissions'
     | '/_admin/admin/dashboard/'
+    | '/_admin/admin/dashboard/blog/$id'
     | '/_admin/admin/dashboard/clients/$id'
     | '/_admin/admin/dashboard/portfolio/$id'
   fileRoutesById: FileRoutesById
@@ -762,8 +775,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAdminDashboardClientsIdRouteImport
       parentRoute: typeof AdminAdminDashboardClientsRoute
     }
+    '/_admin/admin/dashboard/blog/$id': {
+      id: '/_admin/admin/dashboard/blog/$id'
+      path: '/$id'
+      fullPath: '/admin/dashboard/blog/$id'
+      preLoaderRoute: typeof AdminAdminDashboardBlogIdRouteImport
+      parentRoute: typeof AdminAdminDashboardBlogRoute
+    }
   }
 }
+
+interface AdminAdminDashboardBlogRouteChildren {
+  AdminAdminDashboardBlogIdRoute: typeof AdminAdminDashboardBlogIdRoute
+}
+
+const AdminAdminDashboardBlogRouteChildren: AdminAdminDashboardBlogRouteChildren =
+  {
+    AdminAdminDashboardBlogIdRoute: AdminAdminDashboardBlogIdRoute,
+  }
+
+const AdminAdminDashboardBlogRouteWithChildren =
+  AdminAdminDashboardBlogRoute._addFileChildren(
+    AdminAdminDashboardBlogRouteChildren,
+  )
 
 interface AdminAdminDashboardClientsRouteChildren {
   AdminAdminDashboardClientsIdRoute: typeof AdminAdminDashboardClientsIdRoute
@@ -794,7 +828,7 @@ const AdminAdminDashboardPortfolioRouteWithChildren =
   )
 
 interface AdminAdminDashboardRouteChildren {
-  AdminAdminDashboardBlogRoute: typeof AdminAdminDashboardBlogRoute
+  AdminAdminDashboardBlogRoute: typeof AdminAdminDashboardBlogRouteWithChildren
   AdminAdminDashboardClientsRoute: typeof AdminAdminDashboardClientsRouteWithChildren
   AdminAdminDashboardPortfolioRoute: typeof AdminAdminDashboardPortfolioRouteWithChildren
   AdminAdminDashboardSubmissionsRoute: typeof AdminAdminDashboardSubmissionsRoute
@@ -802,7 +836,7 @@ interface AdminAdminDashboardRouteChildren {
 }
 
 const AdminAdminDashboardRouteChildren: AdminAdminDashboardRouteChildren = {
-  AdminAdminDashboardBlogRoute: AdminAdminDashboardBlogRoute,
+  AdminAdminDashboardBlogRoute: AdminAdminDashboardBlogRouteWithChildren,
   AdminAdminDashboardClientsRoute: AdminAdminDashboardClientsRouteWithChildren,
   AdminAdminDashboardPortfolioRoute:
     AdminAdminDashboardPortfolioRouteWithChildren,
