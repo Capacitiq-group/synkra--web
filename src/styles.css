@@ -383,3 +383,104 @@
   animation: synkraFadeIn 0.7s ease-out 0.15s both;
   opacity: 0;
 }
+
+/* =========================================================
+   Admin Dashboard Design System
+   Scoped via `.admin-scope` on the admin shell so the marketing
+   site is not affected.
+   ========================================================= */
+@theme inline {
+  --color-admin-bg: #0b0b10;
+  --color-admin-surface: #14141c;
+  --color-admin-surface-2: #1c1c26;
+  --color-admin-border: #262632;
+  --color-admin-text: #ececf1;
+  --color-admin-text-muted: #8b8b98;
+  --color-admin-accent: #56d722;
+  --color-admin-accent-hover: #6ce630;
+  --color-admin-danger: #ef4444;
+  --color-admin-warning: #f59e0b;
+  --color-admin-info: #3b82f6;
+}
+
+.admin-scope {
+  background: var(--color-admin-bg);
+  color: var(--color-admin-text);
+  min-height: 100vh;
+  font-family: var(--font-sans);
+}
+
+@utility admin-card {
+  background: var(--color-admin-surface);
+  border: 1px solid var(--color-admin-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+@utility admin-input {
+  background: var(--color-admin-surface-2);
+  border: 1px solid var(--color-admin-border);
+  border-radius: 8px;
+  padding: 0.625rem 0.875rem;
+  color: var(--color-admin-text);
+  width: 100%;
+  font-size: 0.9375rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+@utility admin-input-focus {
+  border-color: var(--color-admin-accent);
+}
+@utility admin-btn-primary {
+  background: var(--color-admin-accent);
+  color: #0a0a0a;
+  font-weight: 600;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  transition: background 0.15s;
+  border: none;
+  cursor: pointer;
+}
+@utility admin-btn-secondary {
+  background: transparent;
+  color: var(--color-admin-text);
+  border: 1px solid var(--color-admin-border);
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+@utility admin-btn-danger {
+  background: transparent;
+  color: var(--color-admin-danger);
+  border: 1px solid var(--color-admin-danger);
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+@utility admin-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-admin-text-muted);
+  display: block;
+  margin-bottom: 0.375rem;
+}
+@utility admin-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9375rem;
+}
+@utility status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
