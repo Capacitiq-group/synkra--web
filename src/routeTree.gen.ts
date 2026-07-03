@@ -43,6 +43,7 @@ import { Route as AdminAdminDashboardIndexRouteImport } from './routes/_admin.ad
 import { Route as AdminAdminDashboardSubmissionsRouteImport } from './routes/_admin.admin.dashboard.submissions'
 import { Route as AdminAdminDashboardPortfolioRouteImport } from './routes/_admin.admin.dashboard.portfolio'
 import { Route as AdminAdminDashboardClientsRouteImport } from './routes/_admin.admin.dashboard.clients'
+import { Route as AdminAdminDashboardPortfolioIdRouteImport } from './routes/_admin.admin.dashboard.portfolio.$id'
 import { Route as AdminAdminDashboardClientsIdRouteImport } from './routes/_admin.admin.dashboard.clients.$id'
 
 const RoiCalculatorRoute = RoiCalculatorRouteImport.update({
@@ -220,6 +221,12 @@ const AdminAdminDashboardClientsRoute =
     path: '/clients',
     getParentRoute: () => AdminAdminDashboardRoute,
   } as any)
+const AdminAdminDashboardPortfolioIdRoute =
+  AdminAdminDashboardPortfolioIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => AdminAdminDashboardPortfolioRoute,
+  } as any)
 const AdminAdminDashboardClientsIdRoute =
   AdminAdminDashboardClientsIdRouteImport.update({
     id: '/$id',
@@ -258,10 +265,11 @@ export interface FileRoutesByFullPath {
   '/admin/dashboard': typeof AdminAdminDashboardRouteWithChildren
   '/api/admin/upload': typeof ApiAdminUploadRoute
   '/admin/dashboard/clients': typeof AdminAdminDashboardClientsRouteWithChildren
-  '/admin/dashboard/portfolio': typeof AdminAdminDashboardPortfolioRoute
+  '/admin/dashboard/portfolio': typeof AdminAdminDashboardPortfolioRouteWithChildren
   '/admin/dashboard/submissions': typeof AdminAdminDashboardSubmissionsRoute
   '/admin/dashboard/': typeof AdminAdminDashboardIndexRoute
   '/admin/dashboard/clients/$id': typeof AdminAdminDashboardClientsIdRoute
+  '/admin/dashboard/portfolio/$id': typeof AdminAdminDashboardPortfolioIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -293,10 +301,11 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesIndexRoute
   '/api/admin/upload': typeof ApiAdminUploadRoute
   '/admin/dashboard/clients': typeof AdminAdminDashboardClientsRouteWithChildren
-  '/admin/dashboard/portfolio': typeof AdminAdminDashboardPortfolioRoute
+  '/admin/dashboard/portfolio': typeof AdminAdminDashboardPortfolioRouteWithChildren
   '/admin/dashboard/submissions': typeof AdminAdminDashboardSubmissionsRoute
   '/admin/dashboard': typeof AdminAdminDashboardIndexRoute
   '/admin/dashboard/clients/$id': typeof AdminAdminDashboardClientsIdRoute
+  '/admin/dashboard/portfolio/$id': typeof AdminAdminDashboardPortfolioIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -331,10 +340,11 @@ export interface FileRoutesById {
   '/_admin/admin/dashboard': typeof AdminAdminDashboardRouteWithChildren
   '/api/admin/upload': typeof ApiAdminUploadRoute
   '/_admin/admin/dashboard/clients': typeof AdminAdminDashboardClientsRouteWithChildren
-  '/_admin/admin/dashboard/portfolio': typeof AdminAdminDashboardPortfolioRoute
+  '/_admin/admin/dashboard/portfolio': typeof AdminAdminDashboardPortfolioRouteWithChildren
   '/_admin/admin/dashboard/submissions': typeof AdminAdminDashboardSubmissionsRoute
   '/_admin/admin/dashboard/': typeof AdminAdminDashboardIndexRoute
   '/_admin/admin/dashboard/clients/$id': typeof AdminAdminDashboardClientsIdRoute
+  '/_admin/admin/dashboard/portfolio/$id': typeof AdminAdminDashboardPortfolioIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -373,6 +383,7 @@ export interface FileRouteTypes {
     | '/admin/dashboard/submissions'
     | '/admin/dashboard/'
     | '/admin/dashboard/clients/$id'
+    | '/admin/dashboard/portfolio/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -408,6 +419,7 @@ export interface FileRouteTypes {
     | '/admin/dashboard/submissions'
     | '/admin/dashboard'
     | '/admin/dashboard/clients/$id'
+    | '/admin/dashboard/portfolio/$id'
   id:
     | '__root__'
     | '/'
@@ -445,6 +457,7 @@ export interface FileRouteTypes {
     | '/_admin/admin/dashboard/submissions'
     | '/_admin/admin/dashboard/'
     | '/_admin/admin/dashboard/clients/$id'
+    | '/_admin/admin/dashboard/portfolio/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -716,6 +729,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAdminDashboardClientsRouteImport
       parentRoute: typeof AdminAdminDashboardRoute
     }
+    '/_admin/admin/dashboard/portfolio/$id': {
+      id: '/_admin/admin/dashboard/portfolio/$id'
+      path: '/$id'
+      fullPath: '/admin/dashboard/portfolio/$id'
+      preLoaderRoute: typeof AdminAdminDashboardPortfolioIdRouteImport
+      parentRoute: typeof AdminAdminDashboardPortfolioRoute
+    }
     '/_admin/admin/dashboard/clients/$id': {
       id: '/_admin/admin/dashboard/clients/$id'
       path: '/$id'
@@ -740,16 +760,31 @@ const AdminAdminDashboardClientsRouteWithChildren =
     AdminAdminDashboardClientsRouteChildren,
   )
 
+interface AdminAdminDashboardPortfolioRouteChildren {
+  AdminAdminDashboardPortfolioIdRoute: typeof AdminAdminDashboardPortfolioIdRoute
+}
+
+const AdminAdminDashboardPortfolioRouteChildren: AdminAdminDashboardPortfolioRouteChildren =
+  {
+    AdminAdminDashboardPortfolioIdRoute: AdminAdminDashboardPortfolioIdRoute,
+  }
+
+const AdminAdminDashboardPortfolioRouteWithChildren =
+  AdminAdminDashboardPortfolioRoute._addFileChildren(
+    AdminAdminDashboardPortfolioRouteChildren,
+  )
+
 interface AdminAdminDashboardRouteChildren {
   AdminAdminDashboardClientsRoute: typeof AdminAdminDashboardClientsRouteWithChildren
-  AdminAdminDashboardPortfolioRoute: typeof AdminAdminDashboardPortfolioRoute
+  AdminAdminDashboardPortfolioRoute: typeof AdminAdminDashboardPortfolioRouteWithChildren
   AdminAdminDashboardSubmissionsRoute: typeof AdminAdminDashboardSubmissionsRoute
   AdminAdminDashboardIndexRoute: typeof AdminAdminDashboardIndexRoute
 }
 
 const AdminAdminDashboardRouteChildren: AdminAdminDashboardRouteChildren = {
   AdminAdminDashboardClientsRoute: AdminAdminDashboardClientsRouteWithChildren,
-  AdminAdminDashboardPortfolioRoute: AdminAdminDashboardPortfolioRoute,
+  AdminAdminDashboardPortfolioRoute:
+    AdminAdminDashboardPortfolioRouteWithChildren,
   AdminAdminDashboardSubmissionsRoute: AdminAdminDashboardSubmissionsRoute,
   AdminAdminDashboardIndexRoute: AdminAdminDashboardIndexRoute,
 }
