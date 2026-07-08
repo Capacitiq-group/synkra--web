@@ -442,6 +442,7 @@ export const inviteAdmin = createServerFn({ method: "POST" })
     if (!userId) throw new Error("Could not create or find user. SMTP may not be configured.");
     await supabaseAdmin.from("user_roles").upsert({ user_id: userId, role: "admin" }, { onConflict: "user_id,role" });
     await supabaseAdmin.from("admin_users").upsert({ id: userId, email: data.email, full_name: data.full_name ?? null });
+    await audit(context, "admin.invite", "user", userId, { email: data.email });
     return { ok: true, userId };
   });
 
@@ -454,7 +455,22 @@ export const removeAdmin = createServerFn({ method: "POST" })
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     await supabaseAdmin.from("user_roles").delete().eq("user_id", data.userId).eq("role", "admin");
     await supabaseAdmin.from("admin_users").delete().eq("id", data.userId);
+    await audit(context, "admin.remove", "user", data.userId, {});
     return { ok: true };
+  });
+
+// ================= AUDIT LOG =================
+export const listAuditLog = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    await assertAdmin(context);
+    const { data, error } = await context.supabase
+      .from("admin_audit_log")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .limit(500);
+    if (error) throw error;
+    return data ?? [];
   });
 
 // Self-check for admin (used by client-side gate)
