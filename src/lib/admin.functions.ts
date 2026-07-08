@@ -356,8 +356,10 @@ export const approvePartner = createServerFn({ method: "POST" })
     const { error } = await s.from("approved_partners").insert(data);
     if (error) throw error;
     await s.from("form_submissions").update({ status: "converted" }).eq("id", data.submission_id);
+    await audit(context, "partner.approve", "approved_partner", data.submission_id, { partner_type: data.partner_type, name: data.name, commission_rate: data.commission_rate });
     return { ok: true };
   });
+
 
 export const updatePartner = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
