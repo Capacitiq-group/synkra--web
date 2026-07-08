@@ -99,6 +99,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       ],
       links: [
         { rel: "stylesheet", href: appCss },
+        { rel: "icon", type: "image/png", href: "https://res.cloudinary.com/dewvhnks3/image/upload/v1783510199/1000105755-removebg-preview_gkoigj.png" },
         // Inter font — loaded via <link> (Tailwind v4 disallows remote @import in CSS)
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
         {
