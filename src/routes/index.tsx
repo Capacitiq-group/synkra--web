@@ -10,6 +10,7 @@ import ROILink from "@/components/sections/ROILink";
 import PricingOverview from "@/components/sections/PricingOverview";
 import PartnerSection from "@/components/sections/PartnerSection";
 import BottomCTA from "@/components/sections/BottomCTA";
+import Testimonials from "@/components/sections/Testimonials";
 
 export const Route = createFileRoute("/")({
   head: () =>
