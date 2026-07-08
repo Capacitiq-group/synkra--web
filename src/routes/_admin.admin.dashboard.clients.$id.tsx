@@ -39,6 +39,9 @@ function ClientDetail() {
     plan_tier: (c?.plan_tier ?? "") as any,
     monthly_credit_allowance: c?.monthly_credit_allowance ?? 0,
     notes: c?.notes ?? "",
+    testimonial: (c as any)?.testimonial ?? "",
+    testimonial_published: (c as any)?.testimonial_published ?? false,
+    logo_url: (c as any)?.logo_url ?? "",
   });
 
   const upsertFn = useServerFn(upsertClient);
@@ -56,10 +59,14 @@ function ClientDetail() {
       plan_tier: (form.plan_tier || null) as any,
       monthly_credit_allowance: Number(form.monthly_credit_allowance) || 0,
       notes: form.notes || null,
+      testimonial: form.testimonial || null,
+      testimonial_published: !!form.testimonial_published,
+      logo_url: form.logo_url || null,
     } }),
     onSuccess: (row: any) => {
       toast.success("Saved");
       qc.invalidateQueries({ queryKey: ["admin", "clients"] });
+      qc.invalidateQueries({ queryKey: ["public", "testimonials"] });
       if (isNew && row?.id) nav({ to: "/admin/dashboard/clients/$id" as any, params: { id: row.id } as any });
     },
     onError: (e: any) => toast.error(e.message),
