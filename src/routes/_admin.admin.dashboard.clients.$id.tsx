@@ -39,6 +39,9 @@ function ClientDetail() {
     plan_tier: (c?.plan_tier ?? "") as any,
     monthly_credit_allowance: c?.monthly_credit_allowance ?? 0,
     notes: c?.notes ?? "",
+    testimonial: (c as any)?.testimonial ?? "",
+    testimonial_published: (c as any)?.testimonial_published ?? false,
+    logo_url: (c as any)?.logo_url ?? "",
   });
 
   const upsertFn = useServerFn(upsertClient);
@@ -56,10 +59,14 @@ function ClientDetail() {
       plan_tier: (form.plan_tier || null) as any,
       monthly_credit_allowance: Number(form.monthly_credit_allowance) || 0,
       notes: form.notes || null,
+      testimonial: form.testimonial || null,
+      testimonial_published: !!form.testimonial_published,
+      logo_url: form.logo_url || null,
     } }),
     onSuccess: (row: any) => {
       toast.success("Saved");
       qc.invalidateQueries({ queryKey: ["admin", "clients"] });
+      qc.invalidateQueries({ queryKey: ["public", "testimonials"] });
       if (isNew && row?.id) nav({ to: "/admin/dashboard/clients/$id" as any, params: { id: row.id } as any });
     },
     onError: (e: any) => toast.error(e.message),
@@ -112,6 +119,22 @@ function ClientDetail() {
           <div className="mt-4">
             <label className="admin-label">Notes</label>
             <textarea className="admin-input min-h-24" value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} />
+          </div>
+          <div className="mt-6 border-t border-[color:var(--color-admin-border)] pt-4">
+            <div className="admin-label mb-2">Public testimonial</div>
+            <textarea
+              className="admin-input min-h-24"
+              placeholder="What the client said about working with Synkra…"
+              value={form.testimonial}
+              onChange={(e) => setForm({ ...form, testimonial: e.target.value })}
+            />
+            <div className="mt-2 grid sm:grid-cols-2 gap-3">
+              <input className="admin-input" placeholder="Logo URL (optional)" value={form.logo_url} onChange={(e) => setForm({ ...form, logo_url: e.target.value })} />
+              <label className="flex items-center gap-2 text-sm">
+                <input type="checkbox" checked={form.testimonial_published} onChange={(e) => setForm({ ...form, testimonial_published: e.target.checked })} />
+                Show on public site
+              </label>
+            </div>
           </div>
           <div className="mt-4 flex justify-end">
             <button className="admin-btn-primary" onClick={() => save.mutate()} disabled={save.isPending}>{save.isPending ? "Saving…" : "Save"}</button>

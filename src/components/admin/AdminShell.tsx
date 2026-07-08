@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import {
-  LayoutDashboard, Users, Briefcase, FileText, Handshake, Inbox, Settings, Wrench, LogOut, Menu, X,
+  LayoutDashboard, Users, Briefcase, FileText, Handshake, Inbox, Settings, Wrench, LogOut, Menu, X, ScrollText,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -13,6 +13,7 @@ const nav: { to: string; label: string; icon: typeof LayoutDashboard; exact?: bo
   { to: "/admin/dashboard/blog", label: "Blog", icon: FileText },
   { to: "/admin/dashboard/partners", label: "Partners", icon: Handshake },
   { to: "/admin/dashboard/services", label: "Services", icon: Wrench },
+  { to: "/admin/dashboard/audit", label: "Audit Log", icon: ScrollText },
   { to: "/admin/dashboard/settings", label: "Settings", icon: Settings },
 ];
 

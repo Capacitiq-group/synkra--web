@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_audit_log: {
+        Row: {
+          action: string
+          actor_email: string | null
+          actor_id: string | null
+          created_at: string
+          entity_id: string | null
+          entity_type: string | null
+          id: string
+          metadata: Json | null
+        }
+        Insert: {
+          action: string
+          actor_email?: string | null
+          actor_id?: string | null
+          created_at?: string
+          entity_id?: string | null
+          entity_type?: string | null
+          id?: string
+          metadata?: Json | null
+        }
+        Update: {
+          action?: string
+          actor_email?: string | null
+          actor_id?: string | null
+          created_at?: string
+          entity_id?: string | null
+          entity_type?: string | null
+          id?: string
+          metadata?: Json | null
+        }
+        Relationships: []
+      }
       admin_users: {
         Row: {
           avatar_url: string | null
@@ -153,6 +186,7 @@ export type Database = {
           credit_balance: number
           email: string | null
           id: string
+          logo_url: string | null
           monthly_credit_allowance: number
           notes: string | null
           onboarding_date: string | null
@@ -160,6 +194,8 @@ export type Database = {
           plan_tier: string | null
           service_slug: string | null
           status: string
+          testimonial: string | null
+          testimonial_published: boolean
           updated_at: string
         }
         Insert: {
@@ -169,6 +205,7 @@ export type Database = {
           credit_balance?: number
           email?: string | null
           id?: string
+          logo_url?: string | null
           monthly_credit_allowance?: number
           notes?: string | null
           onboarding_date?: string | null
@@ -176,6 +213,8 @@ export type Database = {
           plan_tier?: string | null
           service_slug?: string | null
           status?: string
+          testimonial?: string | null
+          testimonial_published?: boolean
           updated_at?: string
         }
         Update: {
@@ -185,6 +224,7 @@ export type Database = {
           credit_balance?: number
           email?: string | null
           id?: string
+          logo_url?: string | null
           monthly_credit_allowance?: number
           notes?: string | null
           onboarding_date?: string | null
@@ -192,6 +232,8 @@ export type Database = {
           plan_tier?: string | null
           service_slug?: string | null
           status?: string
+          testimonial?: string | null
+          testimonial_published?: boolean
           updated_at?: string
         }
         Relationships: [

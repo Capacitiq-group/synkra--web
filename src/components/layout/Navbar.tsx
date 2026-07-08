@@ -28,9 +28,9 @@ export default function Navbar() {
           <Link
             to="/"
             aria-label="Synkra home"
-            className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#0f0f12] text-[0.7rem] font-bold tracking-tight text-white shadow-[0_8px_30px_rgba(0,0,0,0.4)] transition-transform duration-150 hover:scale-105"
+            className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#0f0f12] shadow-[0_8px_30px_rgba(0,0,0,0.4)] transition-transform duration-150 hover:scale-105"
           >
-            SYN
+            <img src="https://res.cloudinary.com/dewvhnks3/image/upload/v1783510199/1000105755-removebg-preview_gkoigj.png" alt="Synkra" className="h-8 w-8 object-contain" />
           </Link>
 
           {/* Nav links pill */}
@@ -67,9 +67,9 @@ export default function Navbar() {
           <Link
             to="/"
             aria-label="Synkra home"
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0f0f12] text-[0.7rem] font-bold tracking-tight text-white shadow-[0_8px_30px_rgba(0,0,0,0.4)]"
+            className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0f0f12] shadow-[0_8px_30px_rgba(0,0,0,0.4)]"
           >
-            SYN
+            <img src="https://res.cloudinary.com/dewvhnks3/image/upload/v1783510199/1000105755-removebg-preview_gkoigj.png" alt="Synkra" className="h-7 w-7 object-contain" />
           </Link>
           <button
             type="button"

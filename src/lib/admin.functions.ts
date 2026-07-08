@@ -12,6 +12,27 @@ async function assertAdmin(ctx: { supabase: any; userId: string }) {
   if (!data) throw new Error("Forbidden: admin only");
 }
 
+async function audit(
+  ctx: { supabase: any; userId: string; claims: any },
+  action: string,
+  entity_type: string | null,
+  entity_id: string | null,
+  metadata: Record<string, any> = {},
+) {
+  try {
+    await ctx.supabase.from("admin_audit_log").insert({
+      actor_id: ctx.userId,
+      actor_email: ctx.claims?.email ?? null,
+      action,
+      entity_type,
+      entity_id,
+      metadata,
+    });
+  } catch {
+    // Never fail the request because of audit
+  }
+}
+
 // ================= OVERVIEW =================
 export const overviewStats = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
@@ -88,6 +109,9 @@ const ClientInput = z.object({
   plan_tier: z.enum(["basic", "standard", "premium"]).optional().nullable(),
   monthly_credit_allowance: z.number().int().min(0).default(0),
   notes: z.string().optional().nullable(),
+  testimonial: z.string().optional().nullable(),
+  testimonial_published: z.boolean().optional(),
+  logo_url: z.string().optional().nullable(),
 });
 export const upsertClient = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
@@ -115,6 +139,7 @@ export const setClientStatus = createServerFn({ method: "POST" })
     await assertAdmin(context);
     const { error } = await context.supabase.from("clients").update({ status: data.status }).eq("id", data.id);
     if (error) throw error;
+    await audit(context, "client.status_change", "client", data.id, { status: data.status });
     return { ok: true };
   });
 
@@ -144,6 +169,7 @@ export const addClientCredits = createServerFn({ method: "POST" })
       balance_after: newBalance,
     });
     if (e3) throw e3;
+    await audit(context, "client.credits_grant", "client", data.id, { amount: data.amount, txn_type: data.txn_type, balance_after: newBalance });
     return { balance: newBalance };
   });
 
@@ -294,6 +320,7 @@ export const updateSubmissionStatus = createServerFn({ method: "POST" })
     await assertAdmin(context);
     const { error } = await context.supabase.from("form_submissions").update({ status: data.status }).eq("id", data.id);
     if (error) throw error;
+    await audit(context, "submission.status_change", "form_submission", data.id, { status: data.status });
     return { ok: true };
   });
 
@@ -332,8 +359,10 @@ export const approvePartner = createServerFn({ method: "POST" })
     const { error } = await s.from("approved_partners").insert(data);
     if (error) throw error;
     await s.from("form_submissions").update({ status: "converted" }).eq("id", data.submission_id);
+    await audit(context, "partner.approve", "approved_partner", data.submission_id, { partner_type: data.partner_type, name: data.name, commission_rate: data.commission_rate });
     return { ok: true };
   });
+
 
 export const updatePartner = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
@@ -349,6 +378,7 @@ export const updatePartner = createServerFn({ method: "POST" })
     const { id, ...rest } = data;
     const { error } = await context.supabase.from("approved_partners").update(rest).eq("id", id);
     if (error) throw error;
+    await audit(context, "partner.update", "approved_partner", id, rest);
     return { ok: true };
   });
 
@@ -415,6 +445,7 @@ export const inviteAdmin = createServerFn({ method: "POST" })
     if (!userId) throw new Error("Could not create or find user. SMTP may not be configured.");
     await supabaseAdmin.from("user_roles").upsert({ user_id: userId, role: "admin" }, { onConflict: "user_id,role" });
     await supabaseAdmin.from("admin_users").upsert({ id: userId, email: data.email, full_name: data.full_name ?? null });
+    await audit(context, "admin.invite", "user", userId, { email: data.email });
     return { ok: true, userId };
   });
 
@@ -427,7 +458,22 @@ export const removeAdmin = createServerFn({ method: "POST" })
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     await supabaseAdmin.from("user_roles").delete().eq("user_id", data.userId).eq("role", "admin");
     await supabaseAdmin.from("admin_users").delete().eq("id", data.userId);
+    await audit(context, "admin.remove", "user", data.userId, {});
     return { ok: true };
+  });
+
+// ================= AUDIT LOG =================
+export const listAuditLog = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    await assertAdmin(context);
+    const { data, error } = await context.supabase
+      .from("admin_audit_log")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .limit(500);
+    if (error) throw error;
+    return data ?? [];
   });
 
 // Self-check for admin (used by client-side gate)
