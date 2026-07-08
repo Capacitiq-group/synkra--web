@@ -12,6 +12,27 @@ async function assertAdmin(ctx: { supabase: any; userId: string }) {
   if (!data) throw new Error("Forbidden: admin only");
 }
 
+async function audit(
+  ctx: { supabase: any; userId: string; claims: any },
+  action: string,
+  entity_type: string | null,
+  entity_id: string | null,
+  metadata: Record<string, any> = {},
+) {
+  try {
+    await ctx.supabase.from("admin_audit_log").insert({
+      actor_id: ctx.userId,
+      actor_email: ctx.claims?.email ?? null,
+      action,
+      entity_type,
+      entity_id,
+      metadata,
+    });
+  } catch {
+    // Never fail the request because of audit
+  }
+}
+
 // ================= OVERVIEW =================
 export const overviewStats = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
