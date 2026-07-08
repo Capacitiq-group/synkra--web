@@ -136,6 +136,7 @@ export const setClientStatus = createServerFn({ method: "POST" })
     await assertAdmin(context);
     const { error } = await context.supabase.from("clients").update({ status: data.status }).eq("id", data.id);
     if (error) throw error;
+    await audit(context, "client.status_change", "client", data.id, { status: data.status });
     return { ok: true };
   });
 
