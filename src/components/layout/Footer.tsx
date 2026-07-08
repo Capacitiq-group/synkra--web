@@ -85,12 +85,12 @@ export default function Footer() {
             </div>
           </div>
 
-          <span
+          <img
             aria-hidden
-            className="pointer-events-none absolute -bottom-10 -right-6 select-none text-[12rem] font-black leading-none tracking-tighter text-white/[0.06] lg:text-[18rem]"
-          >
-            SYNKRA
-          </span>
+            src="https://res.cloudinary.com/dewvhnks3/image/upload/v1783084829/1000104657-removebg-preview_z20unp.png"
+            alt=""
+            className="pointer-events-none absolute -bottom-10 -right-6 select-none w-[70%] max-w-[900px] opacity-[0.06] lg:w-[85%] lg:max-w-[1400px]"
+          />
         </div>
       </div>
     </footer>
