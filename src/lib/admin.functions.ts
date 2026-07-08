@@ -317,6 +317,7 @@ export const updateSubmissionStatus = createServerFn({ method: "POST" })
     await assertAdmin(context);
     const { error } = await context.supabase.from("form_submissions").update({ status: data.status }).eq("id", data.id);
     if (error) throw error;
+    await audit(context, "submission.status_change", "form_submission", data.id, { status: data.status });
     return { ok: true };
   });
 
