@@ -109,6 +109,9 @@ const ClientInput = z.object({
   plan_tier: z.enum(["basic", "standard", "premium"]).optional().nullable(),
   monthly_credit_allowance: z.number().int().min(0).default(0),
   notes: z.string().optional().nullable(),
+  testimonial: z.string().optional().nullable(),
+  testimonial_published: z.boolean().optional(),
+  logo_url: z.string().optional().nullable(),
 });
 export const upsertClient = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
