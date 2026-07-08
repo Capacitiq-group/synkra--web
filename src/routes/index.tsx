@@ -32,6 +32,7 @@ function HomePage() {
       <WhySynkra />
       <HowItWorks />
       <PortfolioPreview />
+      <Testimonials />
       <ROILink />
       <PricingOverview />
       <PartnerSection />
