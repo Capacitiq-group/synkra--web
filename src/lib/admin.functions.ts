@@ -166,6 +166,7 @@ export const addClientCredits = createServerFn({ method: "POST" })
       balance_after: newBalance,
     });
     if (e3) throw e3;
+    await audit(context, "client.credits_grant", "client", data.id, { amount: data.amount, txn_type: data.txn_type, balance_after: newBalance });
     return { balance: newBalance };
   });
 
