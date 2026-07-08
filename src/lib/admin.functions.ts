@@ -375,6 +375,7 @@ export const updatePartner = createServerFn({ method: "POST" })
     const { id, ...rest } = data;
     const { error } = await context.supabase.from("approved_partners").update(rest).eq("id", id);
     if (error) throw error;
+    await audit(context, "partner.update", "approved_partner", id, rest);
     return { ok: true };
   });
 
