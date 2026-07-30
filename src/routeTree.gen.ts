@@ -19,10 +19,8 @@ import { Route as AdminRouteImport } from './routes/_admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as PartnerIndexRouteImport } from './routes/partner.index'
-import { Route as ServicesVirtualPhotoshootRouteImport } from './routes/services.virtual-photoshoot'
 import { Route as ServicesSpeedToLeadRouteImport } from './routes/services.speed-to-lead'
 import { Route as ServicesLeadReactivationRouteImport } from './routes/services.lead-reactivation'
-import { Route as ServicesAutomatedHiringRouteImport } from './routes/services.automated-hiring'
 import { Route as ServicesAiWhatsappAgentRouteImport } from './routes/services.ai-whatsapp-agent'
 import { Route as ServicesAiWebWidgetRouteImport } from './routes/services.ai-web-widget'
 import { Route as ServicesAiVoiceAgentRouteImport } from './routes/services.ai-voice-agent'
@@ -100,12 +98,6 @@ const PartnerIndexRoute = PartnerIndexRouteImport.update({
   path: '/partner/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesVirtualPhotoshootRoute =
-  ServicesVirtualPhotoshootRouteImport.update({
-    id: '/services/virtual-photoshoot',
-    path: '/services/virtual-photoshoot',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const ServicesSpeedToLeadRoute = ServicesSpeedToLeadRouteImport.update({
   id: '/services/speed-to-lead',
   path: '/services/speed-to-lead',
@@ -117,11 +109,6 @@ const ServicesLeadReactivationRoute =
     path: '/services/lead-reactivation',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ServicesAutomatedHiringRoute = ServicesAutomatedHiringRouteImport.update({
-  id: '/services/automated-hiring',
-  path: '/services/automated-hiring',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ServicesAiWhatsappAgentRoute = ServicesAiWhatsappAgentRouteImport.update({
   id: '/services/ai-whatsapp-agent',
   path: '/services/ai-whatsapp-agent',
@@ -290,10 +277,8 @@ export interface FileRoutesByFullPath {
   '/services/ai-voice-agent': typeof ServicesAiVoiceAgentRoute
   '/services/ai-web-widget': typeof ServicesAiWebWidgetRoute
   '/services/ai-whatsapp-agent': typeof ServicesAiWhatsappAgentRoute
-  '/services/automated-hiring': typeof ServicesAutomatedHiringRoute
   '/services/lead-reactivation': typeof ServicesLeadReactivationRoute
   '/services/speed-to-lead': typeof ServicesSpeedToLeadRoute
-  '/services/virtual-photoshoot': typeof ServicesVirtualPhotoshootRoute
   '/partner/': typeof PartnerIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/admin/dashboard': typeof AdminAdminDashboardRouteWithChildren
@@ -332,10 +317,8 @@ export interface FileRoutesByTo {
   '/services/ai-voice-agent': typeof ServicesAiVoiceAgentRoute
   '/services/ai-web-widget': typeof ServicesAiWebWidgetRoute
   '/services/ai-whatsapp-agent': typeof ServicesAiWhatsappAgentRoute
-  '/services/automated-hiring': typeof ServicesAutomatedHiringRoute
   '/services/lead-reactivation': typeof ServicesLeadReactivationRoute
   '/services/speed-to-lead': typeof ServicesSpeedToLeadRoute
-  '/services/virtual-photoshoot': typeof ServicesVirtualPhotoshootRoute
   '/partner': typeof PartnerIndexRoute
   '/services': typeof ServicesIndexRoute
   '/api/admin/upload': typeof ApiAdminUploadRoute
@@ -375,10 +358,8 @@ export interface FileRoutesById {
   '/services/ai-voice-agent': typeof ServicesAiVoiceAgentRoute
   '/services/ai-web-widget': typeof ServicesAiWebWidgetRoute
   '/services/ai-whatsapp-agent': typeof ServicesAiWhatsappAgentRoute
-  '/services/automated-hiring': typeof ServicesAutomatedHiringRoute
   '/services/lead-reactivation': typeof ServicesLeadReactivationRoute
   '/services/speed-to-lead': typeof ServicesSpeedToLeadRoute
-  '/services/virtual-photoshoot': typeof ServicesVirtualPhotoshootRoute
   '/partner/': typeof PartnerIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/_admin/admin/dashboard': typeof AdminAdminDashboardRouteWithChildren
@@ -419,10 +400,8 @@ export interface FileRouteTypes {
     | '/services/ai-voice-agent'
     | '/services/ai-web-widget'
     | '/services/ai-whatsapp-agent'
-    | '/services/automated-hiring'
     | '/services/lead-reactivation'
     | '/services/speed-to-lead'
-    | '/services/virtual-photoshoot'
     | '/partner/'
     | '/services/'
     | '/admin/dashboard'
@@ -461,10 +440,8 @@ export interface FileRouteTypes {
     | '/services/ai-voice-agent'
     | '/services/ai-web-widget'
     | '/services/ai-whatsapp-agent'
-    | '/services/automated-hiring'
     | '/services/lead-reactivation'
     | '/services/speed-to-lead'
-    | '/services/virtual-photoshoot'
     | '/partner'
     | '/services'
     | '/api/admin/upload'
@@ -503,10 +480,8 @@ export interface FileRouteTypes {
     | '/services/ai-voice-agent'
     | '/services/ai-web-widget'
     | '/services/ai-whatsapp-agent'
-    | '/services/automated-hiring'
     | '/services/lead-reactivation'
     | '/services/speed-to-lead'
-    | '/services/virtual-photoshoot'
     | '/partner/'
     | '/services/'
     | '/_admin/admin/dashboard'
@@ -546,10 +521,8 @@ export interface RootRouteChildren {
   ServicesAiVoiceAgentRoute: typeof ServicesAiVoiceAgentRoute
   ServicesAiWebWidgetRoute: typeof ServicesAiWebWidgetRoute
   ServicesAiWhatsappAgentRoute: typeof ServicesAiWhatsappAgentRoute
-  ServicesAutomatedHiringRoute: typeof ServicesAutomatedHiringRoute
   ServicesLeadReactivationRoute: typeof ServicesLeadReactivationRoute
   ServicesSpeedToLeadRoute: typeof ServicesSpeedToLeadRoute
-  ServicesVirtualPhotoshootRoute: typeof ServicesVirtualPhotoshootRoute
   PartnerIndexRoute: typeof PartnerIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
   ApiAdminUploadRoute: typeof ApiAdminUploadRoute
@@ -627,13 +600,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PartnerIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/virtual-photoshoot': {
-      id: '/services/virtual-photoshoot'
-      path: '/services/virtual-photoshoot'
-      fullPath: '/services/virtual-photoshoot'
-      preLoaderRoute: typeof ServicesVirtualPhotoshootRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/services/speed-to-lead': {
       id: '/services/speed-to-lead'
       path: '/services/speed-to-lead'
@@ -646,13 +612,6 @@ declare module '@tanstack/react-router' {
       path: '/services/lead-reactivation'
       fullPath: '/services/lead-reactivation'
       preLoaderRoute: typeof ServicesLeadReactivationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services/automated-hiring': {
-      id: '/services/automated-hiring'
-      path: '/services/automated-hiring'
-      fullPath: '/services/automated-hiring'
-      preLoaderRoute: typeof ServicesAutomatedHiringRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/ai-whatsapp-agent': {
@@ -960,10 +919,8 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesAiVoiceAgentRoute: ServicesAiVoiceAgentRoute,
   ServicesAiWebWidgetRoute: ServicesAiWebWidgetRoute,
   ServicesAiWhatsappAgentRoute: ServicesAiWhatsappAgentRoute,
-  ServicesAutomatedHiringRoute: ServicesAutomatedHiringRoute,
   ServicesLeadReactivationRoute: ServicesLeadReactivationRoute,
   ServicesSpeedToLeadRoute: ServicesSpeedToLeadRoute,
-  ServicesVirtualPhotoshootRoute: ServicesVirtualPhotoshootRoute,
   PartnerIndexRoute: PartnerIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
   ApiAdminUploadRoute: ApiAdminUploadRoute,
@@ -971,13 +928,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
