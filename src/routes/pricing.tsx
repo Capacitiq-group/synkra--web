@@ -31,8 +31,6 @@ const SERVICE_ROWS: ServiceRow[] = [
   { name: "Speed to Lead", slug: "speed-to-lead", entry: "R3,000", standard: "R5,000", premium: "R7,000", monthly: "R700/month" },
   { name: "Lead Reactivation", slug: "lead-reactivation", entry: "R3,500", standard: "R5,500", premium: "R8,000", monthly: "R800/month" },
   { name: "AI Knowledge Base", slug: "ai-knowledge-base", entry: "R3,500", standard: "R6,000", premium: "R9,000", monthly: "R800/month" },
-  { name: "Automated Hiring System", slug: "automated-hiring", entry: "R3,000", standard: "R5,500", premium: "R8,000", monthly: "R600/month" },
-  { name: "Virtual Photoshoot", slug: "virtual-photoshoot", entry: "R3,500 once-off", standard: "R7,500 once-off", premium: "R9,500/month", monthly: "N/A" },
 ];
 
 const USAGE_ROWS: { what: string; rate: string }[] = [
@@ -308,12 +306,6 @@ function PricingPage() {
             </tbody>
           </table>
         </div>
-
-        <p className="body-sm mt-6 text-white/40">
-          Virtual Photoshoot is priced per image pack or monthly retainer. It
-          does not follow the standard monthly plan structure. See the service
-          page for full details.
-        </p>
       </section>
 
       <div className="container-main"><div className="hairline" /></div>
