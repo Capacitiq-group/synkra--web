@@ -10,7 +10,6 @@ function Divider() {
 }
 
 export default function ServicePageLayout({ data }: { data: ServicePageContent }) {
-  const sampleMode = data.sampleMode === true;
 
   return (
     <>
@@ -118,29 +117,14 @@ export default function ServicePageLayout({ data }: { data: ServicePageContent }
                     </p>
                   )}
                   <div className="mt-8 flex flex-col gap-3">
-                    {sampleMode ? (
-                      <Link
-                        to="/contact"
-                        search={
-                          {
-                            service: "Virtual Photoshoot Sample Request",
-                            tier: tier.name,
-                          } as never
-                        }
-                        className="btn-secondary justify-center"
-                      >
-                        Request a Sample
-                      </Link>
-                    ) : (
-                      <Link
+                                          <Link
                         to="/contact"
                         search={contactSearch as never}
                         className="btn-secondary justify-center"
                       >
                         Add to Quote
                       </Link>
-                    )}
-                    <Link
+                                        <Link
                       to="/contact"
                       search={contactSearch as never}
                       className="btn-primary justify-center"

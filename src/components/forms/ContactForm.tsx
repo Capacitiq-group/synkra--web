@@ -8,9 +8,6 @@ const INTEREST_OPTIONS = [
   "Speed to Lead System",
   "Lead Reactivation Campaign",
   "AI Knowledge Base",
-  "Automated Hiring System",
-  "Virtual Photoshoot",
-  "Virtual Photoshoot Sample Request",
   "Partnership opportunity",
   "Something else",
 ];
@@ -24,9 +21,6 @@ const SERVICE_ALIASES: Record<string, string> = {
   "Speed to Lead": "Speed to Lead System",
   "Lead Reactivation": "Lead Reactivation Campaign",
   "AI Knowledge Base": "AI Knowledge Base",
-  "Automated Hiring": "Automated Hiring System",
-  "Virtual Photoshoot": "Virtual Photoshoot",
-  "Virtual Photoshoot Sample Request": "Virtual Photoshoot Sample Request",
 };
 
 const Schema = z.object({

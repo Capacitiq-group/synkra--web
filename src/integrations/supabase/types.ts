@@ -136,45 +136,57 @@ export type Database = {
       blog_posts: {
         Row: {
           author_name: string | null
+          category: string | null
           content_md: string
           cover_image_url: string | null
           created_at: string
           excerpt: string | null
+          featured: boolean
           id: string
           published_at: string | null
+          read_time_minutes: number
           slug: string
           status: string
           tags: Json
           title: string
           updated_at: string
+          view_count: number
         }
         Insert: {
           author_name?: string | null
+          category?: string | null
           content_md?: string
           cover_image_url?: string | null
           created_at?: string
           excerpt?: string | null
+          featured?: boolean
           id?: string
           published_at?: string | null
+          read_time_minutes?: number
           slug: string
           status?: string
           tags?: Json
           title: string
           updated_at?: string
+          view_count?: number
         }
         Update: {
           author_name?: string | null
+          category?: string | null
           content_md?: string
           cover_image_url?: string | null
           created_at?: string
           excerpt?: string | null
+          featured?: boolean
           id?: string
           published_at?: string | null
+          read_time_minutes?: number
           slug?: string
           status?: string
           tags?: Json
           title?: string
           updated_at?: string
+          view_count?: number
         }
         Relationships: []
       }
@@ -458,6 +470,27 @@ export type Database = {
         }
         Relationships: []
       }
+      waitlist: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          product: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          product: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          product?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -470,6 +503,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      increment_blog_view: { Args: { _slug: string }; Returns: undefined }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"

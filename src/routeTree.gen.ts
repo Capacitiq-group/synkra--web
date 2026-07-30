@@ -19,10 +19,9 @@ import { Route as AdminRouteImport } from './routes/_admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as PartnerIndexRouteImport } from './routes/partner.index'
-import { Route as ServicesVirtualPhotoshootRouteImport } from './routes/services.virtual-photoshoot'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as ServicesSpeedToLeadRouteImport } from './routes/services.speed-to-lead'
 import { Route as ServicesLeadReactivationRouteImport } from './routes/services.lead-reactivation'
-import { Route as ServicesAutomatedHiringRouteImport } from './routes/services.automated-hiring'
 import { Route as ServicesAiWhatsappAgentRouteImport } from './routes/services.ai-whatsapp-agent'
 import { Route as ServicesAiWebWidgetRouteImport } from './routes/services.ai-web-widget'
 import { Route as ServicesAiVoiceAgentRouteImport } from './routes/services.ai-voice-agent'
@@ -33,6 +32,7 @@ import { Route as PartnerAgencyRouteImport } from './routes/partner.agency'
 import { Route as LegalTermsOfServiceRouteImport } from './routes/legal.terms-of-service'
 import { Route as LegalRefundPolicyRouteImport } from './routes/legal.refund-policy'
 import { Route as LegalPrivacyPolicyRouteImport } from './routes/legal.privacy-policy'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ApiSubmitFormRouteImport } from './routes/api/submit-form'
 import { Route as AdminMfaRouteImport } from './routes/admin.mfa'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
@@ -100,12 +100,11 @@ const PartnerIndexRoute = PartnerIndexRouteImport.update({
   path: '/partner/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesVirtualPhotoshootRoute =
-  ServicesVirtualPhotoshootRouteImport.update({
-    id: '/services/virtual-photoshoot',
-    path: '/services/virtual-photoshoot',
-    getParentRoute: () => rootRouteImport,
-  } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesSpeedToLeadRoute = ServicesSpeedToLeadRouteImport.update({
   id: '/services/speed-to-lead',
   path: '/services/speed-to-lead',
@@ -117,11 +116,6 @@ const ServicesLeadReactivationRoute =
     path: '/services/lead-reactivation',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ServicesAutomatedHiringRoute = ServicesAutomatedHiringRouteImport.update({
-  id: '/services/automated-hiring',
-  path: '/services/automated-hiring',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ServicesAiWhatsappAgentRoute = ServicesAiWhatsappAgentRouteImport.update({
   id: '/services/ai-whatsapp-agent',
   path: '/services/ai-whatsapp-agent',
@@ -170,6 +164,11 @@ const LegalRefundPolicyRoute = LegalRefundPolicyRouteImport.update({
 const LegalPrivacyPolicyRoute = LegalPrivacyPolicyRouteImport.update({
   id: '/legal/privacy-policy',
   path: '/legal/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiSubmitFormRoute = ApiSubmitFormRouteImport.update({
@@ -280,6 +279,7 @@ export interface FileRoutesByFullPath {
   '/admin/login': typeof AdminLoginRoute
   '/admin/mfa': typeof AdminMfaRoute
   '/api/submit-form': typeof ApiSubmitFormRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/legal/privacy-policy': typeof LegalPrivacyPolicyRoute
   '/legal/refund-policy': typeof LegalRefundPolicyRoute
   '/legal/terms-of-service': typeof LegalTermsOfServiceRoute
@@ -290,10 +290,9 @@ export interface FileRoutesByFullPath {
   '/services/ai-voice-agent': typeof ServicesAiVoiceAgentRoute
   '/services/ai-web-widget': typeof ServicesAiWebWidgetRoute
   '/services/ai-whatsapp-agent': typeof ServicesAiWhatsappAgentRoute
-  '/services/automated-hiring': typeof ServicesAutomatedHiringRoute
   '/services/lead-reactivation': typeof ServicesLeadReactivationRoute
   '/services/speed-to-lead': typeof ServicesSpeedToLeadRoute
-  '/services/virtual-photoshoot': typeof ServicesVirtualPhotoshootRoute
+  '/blog/': typeof BlogIndexRoute
   '/partner/': typeof PartnerIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/admin/dashboard': typeof AdminAdminDashboardRouteWithChildren
@@ -322,6 +321,7 @@ export interface FileRoutesByTo {
   '/admin/login': typeof AdminLoginRoute
   '/admin/mfa': typeof AdminMfaRoute
   '/api/submit-form': typeof ApiSubmitFormRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/legal/privacy-policy': typeof LegalPrivacyPolicyRoute
   '/legal/refund-policy': typeof LegalRefundPolicyRoute
   '/legal/terms-of-service': typeof LegalTermsOfServiceRoute
@@ -332,10 +332,9 @@ export interface FileRoutesByTo {
   '/services/ai-voice-agent': typeof ServicesAiVoiceAgentRoute
   '/services/ai-web-widget': typeof ServicesAiWebWidgetRoute
   '/services/ai-whatsapp-agent': typeof ServicesAiWhatsappAgentRoute
-  '/services/automated-hiring': typeof ServicesAutomatedHiringRoute
   '/services/lead-reactivation': typeof ServicesLeadReactivationRoute
   '/services/speed-to-lead': typeof ServicesSpeedToLeadRoute
-  '/services/virtual-photoshoot': typeof ServicesVirtualPhotoshootRoute
+  '/blog': typeof BlogIndexRoute
   '/partner': typeof PartnerIndexRoute
   '/services': typeof ServicesIndexRoute
   '/api/admin/upload': typeof ApiAdminUploadRoute
@@ -365,6 +364,7 @@ export interface FileRoutesById {
   '/admin/login': typeof AdminLoginRoute
   '/admin/mfa': typeof AdminMfaRoute
   '/api/submit-form': typeof ApiSubmitFormRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/legal/privacy-policy': typeof LegalPrivacyPolicyRoute
   '/legal/refund-policy': typeof LegalRefundPolicyRoute
   '/legal/terms-of-service': typeof LegalTermsOfServiceRoute
@@ -375,10 +375,9 @@ export interface FileRoutesById {
   '/services/ai-voice-agent': typeof ServicesAiVoiceAgentRoute
   '/services/ai-web-widget': typeof ServicesAiWebWidgetRoute
   '/services/ai-whatsapp-agent': typeof ServicesAiWhatsappAgentRoute
-  '/services/automated-hiring': typeof ServicesAutomatedHiringRoute
   '/services/lead-reactivation': typeof ServicesLeadReactivationRoute
   '/services/speed-to-lead': typeof ServicesSpeedToLeadRoute
-  '/services/virtual-photoshoot': typeof ServicesVirtualPhotoshootRoute
+  '/blog/': typeof BlogIndexRoute
   '/partner/': typeof PartnerIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/_admin/admin/dashboard': typeof AdminAdminDashboardRouteWithChildren
@@ -409,6 +408,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/mfa'
     | '/api/submit-form'
+    | '/blog/$slug'
     | '/legal/privacy-policy'
     | '/legal/refund-policy'
     | '/legal/terms-of-service'
@@ -419,10 +419,9 @@ export interface FileRouteTypes {
     | '/services/ai-voice-agent'
     | '/services/ai-web-widget'
     | '/services/ai-whatsapp-agent'
-    | '/services/automated-hiring'
     | '/services/lead-reactivation'
     | '/services/speed-to-lead'
-    | '/services/virtual-photoshoot'
+    | '/blog/'
     | '/partner/'
     | '/services/'
     | '/admin/dashboard'
@@ -451,6 +450,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/mfa'
     | '/api/submit-form'
+    | '/blog/$slug'
     | '/legal/privacy-policy'
     | '/legal/refund-policy'
     | '/legal/terms-of-service'
@@ -461,10 +461,9 @@ export interface FileRouteTypes {
     | '/services/ai-voice-agent'
     | '/services/ai-web-widget'
     | '/services/ai-whatsapp-agent'
-    | '/services/automated-hiring'
     | '/services/lead-reactivation'
     | '/services/speed-to-lead'
-    | '/services/virtual-photoshoot'
+    | '/blog'
     | '/partner'
     | '/services'
     | '/api/admin/upload'
@@ -493,6 +492,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/admin/mfa'
     | '/api/submit-form'
+    | '/blog/$slug'
     | '/legal/privacy-policy'
     | '/legal/refund-policy'
     | '/legal/terms-of-service'
@@ -503,10 +503,9 @@ export interface FileRouteTypes {
     | '/services/ai-voice-agent'
     | '/services/ai-web-widget'
     | '/services/ai-whatsapp-agent'
-    | '/services/automated-hiring'
     | '/services/lead-reactivation'
     | '/services/speed-to-lead'
-    | '/services/virtual-photoshoot'
+    | '/blog/'
     | '/partner/'
     | '/services/'
     | '/_admin/admin/dashboard'
@@ -537,6 +536,7 @@ export interface RootRouteChildren {
   AdminLoginRoute: typeof AdminLoginRoute
   AdminMfaRoute: typeof AdminMfaRoute
   ApiSubmitFormRoute: typeof ApiSubmitFormRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   LegalPrivacyPolicyRoute: typeof LegalPrivacyPolicyRoute
   LegalRefundPolicyRoute: typeof LegalRefundPolicyRoute
   LegalTermsOfServiceRoute: typeof LegalTermsOfServiceRoute
@@ -546,10 +546,9 @@ export interface RootRouteChildren {
   ServicesAiVoiceAgentRoute: typeof ServicesAiVoiceAgentRoute
   ServicesAiWebWidgetRoute: typeof ServicesAiWebWidgetRoute
   ServicesAiWhatsappAgentRoute: typeof ServicesAiWhatsappAgentRoute
-  ServicesAutomatedHiringRoute: typeof ServicesAutomatedHiringRoute
   ServicesLeadReactivationRoute: typeof ServicesLeadReactivationRoute
   ServicesSpeedToLeadRoute: typeof ServicesSpeedToLeadRoute
-  ServicesVirtualPhotoshootRoute: typeof ServicesVirtualPhotoshootRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   PartnerIndexRoute: typeof PartnerIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
   ApiAdminUploadRoute: typeof ApiAdminUploadRoute
@@ -627,11 +626,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PartnerIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/virtual-photoshoot': {
-      id: '/services/virtual-photoshoot'
-      path: '/services/virtual-photoshoot'
-      fullPath: '/services/virtual-photoshoot'
-      preLoaderRoute: typeof ServicesVirtualPhotoshootRouteImport
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/speed-to-lead': {
@@ -646,13 +645,6 @@ declare module '@tanstack/react-router' {
       path: '/services/lead-reactivation'
       fullPath: '/services/lead-reactivation'
       preLoaderRoute: typeof ServicesLeadReactivationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services/automated-hiring': {
-      id: '/services/automated-hiring'
-      path: '/services/automated-hiring'
-      fullPath: '/services/automated-hiring'
-      preLoaderRoute: typeof ServicesAutomatedHiringRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/ai-whatsapp-agent': {
@@ -723,6 +715,13 @@ declare module '@tanstack/react-router' {
       path: '/legal/privacy-policy'
       fullPath: '/legal/privacy-policy'
       preLoaderRoute: typeof LegalPrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/submit-form': {
@@ -951,6 +950,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminLoginRoute: AdminLoginRoute,
   AdminMfaRoute: AdminMfaRoute,
   ApiSubmitFormRoute: ApiSubmitFormRoute,
+  BlogSlugRoute: BlogSlugRoute,
   LegalPrivacyPolicyRoute: LegalPrivacyPolicyRoute,
   LegalRefundPolicyRoute: LegalRefundPolicyRoute,
   LegalTermsOfServiceRoute: LegalTermsOfServiceRoute,
@@ -960,10 +960,9 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesAiVoiceAgentRoute: ServicesAiVoiceAgentRoute,
   ServicesAiWebWidgetRoute: ServicesAiWebWidgetRoute,
   ServicesAiWhatsappAgentRoute: ServicesAiWhatsappAgentRoute,
-  ServicesAutomatedHiringRoute: ServicesAutomatedHiringRoute,
   ServicesLeadReactivationRoute: ServicesLeadReactivationRoute,
   ServicesSpeedToLeadRoute: ServicesSpeedToLeadRoute,
-  ServicesVirtualPhotoshootRoute: ServicesVirtualPhotoshootRoute,
+  BlogIndexRoute: BlogIndexRoute,
   PartnerIndexRoute: PartnerIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
   ApiAdminUploadRoute: ApiAdminUploadRoute,
@@ -971,13 +970,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
