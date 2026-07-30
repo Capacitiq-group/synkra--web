@@ -19,7 +19,7 @@ export const helpCenterQuestions: HelpQuestion[] = [
     category: "Getting Started",
     question: "What is Synkra and what do you actually build?",
     answer:
-      "Synkra builds AI automation systems for businesses. This includes voice agents that answer phone calls, WhatsApp agents that handle customer messages, web chat widgets, speed-to-lead systems, lead reactivation campaigns, knowledge bases, automated hiring systems, and AI-generated product photography. Every system is built specifically for your business and hosted on our infrastructure.",
+      "Synkra builds AI automation systems for businesses. This includes voice agents that answer phone calls, WhatsApp agents that handle customer messages, web chat widgets, speed-to-lead systems, lead reactivation campaigns, and AI knowledge bases. Every system is built specifically for your business and hosted on our infrastructure.",
   },
   {
     category: "Getting Started",
@@ -75,12 +75,6 @@ export const helpCenterQuestions: HelpQuestion[] = [
     question: "Can I change what my agent says after it goes live?",
     answer:
       "Yes. You can submit a change request at any time through your client portal. Standard and Premium clients receive changes within 24 hours. Basic clients receive changes within 48 hours.",
-  },
-  {
-    category: "Services",
-    question: "Is Virtual Photoshoot real photography or AI generated?",
-    answer:
-      "Virtual Photoshoot images are entirely AI generated based on your actual product images and brand direction. The output is designed to be indistinguishable from professional studio photography and is fully licensed for commercial use.",
   },
   {
     category: "Onboarding and Delivery",
