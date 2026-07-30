@@ -68,7 +68,21 @@ export const getBlogPost = createServerFn({ method: "GET" })
       .eq("status", "published")
       .maybeSingle();
     if (error || !post) return null;
-    return post;
+    return {
+      id: post.id,
+      slug: post.slug,
+      title: post.title,
+      excerpt: post.excerpt,
+      content_md: post.content_md,
+      cover_image_url: post.cover_image_url,
+      author_name: post.author_name,
+      category: post.category,
+      tags: Array.isArray(post.tags) ? (post.tags as string[]) : [],
+      featured: post.featured,
+      view_count: post.view_count,
+      read_time_minutes: post.read_time_minutes,
+      published_at: post.published_at,
+    };
   });
 
 export const incrementBlogView = createServerFn({ method: "POST" })
