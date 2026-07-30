@@ -19,6 +19,7 @@ import { Route as AdminRouteImport } from './routes/_admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as PartnerIndexRouteImport } from './routes/partner.index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as ServicesSpeedToLeadRouteImport } from './routes/services.speed-to-lead'
 import { Route as ServicesLeadReactivationRouteImport } from './routes/services.lead-reactivation'
 import { Route as ServicesAiWhatsappAgentRouteImport } from './routes/services.ai-whatsapp-agent'
@@ -96,6 +97,11 @@ const ServicesIndexRoute = ServicesIndexRouteImport.update({
 const PartnerIndexRoute = PartnerIndexRouteImport.update({
   id: '/partner/',
   path: '/partner/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesSpeedToLeadRoute = ServicesSpeedToLeadRouteImport.update({
@@ -279,6 +285,7 @@ export interface FileRoutesByFullPath {
   '/services/ai-whatsapp-agent': typeof ServicesAiWhatsappAgentRoute
   '/services/lead-reactivation': typeof ServicesLeadReactivationRoute
   '/services/speed-to-lead': typeof ServicesSpeedToLeadRoute
+  '/blog/': typeof BlogIndexRoute
   '/partner/': typeof PartnerIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/admin/dashboard': typeof AdminAdminDashboardRouteWithChildren
@@ -319,6 +326,7 @@ export interface FileRoutesByTo {
   '/services/ai-whatsapp-agent': typeof ServicesAiWhatsappAgentRoute
   '/services/lead-reactivation': typeof ServicesLeadReactivationRoute
   '/services/speed-to-lead': typeof ServicesSpeedToLeadRoute
+  '/blog': typeof BlogIndexRoute
   '/partner': typeof PartnerIndexRoute
   '/services': typeof ServicesIndexRoute
   '/api/admin/upload': typeof ApiAdminUploadRoute
@@ -360,6 +368,7 @@ export interface FileRoutesById {
   '/services/ai-whatsapp-agent': typeof ServicesAiWhatsappAgentRoute
   '/services/lead-reactivation': typeof ServicesLeadReactivationRoute
   '/services/speed-to-lead': typeof ServicesSpeedToLeadRoute
+  '/blog/': typeof BlogIndexRoute
   '/partner/': typeof PartnerIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/_admin/admin/dashboard': typeof AdminAdminDashboardRouteWithChildren
@@ -402,6 +411,7 @@ export interface FileRouteTypes {
     | '/services/ai-whatsapp-agent'
     | '/services/lead-reactivation'
     | '/services/speed-to-lead'
+    | '/blog/'
     | '/partner/'
     | '/services/'
     | '/admin/dashboard'
@@ -442,6 +452,7 @@ export interface FileRouteTypes {
     | '/services/ai-whatsapp-agent'
     | '/services/lead-reactivation'
     | '/services/speed-to-lead'
+    | '/blog'
     | '/partner'
     | '/services'
     | '/api/admin/upload'
@@ -482,6 +493,7 @@ export interface FileRouteTypes {
     | '/services/ai-whatsapp-agent'
     | '/services/lead-reactivation'
     | '/services/speed-to-lead'
+    | '/blog/'
     | '/partner/'
     | '/services/'
     | '/_admin/admin/dashboard'
@@ -523,6 +535,7 @@ export interface RootRouteChildren {
   ServicesAiWhatsappAgentRoute: typeof ServicesAiWhatsappAgentRoute
   ServicesLeadReactivationRoute: typeof ServicesLeadReactivationRoute
   ServicesSpeedToLeadRoute: typeof ServicesSpeedToLeadRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   PartnerIndexRoute: typeof PartnerIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
   ApiAdminUploadRoute: typeof ApiAdminUploadRoute
@@ -598,6 +611,13 @@ declare module '@tanstack/react-router' {
       path: '/partner'
       fullPath: '/partner/'
       preLoaderRoute: typeof PartnerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/speed-to-lead': {
@@ -921,6 +941,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesAiWhatsappAgentRoute: ServicesAiWhatsappAgentRoute,
   ServicesLeadReactivationRoute: ServicesLeadReactivationRoute,
   ServicesSpeedToLeadRoute: ServicesSpeedToLeadRoute,
+  BlogIndexRoute: BlogIndexRoute,
   PartnerIndexRoute: PartnerIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
   ApiAdminUploadRoute: ApiAdminUploadRoute,

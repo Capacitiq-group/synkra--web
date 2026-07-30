@@ -25,7 +25,7 @@ function formatDate(value: string | null) {
 }
 
 function BlogIndex() {
-  const { posts } = Route.useLoaderData();
+  const { posts } = Route.useLoaderData() as { posts: BlogListItem[] };
   const [category, setCategory] = useState("All");
 
   const categories = useMemo(() => {
