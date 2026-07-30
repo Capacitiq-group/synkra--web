@@ -2,10 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { buildHead } from "@/lib/seo";
 import Hero from "@/components/sections/Hero";
 import Problem from "@/components/sections/Problem";
-import ServicesGrid from "@/components/sections/ServicesGrid";
+import Products from "@/components/sections/Products";
 import WhySynkra from "@/components/sections/WhySynkra";
 import HowItWorks from "@/components/sections/HowItWorks";
-import PortfolioPreview from "@/components/sections/PortfolioPreview";
+import DemoSection from "@/components/sections/DemoSection";
+import Stats from "@/components/sections/Stats";
 import ROILink from "@/components/sections/ROILink";
 import PricingOverview from "@/components/sections/PricingOverview";
 import PartnerSection from "@/components/sections/PartnerSection";
@@ -17,7 +18,7 @@ export const Route = createFileRoute("/")({
     buildHead({
       title: "AI Systems That Run Your Business While You Grow It",
       description:
-        "Synkra builds AI automation systems for South African businesses. Voice agents, WhatsApp agents, speed-to-lead, lead reactivation, knowledge bases, and automated hiring. From R700 per month.",
+        "Synkra builds AI automation systems for South African businesses. Voice agents, WhatsApp agents, web widgets, speed-to-lead, lead reactivation, and knowledge bases. From R700 per month.",
       path: "/",
     }),
   component: HomePage,
@@ -28,10 +29,11 @@ function HomePage() {
     <>
       <Hero />
       <Problem />
-      <ServicesGrid />
+      <Products />
+      <DemoSection />
       <WhySynkra />
+      <Stats />
       <HowItWorks />
-      <PortfolioPreview />
       <Testimonials />
       <ROILink />
       <PricingOverview />
