@@ -31,7 +31,7 @@ export type BlogListItem = {
   cover_image_url: string | null;
   author_name: string | null;
   category: string | null;
-  tags: unknown;
+  tags: string[];
   featured: boolean;
   view_count: number;
   read_time_minutes: number;
@@ -50,7 +50,10 @@ export const listBlogPosts = createServerFn({ method: "GET" }).handler(
       .order("published_at", { ascending: false })
       .limit(60);
     if (error) return [];
-    return (data ?? []) as BlogListItem[];
+    return (data ?? []).map((r) => ({
+      ...r,
+      tags: Array.isArray(r.tags) ? (r.tags as string[]) : [],
+    })) as BlogListItem[];
   },
 );
 
