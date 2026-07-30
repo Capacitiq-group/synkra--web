@@ -7,15 +7,19 @@ const SERVICES = [
   { to: "/services/speed-to-lead", label: "Speed to Lead" },
   { to: "/services/lead-reactivation", label: "Lead Reactivation" },
   { to: "/services/ai-knowledge-base", label: "AI Knowledge Base" },
-  { to: "/services/automated-hiring", label: "Automated Hiring" },
 ];
 
 const COMPANY = [
   { to: "/about", label: "About" },
-  { to: "/portfolio", label: "Portfolio" },
+  { to: "/pricing", label: "Pricing" },
+  { to: "/blog", label: "Blog" },
+  { to: "/help", label: "Help Centre" },
   { to: "/partner", label: "Partner With Us" },
-  { to: "/contact", label: "Client Login" },
-  { to: "/partner", label: "Partner Login" },
+  { to: "/contact", label: "Contact" },
+  { to: "/admin/login", label: "Sign In" },
+];
+
+const LEGAL = [
   { to: "/legal/privacy-policy", label: "Privacy Policy" },
   { to: "/legal/terms-of-service", label: "Terms of Service" },
   { to: "/legal/refund-policy", label: "Refund Policy" },
@@ -27,8 +31,8 @@ export default function Footer() {
   return (
     <footer className="px-4 pb-8 pt-12 lg:px-8">
       <div className="container-main">
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/5 bg-[#252430] p-8 lg:p-14">
-          <div className="grid gap-12 lg:grid-cols-3">
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/5 bg-[#252430] p-8 pb-40 lg:p-14 lg:pb-56">
+          <div className="relative z-10 grid gap-12 lg:grid-cols-4">
             <div>
               <p className="text-sm leading-relaxed text-white/60">
                 Synkra builds AI automation systems for South African businesses
@@ -40,7 +44,6 @@ export default function Footer() {
               >
                 Get in touch →
               </Link>
-              <p className="label-tag mt-10">A Capacitiq Group company</p>
             </div>
 
             <div>
@@ -62,8 +65,24 @@ export default function Footer() {
             <div>
               <p className="label-tag mb-5">Company</p>
               <ul className="space-y-3">
-                {COMPANY.map((c, i) => (
-                  <li key={`${c.label}-${i}`}>
+                {COMPANY.map((c) => (
+                  <li key={c.label}>
+                    <Link
+                      to={c.to}
+                      className="text-sm text-white/60 transition-colors hover:text-white"
+                    >
+                      {c.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <p className="label-tag mb-5">Legal</p>
+              <ul className="space-y-3">
+                {LEGAL.map((c) => (
+                  <li key={c.label}>
                     <Link
                       to={c.to}
                       className="text-sm text-white/60 transition-colors hover:text-white"
@@ -76,7 +95,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="mt-14 border-t border-white/5 pt-6">
+          <div className="relative z-10 mt-14 border-t border-white/5 pt-6">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <p className="label-tag">
                 Synkra. South Africa. All rights reserved.
@@ -89,7 +108,7 @@ export default function Footer() {
             aria-hidden
             src="https://res.cloudinary.com/dewvhnks3/image/upload/v1783084829/1000104657-removebg-preview_z20unp.png"
             alt=""
-            className="pointer-events-none absolute -bottom-10 -right-6 select-none w-[70%] max-w-[900px] opacity-[0.06] lg:w-[85%] lg:max-w-[1400px]"
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-0 mx-auto w-[92%] max-w-[1200px] select-none opacity-[0.10]"
           />
         </div>
       </div>
