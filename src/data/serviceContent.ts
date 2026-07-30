@@ -24,7 +24,6 @@ export type ServicePageContent = {
   servicePage: string;
   serviceLabel: string;
   brochure: string;
-  sampleMode?: boolean; // virtual photoshoot uses Request a Sample
 };
 
 export const SERVICE_CONTENT: Record<string, ServicePageContent> = {

@@ -91,7 +91,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         {
           name: "description",
           content:
-            "Synkra builds AI automation systems for South African businesses. Voice, WhatsApp, lead automation, knowledge bases, and automated hiring. From R700 per month.",
+            "Synkra builds AI automation systems for South African businesses. Voice, WhatsApp, web widgets, lead automation, and knowledge bases. From R700 per month.",
         },
         { name: "author", content: "Synkra" },
         { property: "og:site_name", content: "Synkra" },

@@ -21,7 +21,7 @@ export const Route = createFileRoute("/legal/terms-of-service")({
         },
         {
           heading: "Services",
-          body: "Synkra builds and operates AI automation systems for businesses including voice agents, WhatsApp agents, web widgets, speed-to-lead, lead reactivation, knowledge bases, automated hiring, and virtual photoshoot. The specific scope of your service is defined during onboarding and recorded in your client portal.",
+          body: "Synkra builds and operates AI automation systems for businesses including voice agents, WhatsApp agents, web widgets, speed-to-lead, lead reactivation, and knowledge bases. The specific scope of your service is defined during onboarding and recorded in your client portal.",
         },
         {
           heading: "Payments and Credits",

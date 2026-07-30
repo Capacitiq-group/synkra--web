@@ -5,7 +5,7 @@ export const SITE_NAME = "Synkra";
 export const SITE_TAGLINE =
   "AI Systems That Run Your Business While You Grow It";
 export const SITE_DESCRIPTION =
-  "Synkra builds AI automation systems for South African businesses. Voice agents, WhatsApp agents, speed-to-lead, lead reactivation, knowledge bases, and automated hiring. From R700 per month.";
+  "Synkra builds AI automation systems for South African businesses. Voice agents, WhatsApp agents, web widgets, speed-to-lead, lead reactivation, and knowledge bases. From R700 per month.";
 
 // No production domain is connected yet — use relative URLs so they stay
 // correct once a custom domain is added. og:image is served from /public.
