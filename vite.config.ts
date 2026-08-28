@@ -1,15 +1,30 @@
-// @lovable.dev/vite-tanstack-config already includes the following — do NOT add them manually
-// or the app will break with duplicate plugins:
-//   - tanstackStart, viteReact, tailwindcss, tsConfigPaths, nitro (build-only using cloudflare as a default target),
-//     componentTagger (dev-only), VITE_* env injection, @ path alias, React/TanStack dedupe,
-//     error logger plugins, and sandbox detection (port/host/strictPort).
-// You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+// Replaces the @lovable.dev/vite-tanstack-config wrapper.
+// That wrapper defaults nitro's build target to Cloudflare Workers, which is
+// not runnable as a plain Node server — this repo now deploys via Docker on
+// Coolify like synkra-client-hub, so it needs the same plain, Node-targeted
+// TanStack Start config that client-hub uses.
+//
+// Known tradeoff: the wrapper also included Lovable's componentTagger
+// (dev-only, enables click-to-select in Lovable's visual editor). There is
+// no standalone lovable-tagger package in this repo to reinstate it
+// separately. Lovable can still edit this code as text/AI-assisted edits;
+// only the click-to-select-in-preview convenience may be affected. Confirm
+// in Lovable after this change lands, and reintroduce a standalone tagger
+// plugin here if Lovable's docs offer one.
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import tsConfigPaths from "vite-tsconfig-paths";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
-    server: { entry: "server" },
-  },
+  plugins: [
+    tailwindcss(),
+    tanstackStart({
+      // Preserve the original repo's custom server entry (src/server.ts).
+      server: { entry: "server" },
+    }),
+    react(),
+    tsConfigPaths(),
+  ],
 });
