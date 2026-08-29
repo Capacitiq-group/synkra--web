@@ -67,8 +67,8 @@ const TABS: Tab[] = [
     ],
     cta: {
       label: "Start with Synkra Flow",
-      to: "https://client.synkra.co.za/checkout?plan=free",
-      external: true,
+      to: "/products/flow",
+      external: false,
     },
   },
   {
@@ -97,7 +97,7 @@ const TABS: Tab[] = [
         body: "Connect it to your customer channels and you are live.",
       },
     ],
-    cta: { label: "Join the Chat waitlist", to: "/contact", external: false },
+    cta: { label: "Join the Chat waitlist", to: "/products/chat", external: false },
   },
 ];
 

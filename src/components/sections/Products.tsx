@@ -25,8 +25,8 @@ const PRODUCTS = [
     ],
     cta: {
       label: "Start with Synkra Flow",
-      to: "https://client.synkra.co.za/checkout?plan=free",
-      external: true,
+      to: "/products/flow" as const,
+      external: false,
     },
   },
   {
@@ -39,7 +39,7 @@ const PRODUCTS = [
       "Same account, same billing as Synkra Flow",
       "First access goes to the waitlist",
     ],
-    cta: { label: "Join the Chat waitlist", to: "/contact" as const, external: false },
+    cta: { label: "Join the Chat waitlist", to: "/products/chat" as const, external: false },
   },
 ] as const;
 

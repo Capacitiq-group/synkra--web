@@ -1,75 +1,11 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-
-type TierCard = {
-  name: string;
-  price: string;
-  cadence: string;
-  who: string;
-  credits: string;
-  featured: boolean;
-};
-
-const AGENCY_TIERS: TierCard[] = [
-  {
-    name: "Basic",
-    price: "From R700",
-    cadence: "per month",
-    who: "For businesses that need a professional always-available AI system handling one core function.",
-    credits: "Includes R100 in free monthly usage credits.",
-    featured: false,
-  },
-  {
-    name: "Standard",
-    price: "From R1,200",
-    cadence: "per month",
-    who: "For growing businesses with higher volumes or more complex requirements across one or more services.",
-    credits: "Includes R200 to R300 in free monthly usage credits.",
-    featured: true,
-  },
-  {
-    name: "Premium",
-    price: "From R2,500",
-    cadence: "per month",
-    who: "For businesses where the automated function is a primary revenue or operations channel.",
-    credits: "Includes R300 to R400 in free monthly usage credits.",
-    featured: false,
-  },
-];
-
-// Real, current tiers - pulled from synkra-client-hub's src/lib/plans.ts.
-// Update here if that file's PLAN_LIMITS prices ever change.
-const FLOW_TIERS: TierCard[] = [
-  {
-    name: "Free Forever",
-    price: "R0",
-    cadence: "per month",
-    who: "500 automation runs, 5 active workflows, 1 GB storage. No credit card required.",
-    credits: "Pay-as-you-go for AI, SMS, voice, and WhatsApp add-ons.",
-    featured: false,
-  },
-  {
-    name: "Basic",
-    price: "R149",
-    cadence: "per month",
-    who: "Higher run limits and included usage credits for growing automation needs.",
-    credits: "Includes monthly AI, SMS, voice, and WhatsApp allocation.",
-    featured: true,
-  },
-  {
-    name: "Pro",
-    price: "R249",
-    cadence: "per month",
-    who: "The highest run limits, storage, and included usage on Flow.",
-    credits: "Includes the largest monthly AI, SMS, voice, and WhatsApp allocation.",
-    featured: false,
-  },
-];
+import { AGENCY_TIERS, FLOW_TIERS } from "@/data/pricingTiers";
 
 const TABS = [
   { key: "agency" as const, label: "Agency", tiers: AGENCY_TIERS, cta: { label: "View all services and pricing", to: "/services" as const, external: false } },
-  { key: "flow" as const, label: "Flow", tiers: FLOW_TIERS, cta: { label: "Start with Synkra Flow", to: "https://client.synkra.co.za/checkout?plan=free", external: true } },
-  { key: "chat" as const, label: "Chat", tiers: null, cta: { label: "Join the Chat waitlist", to: "/contact" as const, external: false } },
+  { key: "flow" as const, label: "Flow", tiers: FLOW_TIERS, cta: { label: "Explore Synkra Flow", to: "/products/flow" as const, external: false } },
+  { key: "chat" as const, label: "Chat", tiers: null, cta: { label: "Explore Synkra Chat", to: "/products/chat" as const, external: false } },
 ];
 
 export default function PricingOverview() {
