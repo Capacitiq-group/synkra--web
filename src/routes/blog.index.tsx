@@ -11,7 +11,14 @@ export const Route = createFileRoute("/blog/")({
         "Practical writing on AI automation for South African businesses — what works, what it costs, and how to put it into your operation.",
       path: "/blog",
     }),
-  loader: async () => ({ posts: await listBlogPosts() }),
+  loader: async () => {
+    try {
+      return { posts: await listBlogPosts() };
+    } catch (error) {
+      console.error("[blog] failed to load posts", error);
+      return { posts: [] as BlogListItem[] };
+    }
+  },
   component: BlogIndex,
 });
 

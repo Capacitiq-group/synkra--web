@@ -1,18 +1,10 @@
 import { createServerFn } from "@tanstack/react-start";
-import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
-import type { Database } from "@/integrations/supabase/types";
-
-function publicClient() {
-  return createClient<Database>(
-    process.env.SUPABASE_URL!,
-    process.env.SUPABASE_PUBLISHABLE_KEY!,
-    { auth: { storage: undefined, persistSession: false, autoRefreshToken: false } },
-  );
-}
+import { publicClient } from "./public.server";
 
 export const listPublicTestimonials = createServerFn({ method: "GET" }).handler(async () => {
   const supabase = publicClient();
+  if (!supabase) return [];
   const { data, error } = await supabase
     .from("clients")
     .select("id, company_name, contact_name, testimonial, logo_url")
@@ -41,6 +33,7 @@ export type BlogListItem = {
 export const listBlogPosts = createServerFn({ method: "GET" }).handler(
   async (): Promise<BlogListItem[]> => {
     const supabase = publicClient();
+    if (!supabase) return [];
     const { data, error } = await supabase
       .from("blog_posts")
       .select(
@@ -61,6 +54,7 @@ export const getBlogPost = createServerFn({ method: "GET" })
   .inputValidator((d: unknown) => z.object({ slug: z.string().min(1) }).parse(d))
   .handler(async ({ data }) => {
     const supabase = publicClient();
+    if (!supabase) return null;
     const { data: post, error } = await supabase
       .from("blog_posts")
       .select("*")
@@ -89,6 +83,7 @@ export const incrementBlogView = createServerFn({ method: "POST" })
   .inputValidator((d: unknown) => z.object({ slug: z.string().min(1) }).parse(d))
   .handler(async ({ data }) => {
     const supabase = publicClient();
+    if (!supabase) return { ok: true };
     await supabase.rpc("increment_blog_view", { _slug: data.slug });
     return { ok: true };
   });
@@ -104,6 +99,7 @@ export const joinWaitlist = createServerFn({ method: "POST" })
   )
   .handler(async ({ data }) => {
     const supabase = publicClient();
+    if (!supabase) return { ok: false, error: "Could not join the waitlist right now." };
     const { error } = await supabase
       .from("waitlist")
       .insert({ email: data.email, product: data.product });
