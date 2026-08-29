@@ -5,7 +5,12 @@ import { getBlogPost, incrementBlogView } from "@/lib/public.functions";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: async ({ params }) => {
-    const post = await getBlogPost({ data: { slug: params.slug } });
+    let post: Awaited<ReturnType<typeof getBlogPost>> | null = null;
+    try {
+      post = await getBlogPost({ data: { slug: params.slug } });
+    } catch (error) {
+      console.error("[blog] failed to load post", error);
+    }
     if (!post) throw notFound();
     return { post };
   },
