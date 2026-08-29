@@ -26,11 +26,9 @@ type ServiceRow = {
 
 const SERVICE_ROWS: ServiceRow[] = [
   { name: "AI Voice Agent", slug: "ai-voice-agent", entry: "R2,500", standard: "R4,500", premium: "R7,000", monthly: "R700/month" },
-  { name: "AI Web Widget", slug: "ai-web-widget", entry: "R2,500", standard: "R4,000", premium: "R6,000", monthly: "R700/month" },
-  { name: "AI WhatsApp Agent", slug: "ai-whatsapp-agent", entry: "R2,500", standard: "R4,000", premium: "R6,000", monthly: "R700/month" },
   { name: "Speed to Lead", slug: "speed-to-lead", entry: "R3,000", standard: "R5,000", premium: "R7,000", monthly: "R700/month" },
   { name: "Lead Reactivation", slug: "lead-reactivation", entry: "R3,500", standard: "R5,500", premium: "R8,000", monthly: "R800/month" },
-  { name: "AI Knowledge Base", slug: "ai-knowledge-base", entry: "R3,500", standard: "R6,000", premium: "R9,000", monthly: "R800/month" },
+  { name: "Custom Agentic AI", slug: "custom-agentic-ai", entry: "R3,000", standard: "R6,000", premium: "R10,000", monthly: "R700/month" },
 ];
 
 const USAGE_ROWS: { what: string; rate: string }[] = [

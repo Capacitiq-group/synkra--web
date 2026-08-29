@@ -16,11 +16,9 @@ export type PortfolioItem = {
 export const PORTFOLIO_CATEGORIES = [
   { label: "All", slug: "all" },
   { label: "AI Voice Agent", slug: "ai-voice-agent" },
-  { label: "AI WhatsApp Agent", slug: "ai-whatsapp-agent" },
-  { label: "Web Widget", slug: "ai-web-widget" },
   { label: "Speed to Lead", slug: "speed-to-lead" },
   { label: "Lead Reactivation", slug: "lead-reactivation" },
-  { label: "AI Knowledge Base", slug: "ai-knowledge-base" },
+  { label: "Custom Agentic AI", slug: "custom-agentic-ai" },
 ] as const;
 
 export const portfolioItems: PortfolioItem[] = [];

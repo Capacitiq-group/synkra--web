@@ -6,7 +6,6 @@ import Products from "@/components/sections/Products";
 import WhySynkra from "@/components/sections/WhySynkra";
 import HowItWorks from "@/components/sections/HowItWorks";
 import DemoSection from "@/components/sections/DemoSection";
-import Stats from "@/components/sections/Stats";
 import ROILink from "@/components/sections/ROILink";
 import PricingOverview from "@/components/sections/PricingOverview";
 import PartnerSection from "@/components/sections/PartnerSection";
@@ -18,7 +17,7 @@ export const Route = createFileRoute("/")({
     buildHead({
       title: "AI Systems That Run Your Business While You Grow It",
       description:
-        "Synkra builds AI automation systems for South African businesses. Voice agents, WhatsApp agents, web widgets, speed-to-lead, lead reactivation, and knowledge bases. From R700 per month.",
+        "Synkra builds AI automation for South African businesses. Done-for-you AI agents through Synkra Agency, or build your own with Synkra Flow and Synkra Chat.",
       path: "/",
     }),
   component: HomePage,
@@ -32,7 +31,6 @@ function HomePage() {
       <Products />
       <DemoSection />
       <WhySynkra />
-      <Stats />
       <HowItWorks />
       <Testimonials />
       <ROILink />

@@ -3,27 +3,43 @@ import { Link } from "@tanstack/react-router";
 const PRODUCTS = [
   {
     n: "01",
-    name: "Synkra Flow",
-    tag: "For businesses",
-    body: "The AI systems that run inside your business. Voice agents, WhatsApp agents, web widgets, speed-to-lead, lead reactivation, and knowledge bases — built for how you actually operate, hosted and maintained by us.",
+    name: "Synkra Agency",
+    tag: "Done for you",
+    body: "The AI systems that run inside your business, built and managed by our team. Voice agents, speed-to-lead, lead reactivation, and custom agentic AI, hosted and maintained for you.",
     points: [
-      "Six production systems you can start with today",
+      "Four production systems you can start with today",
       "Setup, hosting, and ongoing maintenance included",
       "From R700 per month with transparent usage rates",
     ],
-    cta: { label: "Explore Synkra Flow", to: "/services" },
+    cta: { label: "Explore Synkra Agency", to: "/services" as const, external: false },
   },
   {
     n: "02",
-    name: "Synkra Agency",
-    tag: "For agencies and referrers",
-    body: "The partner programme for agencies, consultants, and operators who want to sell AI automation without building or supporting any of it. We build it, you own the relationship.",
+    name: "Synkra Flow",
+    tag: "Build it yourself",
+    body: "A self-serve automation builder. Start free, build your own workflows from templates, and connect the tools you already use.",
     points: [
-      "Agency partners earn 35% recurring",
-      "Referral partners earn 15% recurring",
-      "White-label delivery and full technical support",
+      "Free Forever plan, no credit card required",
+      "Paid plans from R149 per month",
+      "Templates to get your first automation running in minutes",
     ],
-    cta: { label: "Explore Synkra Agency", to: "/partner" },
+    cta: {
+      label: "Start with Synkra Flow",
+      to: "https://client.synkra.co.za/checkout?plan=free",
+      external: true,
+    },
+  },
+  {
+    n: "03",
+    name: "Synkra Chat",
+    tag: "Coming soon",
+    body: "A self-serve AI chat platform for your business, built on the same infrastructure as Flow. Join the waitlist and we will let you know the moment it opens.",
+    points: [
+      "Built for how South African businesses already use WhatsApp",
+      "Same account, same billing as Synkra Flow",
+      "First access goes to the waitlist",
+    ],
+    cta: { label: "Join the Chat waitlist", to: "/contact" as const, external: false },
   },
 ] as const;
 
@@ -38,13 +54,13 @@ export default function Products() {
           </div>
           <div className="lg:col-span-8">
             <h2 className="heading-section max-w-3xl">
-              Two products. One for businesses that want the systems, one for
-              partners that want to sell them.
+              Three ways to get AI working in your business, done for you or
+              built by you.
             </h2>
           </div>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-3">
           {PRODUCTS.map((p) => (
             <article
               key={p.name}
@@ -67,9 +83,15 @@ export default function Products() {
                 ))}
               </ul>
               <div className="hairline mt-10" />
-              <Link to={p.cta.to} className="arrow-link mt-5">
-                {p.cta.label} <span className="arrow">→</span>
-              </Link>
+              {p.cta.external ? (
+                <a href={p.cta.to} className="arrow-link mt-5">
+                  {p.cta.label} <span className="arrow">→</span>
+                </a>
+              ) : (
+                <Link to={p.cta.to} className="arrow-link mt-5">
+                  {p.cta.label} <span className="arrow">→</span>
+                </Link>
+              )}
             </article>
           ))}
         </div>

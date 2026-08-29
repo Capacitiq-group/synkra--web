@@ -2,11 +2,9 @@ import { Link } from "@tanstack/react-router";
 
 const SERVICES = [
   { to: "/services/ai-voice-agent", label: "AI Voice Agent" },
-  { to: "/services/ai-web-widget", label: "AI Web Widget" },
-  { to: "/services/ai-whatsapp-agent", label: "AI WhatsApp Agent" },
   { to: "/services/speed-to-lead", label: "Speed to Lead" },
   { to: "/services/lead-reactivation", label: "Lead Reactivation" },
-  { to: "/services/ai-knowledge-base", label: "AI Knowledge Base" },
+  { to: "/services/custom-agentic-ai", label: "Custom Agentic AI" },
 ];
 
 const COMPANY = [

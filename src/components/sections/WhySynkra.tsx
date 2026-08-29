@@ -2,17 +2,17 @@ const STATS = [
   {
     figure: "24/7",
     label: "Always available",
-    body: "Your AI systems work every hour of every day including weekends and public holidays without overtime or absence.",
+    body: "Agency systems run every hour of every day, including weekends and public holidays, with no overtime or absence.",
   },
   {
-    figure: "Under R700",
-    label: "Starting monthly fee",
-    body: "Less than the cost of a part-time employee for a system that outperforms one in availability and consistency.",
+    figure: "From R0",
+    label: "Every starting price",
+    body: "Flow is free to start. Agency starts under R700 a month. Both cost less than a part-time employee.",
   },
   {
-    figure: "2 weeks",
-    label: "Time to go live",
-    body: "From payment to a live running system in under two weeks including build, testing, and your approval.",
+    figure: "48 hours",
+    label: "Live after onboarding",
+    body: "Once your onboarding is complete, most Agency systems go live within 48 hours. Complex builds take longer.",
   },
 ];
 
@@ -23,15 +23,13 @@ export default function WhySynkra() {
         <div className="max-w-[820px]">
           <p className="label-tag">Why Synkra</p>
           <h2 className="heading-display mt-6">
-            Built to be affordable for the businesses that need it most.
+            Priced for the businesses that need it most, not just the ones
+            that can afford enterprise software.
           </h2>
           <p className="body-text mt-8 max-w-[640px]">
-            Most automation companies price their services for enterprises. We
-            built our infrastructure differently so we can offer the same
-            quality of systems at prices that make sense for a business doing
-            R500,000 a year, not just one doing R50 million. One of our
-            systems running 24 hours a day costs less every month than one
-            employee working 8 hours a day.
+            Most automation companies price for enterprises. We built our own
+            infrastructure so the same quality of system works for a
+            business doing R500,000 a year, not only one doing R50 million.
           </p>
         </div>
 

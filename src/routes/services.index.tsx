@@ -2,23 +2,27 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { joinWaitlist } from "@/lib/public.functions";
 import { buildHead } from "@/lib/seo";
-import { SERVICES, SERVICE_ORDER } from "@/data/services";
+import { SERVICE_CONTENT } from "@/data/serviceContent";
 
-const TITLES: Record<string, string> = {
-  "ai-voice-agent": "AI Voice Agent",
-  "ai-web-widget": "AI Web Widget",
-  "ai-whatsapp-agent": "AI WhatsApp Agent",
-  "speed-to-lead": "Speed to Lead",
-  "lead-reactivation": "Lead Reactivation",
-  "ai-knowledge-base": "AI Knowledge Base",
-};
+// Was reading from the orphaned src/data/services.ts (only ever consumed
+// here, and only for the index cards — the real detail pages have always
+// used SERVICE_CONTENT). Switched to the single source of truth so there
+// is only one place to update a service's copy going forward.
+// src/data/services.ts and src/components/sections/ServiceDetail.tsx are
+// now unused - safe to delete.
+const SERVICE_ORDER = [
+  "ai-voice-agent",
+  "speed-to-lead",
+  "lead-reactivation",
+  "custom-agentic-ai",
+] as const;
 
 export const Route = createFileRoute("/services/")({
   head: () =>
     buildHead({
       title: "AI Automation Services",
       description:
-        "Voice agents, WhatsApp agents, web widgets, speed-to-lead, lead reactivation, and knowledge bases — built for South African businesses.",
+        "Voice agents, speed-to-lead, lead reactivation, and custom agentic AI — built for South African businesses.",
       path: "/services",
     }),
   component: ServicesIndex,
@@ -34,7 +38,7 @@ function ServicesIndex() {
             AI systems built around how your business actually runs.
           </h1>
           <p className="body-text mt-8 max-w-[640px] text-lg">
-            Six focused systems that handle the work eating into your team's
+            Four focused systems that handle the work eating into your team's
             day. Pick one, layer in the rest as you grow.
           </p>
         </div>
@@ -47,7 +51,7 @@ function ServicesIndex() {
         <div className="container-main section-padding">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {SERVICE_ORDER.map((slug, i) => {
-              const s = SERVICES[slug];
+              const s = SERVICE_CONTENT[slug];
               return (
                 <Link
                   key={slug}
@@ -57,8 +61,8 @@ function ServicesIndex() {
                   <span className="numeral-sm absolute right-6 top-6 text-white/15">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h2 className="heading-card max-w-[80%]">{TITLES[slug]}</h2>
-                  <p className="body-text mt-3">{s.short}</p>
+                  <h2 className="heading-card max-w-[80%]">{s.serviceLabel}</h2>
+                  <p className="body-text mt-3">{s.subtitle}</p>
                   <div className="hairline mt-8" />
                   <span className="arrow-link mt-5">
                     Learn more <span className="arrow">→</span>
