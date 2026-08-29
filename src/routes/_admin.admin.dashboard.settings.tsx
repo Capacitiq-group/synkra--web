@@ -4,7 +4,6 @@ import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { listAdminUsers, inviteAdmin, removeAdmin, meIsAdmin } from "@/lib/admin.functions";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
 
 const opts = queryOptions({ queryKey: ["admin", "admin-users"], queryFn: () => listAdminUsers() });
 const meOpts = queryOptions({ queryKey: ["admin", "me"], queryFn: () => meIsAdmin() });
@@ -37,21 +36,16 @@ function SettingsPage() {
     onError: (e: any) => toast.error(e.message),
   });
 
-  async function unenrollMfa() {
-    const { data: factors } = await supabase.auth.mfa.listFactors();
-    const totp = factors?.totp?.[0];
-    if (!totp) return toast.error("No factor to remove");
-    if (!confirm("Remove your MFA factor? You'll need to re-enroll next sign-in.")) return;
-    const r = await supabase.auth.mfa.unenroll({ factorId: totp.id });
-    if (r.error) toast.error(r.error.message); else toast.success("MFA removed");
-  }
-
   return (
     <div className="space-y-6">
       <div className="admin-card">
         <div className="text-lg font-semibold mb-4">Your account</div>
         <div className="text-sm">Email: <span className="text-[color:var(--color-admin-text-muted)]">{me.email}</span></div>
-        <div className="mt-4"><button className="admin-btn-secondary" onClick={unenrollMfa}>Reset MFA</button></div>
+        <p className="mt-4 text-xs text-[color:var(--color-admin-text-muted)]">
+          Two-factor verification (email OTP) is enabled account-wide for all admins.
+          There is nothing to reset per account — it's configured on the PocketBase
+          instance itself, not per user.
+        </p>
       </div>
 
       <div className="admin-card">
@@ -63,7 +57,7 @@ function SettingsPage() {
         <div className="mt-3 flex justify-end">
           <button className="admin-btn-primary" onClick={() => invite.mutate()} disabled={!email || invite.isPending}>{invite.isPending ? "Inviting…" : "Invite"}</button>
         </div>
-        <p className="mt-3 text-xs text-[color:var(--color-admin-text-muted)]">Requires SMTP configured in Supabase. If the user already exists, they'll be promoted.</p>
+        <p className="mt-3 text-xs text-[color:var(--color-admin-text-muted)]">Requires a mailer configured in PocketBase's dashboard settings. If the user already exists, they'll be promoted.</p>
       </div>
 
       <div className="admin-card">

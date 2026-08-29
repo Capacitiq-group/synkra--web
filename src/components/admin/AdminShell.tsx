@@ -3,7 +3,7 @@ import { useState, type ReactNode } from "react";
 import {
   LayoutDashboard, Users, Briefcase, FileText, Handshake, Inbox, Settings, Wrench, LogOut, Menu, X, ScrollText,
 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { pb } from "@/integrations/pocketbase/client";
 
 const nav: { to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean }[] = [
   { to: "/admin/dashboard", label: "Overview", icon: LayoutDashboard, exact: true },
@@ -22,7 +22,7 @@ export function AdminShell({ children, title }: { children: ReactNode; title?: s
   const [open, setOpen] = useState(false);
 
   async function signOut() {
-    await supabase.auth.signOut();
+    pb.authStore.clear();
     window.location.href = "/admin/login";
   }
 
