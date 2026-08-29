@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { pb } from "@/integrations/pocketbase/client";
 
 export const Route = createFileRoute("/admin/login")({
   ssr: false,
@@ -17,18 +17,29 @@ function LoginPage() {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setBusy(true); setErr(null);
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-    setBusy(false);
-    if (error) return setErr(error.message);
-    // check MFA state
-    const { data: aal } = await supabase.auth.mfa.getAuthenticatorAssuranceLevel();
-    if (aal?.currentLevel === "aal1" && aal.nextLevel === "aal2") {
+    setBusy(true);
+    setErr(null);
+    try {
+      // With MFA enabled on the admin_users collection, this ALWAYS throws
+      // on success too — PocketBase requires a second factor before issuing
+      // a valid token. A thrown error with response.mfaId means the
+      // password was correct and a second factor (email OTP) is required.
+      await pb.collection("admin_users").authWithPassword(email, password);
+      // No mfaId thrown: MFA is not enabled on this collection. Treat as
+      // fully authenticated.
+      setBusy(false);
+      nav({ to: "/admin/dashboard" });
+    } catch (error: any) {
+      setBusy(false);
+      const mfaId = error?.response?.mfaId;
+      if (!mfaId) {
+        setErr(error?.message ?? "Invalid email or password");
+        return;
+      }
+      sessionStorage.setItem("synkra_admin_mfa_id", mfaId);
+      sessionStorage.setItem("synkra_admin_mfa_email", email);
       nav({ to: "/admin/mfa" });
-    } else {
-      nav({ to: "/admin/mfa" }); // enroll if none
     }
-    void data;
   }
 
   return (

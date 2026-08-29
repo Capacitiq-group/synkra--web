@@ -1,11 +1,10 @@
 // Public form submission endpoint for Synkra.
 // All site forms POST JSON here; submissions are written to the
-// `form_submissions` table in Supabase. The single notification address
-// (Synkra@capacitiqgroup.co.za) can be wired up later via an email
-// provider — for now we only persist.
+// `form_submissions` collection in PocketBase.
 
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
+import PocketBase from "pocketbase";
 
 const SubmitSchema = z.object({
   form_type: z.string().min(1).max(64),
@@ -32,10 +31,7 @@ export const Route = createFileRoute("/api/submit-form")({
         try {
           body = await request.json();
         } catch {
-          return Response.json(
-            { ok: false, error: "Invalid JSON" },
-            { status: 400, headers: cors },
-          );
+          return Response.json({ ok: false, error: "Invalid JSON" }, { status: 400, headers: cors });
         }
 
         const parsed = SubmitSchema.safeParse(body);
@@ -46,45 +42,31 @@ export const Route = createFileRoute("/api/submit-form")({
           );
         }
 
-        // Use the publishable Supabase client server-side. Inserts are allowed
-        // for anon under the RLS policy on `form_submissions`.
-        const { createClient } = await import("@supabase/supabase-js");
-        const url =
-          process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL;
-        const key =
-          process.env.SUPABASE_PUBLISHABLE_KEY ??
-          process.env.VITE_SUPABASE_PUBLISHABLE_KEY;
-        if (!url || !key) {
-          return Response.json(
-            { ok: false, error: "Server not configured" },
-            { status: 500, headers: cors },
-          );
+        const url = process.env["POCKETBASE_URL"] ?? process.env["VITE_POCKETBASE_URL"];
+        if (!url) {
+          return Response.json({ ok: false, error: "Server not configured" }, { status: 500, headers: cors });
         }
 
-        const supabase = createClient(url, key, {
-          auth: {
-            persistSession: false,
-            autoRefreshToken: false,
-            storage: undefined,
-          },
-        });
+        const pb = new PocketBase(url.replace(/\/+$/, ""));
+        pb.autoCancellation(false);
 
-        const { form_type, name, email, phone, company, message, payload } =
-          parsed.data;
+        const { form_type, name, email, phone, company, message, payload } = parsed.data;
 
-        const { error } = await supabase.from("form_submissions").insert({
-          form_type,
-          name: name ?? null,
-          email: email ?? null,
-          phone: phone ?? null,
-          company: company ?? null,
-          message: message ?? null,
-          payload: payload ?? {},
-        });
-
-        if (error) {
+        try {
+          // form_submissions Create rule is public (anyone can submit),
+          // matching "Anyone can submit a form" from the original schema.
+          await pb.collection("form_submissions").create({
+            form_type,
+            name: name ?? null,
+            email: email ?? null,
+            phone: phone ?? null,
+            company: company ?? null,
+            message: message ?? null,
+            payload: payload ?? {},
+          });
+        } catch (err: any) {
           return Response.json(
-            { ok: false, error: error.message },
+            { ok: false, error: err?.message ?? "Could not submit" },
             { status: 500, headers: cors },
           );
         }

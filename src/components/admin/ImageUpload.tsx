@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { pb } from "@/integrations/pocketbase/client";
 import { toast } from "sonner";
 import { UploadCloud, X } from "lucide-react";
 
@@ -27,9 +27,8 @@ export function ImageUpload({
     setBusy(true);
     setProgress({ current: 0, total: arr.length });
     try {
-      const { data: session } = await supabase.auth.getSession();
-      const token = session.session?.access_token;
-      if (!token) throw new Error("Not authenticated");
+      const token = pb.authStore.token;
+      if (!token || !pb.authStore.isValid) throw new Error("Not authenticated");
       const uploaded: string[] = [];
       for (let i = 0; i < arr.length; i++) {
         const f = arr[i];
