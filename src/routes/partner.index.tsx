@@ -128,6 +128,49 @@ function PartnerPage() {
 
       <Divider />
 
+      {/* Integration partners */}
+      <section className="bg-[#0a0a0a]">
+        <div className="container-main section-padding">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+            <div className="text-left">
+              <p className="label-tag green-text">Integration Partners</p>
+              <h2 className="heading-section mt-4 max-w-[480px]">
+                Run a platform your customers already use? Let's connect it
+                to Synkra.
+              </h2>
+              <p className="body-text mt-6 max-w-[440px]">
+                If you build a CRM, accounting, ERP, e-commerce, payments, or
+                any other business platform, an integration with Synkra puts
+                automation directly in front of your existing customers. Tell
+                us about your platform and our team will assess the fit.
+              </p>
+            </div>
+            <div className="card-dark flex flex-col text-left">
+              <p className="label-tag">What this is</p>
+              <p className="body-sm mt-3">
+                A structured application about your platform's API, customer
+                base, and where an integration would create value for both
+                sides. Not a commission programme — a technology partnership.
+              </p>
+              <div className="hairline my-8" />
+              <p className="label-tag">Who this is for</p>
+              <p className="body-sm mt-3">
+                Platform owners and product teams, not individual referrers —
+                see Agency and Referral Partners above for that.
+              </p>
+              <Link
+                to="/partner/integration"
+                className="btn-primary mt-8 w-full justify-center"
+              >
+                Apply as an Integration Partner
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Divider />
+
       {/* How it works */}
       <section className="bg-[#0a0a0a]">
         <div className="container-main section-padding">
