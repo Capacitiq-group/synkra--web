@@ -169,7 +169,7 @@ export default function ProductPageLayout({ data }: { data: ProductPageContent }
                 <WaitlistForm product={data.productLabel} />
               </div>
             )}
-            <Link to="/contact" className="btn-secondary">
+            <Link to="/talk-to-us" search={{ service: data.productLabel } as never} className="btn-secondary">
               Talk to us first
             </Link>
           </div>

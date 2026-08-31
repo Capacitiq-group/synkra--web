@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Check } from "lucide-react";
 import { buildHead } from "@/lib/seo";
 import ROILink from "@/components/sections/ROILink";
 
@@ -18,17 +17,19 @@ export const Route = createFileRoute("/pricing")({
 type ServiceRow = {
   name: string;
   slug: string;
-  entry: string;
-  standard: string;
-  premium: string;
-  monthly: string;
+  monthlyFrom: string;
+  setupFrom: string;
 };
 
+// Matches each service's actual pricing.mode in serviceContent.ts - the
+// three "simple" services show one starting price, Custom Agentic AI's
+// figures are its Essential (lowest) tier. Full detail lives on each
+// service's own page, this table is a starting-price comparison only.
 const SERVICE_ROWS: ServiceRow[] = [
-  { name: "AI Voice Agent", slug: "ai-voice-agent", entry: "R2,500", standard: "R4,500", premium: "R7,000", monthly: "R700/month" },
-  { name: "Speed to Lead", slug: "speed-to-lead", entry: "R3,000", standard: "R5,000", premium: "R7,000", monthly: "R700/month" },
-  { name: "Lead Reactivation", slug: "lead-reactivation", entry: "R3,500", standard: "R5,500", premium: "R8,000", monthly: "R800/month" },
-  { name: "Custom Agentic AI", slug: "custom-agentic-ai", entry: "R3,000", standard: "R6,000", premium: "R10,000", monthly: "R700/month" },
+  { name: "AI Voice Agent", slug: "ai-voice-agent", monthlyFrom: "R700/month", setupFrom: "R2,500" },
+  { name: "Speed to Lead", slug: "speed-to-lead", monthlyFrom: "R700/month", setupFrom: "R3,000" },
+  { name: "Lead Reactivation", slug: "lead-reactivation", monthlyFrom: "R800/month", setupFrom: "R3,500" },
+  { name: "Custom Agentic AI", slug: "custom-agentic-ai", monthlyFrom: "R1,500/month", setupFrom: "R5,000" },
 ];
 
 const USAGE_ROWS: { what: string; rate: string }[] = [
@@ -53,58 +54,6 @@ const FAQS: { q: string; a: string }[] = [
   { q: "What payment methods do you accept?", a: "We accept card payments via Paystack for setup fees and credit top-ups. Monthly retainers can be paid by card or EFT. All payments are processed securely and receipts are available in your client portal." },
 ];
 
-function PlanCard({
-  name,
-  price,
-  body,
-  bullets,
-  ctaPrimary,
-  popular,
-}: {
-  name: string;
-  price: string;
-  body: string;
-  bullets: string[];
-  ctaPrimary?: boolean;
-  popular?: boolean;
-}) {
-  return (
-    <div className="flex flex-col">
-      {popular && (
-        <p className="label-tag mb-3 text-[#56d722]">Most Popular</p>
-      )}
-      <div
-        className={`card-dark flex h-full flex-col p-8 ${
-          popular ? "border border-[#56d722]/30" : ""
-        }`}
-      >
-        <h3 className="heading-card">{name}</h3>
-        <p className="display-sm mt-6 text-[#56d722]">{price}</p>
-        <p className="label-tag mt-2 text-white/40">per month</p>
-        <div className="hairline my-6" />
-        <p className="body-sm text-white/60">{body}</p>
-        <div className="hairline my-6" />
-        <ul className="flex flex-col gap-3">
-          {bullets.map((b) => (
-            <li key={b} className="flex items-start gap-2">
-              <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#56d722]" />
-              <span className="label-tag normal-case tracking-normal text-white/80">
-                {b}
-              </span>
-            </li>
-          ))}
-        </ul>
-        <div className="hairline my-6" />
-        <Link
-          to="/services"
-          className={`${ctaPrimary ? "btn-primary" : "btn-secondary"} mt-auto w-full justify-center`}
-        >
-          See all services
-        </Link>
-      </div>
-    </div>
-  );
-}
 
 function FaqItem({
   q,
@@ -203,76 +152,44 @@ function PricingPage() {
 
       <div className="container-main"><div className="hairline" /></div>
 
-      {/* MONTHLY PLAN TIERS */}
+      {/* PER-SERVICE PRICING */}
       <section className="container-main section-padding">
         <p className="label-tag">Monthly Plans</p>
         <h2 className="heading-section mt-6 max-w-[640px]">
-          Every service runs on one of three monthly plans depending on your
-          volume and complexity.
+          Each service is priced on its own. There is no generic plan that
+          applies across everything.
         </h2>
         <p className="body-text mt-6 max-w-[580px]">
-          The plan you choose determines your monthly retainer, your free credit
-          allocation, and your support response time. Usage charges are the same
-          across all plans — R5 per call minute, R0.50 per WhatsApp reply, and
-          R1.50 per broadcast message.
+          AI Voice Agent, Speed to Lead, and Lead Reactivation each have one
+          straightforward monthly price plus a setup fee that depends on
+          complexity. Custom Agentic AI is scoped in three tiers since the
+          work itself varies far more from client to client. Usage beyond
+          your included allowance is metered — R5 per call minute, R0.50 per
+          WhatsApp reply, and R1.50 per broadcast message, the same rate
+          regardless of which service you use.
         </p>
-
-        <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
-          <PlanCard
-            name="Basic"
-            price="From R700"
-            body="For businesses that need a professional always-available AI system handling one core function."
-            bullets={[
-              "R100 in free monthly usage credits",
-              "1 phone number included",
-              "Support response within 24 hours",
-            ]}
-          />
-          <PlanCard
-            name="Standard"
-            price="From R1,200"
-            popular
-            ctaPrimary
-            body="For growing businesses with higher volumes or more complex requirements across one or more services."
-            bullets={[
-              "R200 to R300 in free monthly usage credits",
-              "1 phone number included",
-              "Support response within 4 hours",
-            ]}
-          />
-          <PlanCard
-            name="Premium"
-            price="From R2,500"
-            body="For businesses where the automated function is a primary revenue or operations channel requiring depth, volume, and fast support."
-            bullets={[
-              "R300 to R400 in free monthly usage credits",
-              "1 phone number included",
-              "Support response within 2 hours",
-            ]}
-          />
-        </div>
       </section>
 
       <div className="container-main"><div className="hairline" /></div>
 
       {/* SETUP FEES BY SERVICE */}
       <section className="container-main section-padding">
-        <p className="label-tag">Setup Fees By Service</p>
+        <p className="label-tag">Pricing By Service</p>
         <h2 className="heading-section mt-6 max-w-[640px]">
-          Every service has a once-off setup fee that covers the build,
-          training, and integration.
+          Starting prices for every Agency service.
         </h2>
         <p className="body-text mt-6 max-w-[580px]">
-          Setup fees vary by service and complexity tier. The table below shows
-          the full range for each service. Your monthly plan is chosen
-          separately and applies on top of the setup fee.
+          Setup fees vary by complexity, integrations, and configuration
+          requirements. The numbers below are starting points — open a
+          service page for the full picture, or request a quote for an
+          exact number based on your business.
         </p>
 
         <div className="mt-12 -mx-6 overflow-x-auto px-6 sm:mx-0 sm:px-0">
-          <table className="w-full min-w-[720px] text-left">
+          <table className="w-full min-w-[560px] text-left">
             <thead>
               <tr className="border-b border-white/10">
-                {["Service", "Entry Setup", "Standard Setup", "Premium Setup", "Monthly From"].map(
+                {["Service", "Setup From", "Monthly From"].map(
                   (h) => (
                     <th
                       key={h}
@@ -295,10 +212,8 @@ function PricingPage() {
                       {r.name}
                     </Link>
                   </td>
-                  <td className="body-sm py-5 pr-4 text-white/80">{r.entry}</td>
-                  <td className="body-sm py-5 pr-4 text-white/80">{r.standard}</td>
-                  <td className="body-sm py-5 pr-4 text-white/80">{r.premium}</td>
-                  <td className="body-sm py-5 pr-4 text-white/80">{r.monthly}</td>
+                  <td className="body-sm py-5 pr-4 text-white/80">{r.setupFrom}</td>
+                  <td className="body-sm py-5 pr-4 text-white/80">{r.monthlyFrom}</td>
                 </tr>
               ))}
             </tbody>
@@ -399,7 +314,7 @@ function PricingPage() {
           pressure.
         </p>
         <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-          <Link to="/contact" className="btn-primary justify-center">
+          <Link to="/talk-to-us" className="btn-primary justify-center">
             Talk to us
           </Link>
           <Link to="/services" className="btn-secondary justify-center">

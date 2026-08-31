@@ -7,6 +7,17 @@ const SERVICES = [
   { to: "/services/custom-agentic-ai", label: "Custom Agentic AI" },
 ];
 
+const UTILITIES = [
+  { to: "/utilities/qr-code-generator", label: "QR Code Generator" },
+  { to: "/utilities/background-remover", label: "Background Remover" },
+  { to: "/utilities/image-compressor", label: "Image Compressor" },
+  { to: "/utilities/image-converter", label: "Image Converter" },
+  { to: "/utilities/file-compressor", label: "File Compressor" },
+  { to: "/utilities/file-converter", label: "File Converter" },
+  { to: "/utilities/csv-cleaner", label: "CSV Cleaner" },
+  { to: "/utilities/email-signature-generator", label: "Email Signature Generator" },
+];
+
 const COMPANY = [
   { to: "/about", label: "About" },
   { to: "/pricing", label: "Pricing" },
@@ -30,7 +41,7 @@ export default function Footer() {
     <footer className="px-4 pb-8 pt-12 lg:px-8">
       <div className="container-main">
         <div className="relative overflow-hidden rounded-[2rem] border border-white/5 bg-[#252430] p-8 pb-40 lg:p-14 lg:pb-56">
-          <div className="relative z-10 grid gap-12 lg:grid-cols-4">
+          <div className="relative z-10 grid gap-12 lg:grid-cols-5">
             <div>
               <p className="text-sm leading-relaxed text-white/60">
                 Synkra builds AI automation systems for South African businesses
@@ -54,6 +65,22 @@ export default function Footer() {
                       className="text-sm text-white/60 transition-colors hover:text-white"
                     >
                       {s.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <p className="label-tag mb-5">Free Utilities</p>
+              <ul className="space-y-3">
+                {UTILITIES.map((u) => (
+                  <li key={u.label}>
+                    <Link
+                      to={u.to}
+                      className="text-sm text-white/60 transition-colors hover:text-white"
+                    >
+                      {u.label}
                     </Link>
                   </li>
                 ))}

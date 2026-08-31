@@ -110,8 +110,8 @@ export default function ServicePageLayout({ data }: { data: ServicePageContent }
                     Talk to us first
                   </Link>
                   <Link
-                    to="/contact"
-                    search={{ service: data.serviceLabel } as never}
+                    to="/get-a-quote"
+                    search={{ service: data.slug } as never}
                     className="btn-primary justify-center"
                   >
                     Get Started
