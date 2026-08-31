@@ -2,9 +2,11 @@
 # Mirrors synkra-client-hub's Dockerfile: same stack (TanStack Start),
 # Debian-slim/glibc over Alpine for the same native-binary reasons
 # (@rollup/rollup-*, @tailwindcss/oxide-* have unreliable musl support).
-# Requires vite.config.ts to use the plain tanstackStart() plugin (not
-# @lovable.dev/vite-tanstack-config's Cloudflare-targeted wrapper) so the
-# build actually produces a server-runtime/node-entry.mjs to run.
+#
+# vite.config.ts uses the nitro/vite plugin with the node-server preset,
+# so the build produces a self-starting Node server at
+# .output/server/index.mjs. Nitro bundles all runtime dependencies into
+# .output itself, so the runner stage doesn't need node_modules at all.
 FROM node:22-slim AS builder
 
 WORKDIR /app
@@ -21,13 +23,10 @@ FROM node:22-slim AS runner
 
 WORKDIR /app
 
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/server-runtime ./server-runtime
+COPY --from=builder /app/.output ./.output
 
 ENV NODE_ENV=production
 ENV PORT=3000
 EXPOSE 3000
 
-CMD ["node", "./server-runtime/node-entry.mjs"]
+CMD ["node", ".output/server/index.mjs"]
