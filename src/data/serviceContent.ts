@@ -6,6 +6,22 @@ export type PricingTier = {
   allocation?: string;
 };
 
+export type ServicePricing =
+  | {
+      mode: "simple";
+      heading: string;
+      fromMonthly: string;
+      monthlyNote: string;
+      fromSetup: string;
+      setupNote: string;
+    }
+  | {
+      mode: "tiers";
+      heading: string;
+      subtext: string;
+      tiers: PricingTier[];
+    };
+
 export type ServicePageContent = {
   slug: string;
   number: string;
@@ -14,11 +30,7 @@ export type ServicePageContent = {
   problem: { heading: string; body: string };
   outcome: { heading: string; body: string };
   roiHeading: string;
-  pricing: {
-    heading: string;
-    subtext: string;
-    tiers: PricingTier[];
-  };
+  pricing: ServicePricing;
   afterCheckout: { heading: string; body: string; ctaLabel: string };
   bottomCTA: { heading: string; body: string };
   servicePage: string;
@@ -63,35 +75,12 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
     roiHeading:
       "Find out what your missed calls are actually costing you every month.",
     pricing: {
-      heading: "Choose the plan that fits where your business is right now.",
-      subtext:
-        "Every plan includes your first phone number, a free monthly call allocation, full hosting, and ongoing maintenance. Calls beyond your allocation are charged at R5 per minute.",
-      tiers: [
-        {
-          name: "Entry",
-          setup: "R2,500 setup",
-          monthly: "R700 / month",
-          description:
-            "For small businesses that need a professional always-available first point of contact without the cost of a full-time receptionist.",
-          allocation: "R100 in free monthly call credits.",
-        },
-        {
-          name: "Standard",
-          setup: "R4,500 setup",
-          monthly: "R1,200 / month",
-          description:
-            "For growing businesses with higher call volumes or multiple types of callers that need to be handled differently.",
-          allocation: "R250 in free monthly call credits.",
-        },
-        {
-          name: "Premium",
-          setup: "R7,000 setup",
-          monthly: "R2,500 / month",
-          description:
-            "For businesses where the phone is a primary revenue channel and every call needs to be handled with depth, consistency, and accuracy at volume.",
-          allocation: "R400 in free monthly call credits.",
-        },
-      ],
+      mode: "simple",
+      heading: "One straightforward price. No tier to pick.",
+      fromMonthly: "From R700/month + setup",
+      monthlyNote: "Includes a monthly usage allowance. Additional usage is billed separately.",
+      fromSetup: "Setup from R2,500",
+      setupNote: "Final setup pricing depends on complexity, integrations, and configuration requirements.",
     },
     afterCheckout: {
       heading:
@@ -127,35 +116,12 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
     roiHeading:
       "Find out what slow lead follow-up is costing your business every month.",
     pricing: {
-      heading: "Choose the plan that fits where your business is right now.",
-      subtext:
-        "Every plan includes the trigger system connected to your lead sources, the AI caller build, full hosting, and ongoing maintenance. Call usage beyond your free allocation is charged at R5 per minute.",
-      tiers: [
-        {
-          name: "Entry",
-          setup: "R3,000 setup",
-          monthly: "R700 / month",
-          description:
-            "For businesses generating a moderate volume of leads from one or two sources who need those leads contacted immediately without adding to their team's workload.",
-          allocation: "R100 in free monthly call credits.",
-        },
-        {
-          name: "Standard",
-          setup: "R5,000 setup",
-          monthly: "R1,200 / month",
-          description:
-            "For businesses with higher lead volumes or multiple lead sources that all need to trigger the same immediate response, with outcomes feeding into a CRM automatically.",
-          allocation: "R250 in free monthly call credits.",
-        },
-        {
-          name: "Premium",
-          setup: "R7,000 setup",
-          monthly: "R2,500 / month",
-          description:
-            "For businesses where lead generation is a primary growth channel and the system needs to handle high volumes across multiple sources and integrate with a full sales pipeline.",
-          allocation: "R400 in free monthly call credits.",
-        },
-      ],
+      mode: "simple",
+      heading: "One straightforward price. No tier to pick.",
+      fromMonthly: "From R700/month + setup",
+      monthlyNote: "Includes a monthly usage allowance. Additional usage is billed separately.",
+      fromSetup: "Setup from R3,000",
+      setupNote: "Final setup pricing depends on complexity, integrations, and configuration requirements.",
     },
     afterCheckout: {
       heading:
@@ -191,32 +157,12 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
     },
     roiHeading: "Find out what your dormant database is worth if you actually worked it.",
     pricing: {
-      heading: "Choose the plan that fits where your business is right now.",
-      subtext:
-        "Every plan includes contact list processing, personalised message generation, full campaign build, and execution. Call usage is charged at R5 per minute and SMS at R0.90 per message on top of the plan fee.",
-      tiers: [
-        {
-          name: "Entry",
-          setup: "R3,500 setup",
-          monthly: "R800 / month",
-          description:
-            "For businesses with a smaller dormant database who want to run a focused reactivation campaign and see what comes back before committing to a larger effort.",
-        },
-        {
-          name: "Standard",
-          setup: "R5,500 setup",
-          monthly: "R1,500 / month",
-          description:
-            "For businesses with a larger database who want to run reactivation across multiple channels simultaneously and feed responses into a sales pipeline.",
-        },
-        {
-          name: "Premium",
-          setup: "R8,000 setup",
-          monthly: "R3,000 / month",
-          description:
-            "For businesses with a substantial dormant database where reactivation is a serious revenue recovery exercise that needs to be sophisticated, personalised, and tracked against clear commercial outcomes.",
-        },
-      ],
+      mode: "simple",
+      heading: "One straightforward price. No tier to pick.",
+      fromMonthly: "From R800/month + setup",
+      monthlyNote: "Includes a monthly usage allowance. Additional usage is billed separately.",
+      fromSetup: "Setup from R3,500",
+      setupNote: "Final setup pricing depends on complexity, integrations, and configuration requirements.",
     },
     afterCheckout: {
       heading: "Your campaign reaches dormant contacts once onboarding is complete.",
@@ -252,30 +198,31 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
     roiHeading:
       "Find out what the hours your team spends on repeatable process work are costing you every month.",
     pricing: {
+      mode: "tiers",
       heading: "Every build is scoped to the process it is automating.",
       subtext:
-        "Because the work is different for every business, setup and monthly cost depend on the systems involved, the number of steps in the process, and how much judgement is built into the handoff to a human. Book a discovery call for a scoped quote.",
+        "Because the work is different for every business, setup and monthly cost depend on the systems involved, the number of workflows, and how much decision-making is built into the employee. Book a discovery call for a scoped quote.",
       tiers: [
         {
-          name: "Entry",
-          setup: "From R3,000 setup",
-          monthly: "From R700 / month",
+          name: "Essential",
+          setup: "R5,000 setup",
+          monthly: "R1,500 / month",
           description:
-            "For a single well-defined process running inside one or two existing systems, with a clear, simple handoff to a person when needed.",
+            "One clearly defined business function, up to 4 integrations, and up to 5 automated workflows with basic rule-based and AI-assisted decisions.",
         },
         {
-          name: "Standard",
-          setup: "From R6,000 setup",
-          monthly: "From R1,500 / month",
+          name: "Growth",
+          setup: "R9,000 setup",
+          monthly: "R2,500 / month",
           description:
-            "For a process spanning several systems, with more branching logic and multiple points where the agent needs to make a judgement call about what happens next.",
+            "Multiple related business functions, up to 8 integrations, and up to 15 workflows, with more sophisticated decision-making and multiple escalation paths.",
         },
         {
-          name: "Premium",
-          setup: "From R10,000 setup",
-          monthly: "From R2,500 / month",
+          name: "Advanced",
+          setup: "R15,000+ setup",
+          monthly: "R4,000 / month",
           description:
-            "For a business running the agent across multiple processes or departments, where reliability and auditability of every action the agent takes matters.",
+            "Multiple interconnected business processes, 12+ integrations, and 30+ workflows, with complex decision trees and cross-system operations.",
         },
       ],
     },

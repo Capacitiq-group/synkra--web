@@ -49,12 +49,16 @@ gets created with `status: "new"`, just with `ai_scoring_error` set and
 `ai_flag` left empty, so a human sees "not scored" rather than a
 misleadingly blank/zero score.
 
-**Provider: Anthropic API directly** (not Kimi, which is Flow's cost-
-optimized customer-facing AI engine for a different reason — this is a
+**Provider: Ollama, already running on the server** (corrected from an
+initial Anthropic API build — not Kimi either, which is Flow's cost-
+optimized customer-facing AI engine for a different reason; this is a
 one-off internal judgment call per submission, not a per-message cost
-center, and the rubric requires genuine qualitative reasoning across 7
-weighted categories). Needs `ANTHROPIC_API_KEY` set — this is a new key,
-distinct from anything already configured elsewhere in the stack.
+center, and the rubric requires genuine qualitative reasoning across 8
+weighted categories). Needs `OLLAMA_BASE_URL` and `OLLAMA_MODEL` set —
+`OLLAMA_MODEL` must match whatever's actually pulled on that instance,
+`.env.example`'s `llama3.1` is a placeholder, not a recommendation. Uses
+Ollama's `format: "json"` mode so the response is constrained to valid
+JSON server-side.
 
 **Flag thresholds** — you gave the point breakdown per category (sums to
 100) but not the score-to-flag cutoffs, so I've set reasonable defaults,
@@ -95,7 +99,8 @@ must never fail the submission itself).
 
 ## Env vars added (update `.env.example` with these)
 ```
-ANTHROPIC_API_KEY=your_anthropic_api_key
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_MODEL=llama3.1
 RESEND_API_KEY=your_resend_api_key
 RESEND_FROM_EMAIL=partnerships@synkra.co.za
 ```

@@ -1,11 +1,11 @@
 // Scores a submitted integration partner application against the rubric
 // you specified. This is advisory only - it assigns a flag, never a
-// decision. Runs server-side only (needs ANTHROPIC_API_KEY), called from
+// decision. Runs server-side only, called from
 // partnerIntegration.functions.ts right after the record is created.
 
 const RUBRIC_SYSTEM_PROMPT = `You are an internal analyst for Synkra, a South African AI automation company. You are scoring an inbound Integration Partner application. This is an ADVISORY tool only - you assign a score and a flag, a human makes every actual decision about the partnership. Never write as if you are deciding anything; write as if you are briefing a colleague who will decide.
 
-Score the submission out of 100 across these 7 weighted categories. Follow the point ranges exactly - do not invent your own scale.
+Score the submission out of 100 across these 8 weighted categories. Follow the point ranges exactly - do not invent your own scale.
 
 1. CUSTOMER OVERLAP - 25 points
 How valuable is their existing customer base to Synkra? Consider: industry, business size, South African presence, SME penetration, number of active customers, geographic expansion potential.
@@ -112,23 +112,27 @@ export type AiScoringResult = {
 export async function scorePartnerApplication(
   submission: Record<string, unknown>,
 ): Promise<AiScoringResult> {
-  const apiKey = process.env["ANTHROPIC_API_KEY"];
-  if (!apiKey) {
-    throw new Error("Missing ANTHROPIC_API_KEY environment variable.");
+  const baseUrl = (process.env["OLLAMA_BASE_URL"] ?? "").replace(/\/+$/, "");
+  const model = process.env["OLLAMA_MODEL"];
+  if (!baseUrl) {
+    throw new Error("Missing OLLAMA_BASE_URL environment variable.");
+  }
+  if (!model) {
+    throw new Error("Missing OLLAMA_MODEL environment variable.");
   }
 
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
+  const res = await fetch(`${baseUrl}/api/chat`, {
     method: "POST",
-    headers: {
-      "content-type": "application/json",
-      "x-api-key": apiKey,
-      "anthropic-version": "2023-06-01",
-    },
+    headers: { "content-type": "application/json" },
     body: JSON.stringify({
-      model: "claude-sonnet-4-6",
-      max_tokens: 2000,
-      system: RUBRIC_SYSTEM_PROMPT,
+      model,
+      stream: false,
+      // Ollama's structured-output mode - constrains the model to emit
+      // valid JSON, same purpose as Anthropic's json-only instruction but
+      // enforced by the server rather than just requested in the prompt.
+      format: "json",
       messages: [
+        { role: "system", content: RUBRIC_SYSTEM_PROMPT },
         {
           role: "user",
           content: `Score this Integration Partner application:\n\n${JSON.stringify(submission, null, 2)}`,
@@ -139,19 +143,16 @@ export async function scorePartnerApplication(
 
   if (!res.ok) {
     const body = await res.text().catch(() => "");
-    throw new Error(`Anthropic API error (${res.status}): ${body.slice(0, 300)}`);
+    throw new Error(`Ollama API error (${res.status}): ${body.slice(0, 300)}`);
   }
 
   const data = await res.json();
-  const text: string = (data.content ?? [])
-    .filter((b: any) => b.type === "text")
-    .map((b: any) => b.text)
-    .join("");
+  const text: string = data?.message?.content ?? "";
 
   let parsed: AiScoringResult;
   try {
-    // Model is instructed to return raw JSON, but strip fences defensively
-    // in case it doesn't comply exactly.
+    // format: "json" should mean this is already clean, but strip fences
+    // defensively in case the model wraps it anyway.
     const cleaned = text.replace(/^```json\s*|```$/g, "").trim();
     parsed = JSON.parse(cleaned);
   } catch (e) {
