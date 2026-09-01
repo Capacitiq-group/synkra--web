@@ -13,10 +13,10 @@ export default function Hero() {
 
         <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:items-end">
           <p className="body-text fade-in-delay max-w-[480px] text-base">
-            Most businesses are losing time and money to manual processes that
-            should not require a human. We build the AI systems that handle
-            those processes for you, permanently and at a fraction of what
-            hiring someone would cost.
+            Synkra Technologies builds AI automation for South African small
+            businesses. Missed calls, slow follow up, and manual admin are
+            not small problems. They are revenue leaving your business every
+            day, through gaps AI can close.
           </p>
           <div className="fade-in-delay flex flex-col items-stretch gap-3 sm:flex-row lg:justify-end">
             <Link

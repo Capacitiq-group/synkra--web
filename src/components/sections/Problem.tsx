@@ -13,10 +13,12 @@ export default function Problem() {
               paying more than you need to.
             </h2>
             <p className="body-text mt-8 max-w-[600px]">
-              Missed calls, slow lead follow-up, repetitive WhatsApp messages,
-              staff searching for information, CVs sitting unread — these are
-              not small inefficiencies. They are revenue leaving your business
-              every single day through gaps that AI can close permanently.
+              Missed calls, slow lead follow up, repetitive WhatsApp replies,
+              staff searching for information nobody wrote down. These are
+              not small inefficiencies. Across South African small
+              businesses, an estimated three in ten sales calls go
+              unanswered, and most owners have no idea how much of that is
+              happening inside their own business.
             </p>
           </div>
         </div>

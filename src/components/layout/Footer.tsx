@@ -1,10 +1,16 @@
 import { Link } from "@tanstack/react-router";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 
 const SERVICES = [
   { to: "/services/ai-voice-agent", label: "AI Voice Agent" },
   { to: "/services/speed-to-lead", label: "Speed to Lead" },
   { to: "/services/lead-reactivation", label: "Lead Reactivation" },
-  { to: "/services/custom-agentic-ai", label: "Custom Agentic AI" },
+  { to: "/services/custom-ai-systems", label: "Custom AI Systems" },
 ];
 
 const UTILITIES = [
@@ -25,7 +31,16 @@ const COMPANY = [
   { to: "/help", label: "Help Centre" },
   { to: "/partner", label: "Partner With Us" },
   { to: "/contact", label: "Contact" },
-  { to: "/admin/login", label: "Sign In" },
+];
+
+// Each client product lives on its own subdomain with its own login -
+// this footer link is for visitors who already have an account with one
+// of them, not for Synkra's own staff (that's /admin/login, deliberately
+// not linked from anywhere public).
+const SIGN_IN_OPTIONS = [
+  { href: "https://chat.synkra.co.za", label: "Synkra Chat" },
+  { href: "https://flow.synkra.co.za", label: "Synkra Flow" },
+  { href: "https://client.synkra.co.za", label: "Agency Client Portal" },
 ];
 
 const LEGAL = [
@@ -44,8 +59,9 @@ export default function Footer() {
           <div className="relative z-10 grid gap-12 lg:grid-cols-5">
             <div>
               <p className="text-sm leading-relaxed text-white/60">
-                Synkra builds AI automation systems for South African businesses
-                — voice, WhatsApp, lead automation, and more.
+                Synkra Technologies builds AI automation systems for South
+                African businesses. Voice, WhatsApp, workflow automation, and
+                custom AI systems.
               </p>
               <Link
                 to="/contact"
@@ -100,6 +116,20 @@ export default function Footer() {
                     </Link>
                   </li>
                 ))}
+                <li>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger className="text-sm text-white/60 transition-colors hover:text-white">
+                      Sign In
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="start">
+                      {SIGN_IN_OPTIONS.map((option) => (
+                        <DropdownMenuItem key={option.href} asChild>
+                          <a href={option.href}>{option.label}</a>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </li>
               </ul>
             </div>
 

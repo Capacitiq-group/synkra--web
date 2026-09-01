@@ -145,6 +145,13 @@ export default function ProductPageLayout({ data }: { data: ProductPageContent }
                   </div>
                 ))}
               </div>
+
+              {data.pricing.studentNote && (
+                <div className="mt-10 max-w-[700px] rounded-2xl border border-white/5 bg-[#0f0f0f] p-6 text-left">
+                  <h3 className="heading-card text-lg">{data.pricing.studentNote.heading}</h3>
+                  <p className="body-sm mt-3">{data.pricing.studentNote.body}</p>
+                </div>
+              )}
             </div>
           </section>
           <Divider />

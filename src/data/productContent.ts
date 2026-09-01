@@ -15,7 +15,7 @@ export type ProductPageContent = {
   outcome: { heading: string; body: string };
   features: ProductFeature[];
   steps: ProductStep[];
-  pricing: { heading: string; subtext: string; tiers: TierCard[] } | null;
+  pricing: { heading: string; subtext: string; tiers: TierCard[]; studentNote?: { heading: string; body: string } } | null;
   cta: { label: string; href: string; external: boolean };
 };
 
@@ -55,6 +55,10 @@ export const PRODUCT_CONTENT: Record<"flow" | "chat", ProductPageContent> = {
       subtext:
         "Every plan includes hosting and maintenance. Add-ons for AI, SMS, voice, and WhatsApp are pay-as-you-go on Free Forever, and included on paid plans.",
       tiers: FLOW_TIERS,
+      studentNote: {
+        heading: "Student pricing",
+        body: "Student owned businesses get discounted Flow pricing: R149 on Basic, R249 on Pro. To qualify, you'll need one of the following. A student email address issued by your institution. Or an official university document showing your full name and current enrolment, a proof of registration or an academic transcript works. The name on the document needs to match the name on your account, and the enrolment needs to be current for 2026. Upload whichever you have during signup, and the discount applies automatically once it's verified.",
+      },
     },
     cta: {
       label: "Start with Synkra Flow",

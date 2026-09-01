@@ -8,21 +8,20 @@ export default function ROILink() {
         <div className="section-padding-sm grid gap-10 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
             <h2 className="heading-section max-w-[520px]">
-              Find out what your current manual processes are costing you every
-              month.
+              See what you can build before you talk to anyone.
             </h2>
           </div>
           <div className="max-w-[480px] lg:col-span-5">
             <p className="body-text">
-              Most businesses underestimate what they are losing to tasks an AI
-              can handle permanently. The calculator shows you the real number
-              based on your specific situation.
+              The fastest way to understand what Synkra actually does is to
+              try one of the free tools first. No account, no sales call, no
+              commitment.
             </p>
             <Link
-              to="/roi-calculator"
+              to="/utilities"
               className="arrow-link mt-6 hover:underline"
             >
-              Open the ROI Calculator <span className="arrow">→</span>
+              Explore free utilities <span className="arrow">→</span>
             </Link>
           </div>
         </div>

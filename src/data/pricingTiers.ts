@@ -37,6 +37,8 @@ export const AGENCY_TIERS: TierCard[] = [
 // Real, current tiers - pulled from synkra-client-hub's src/lib/plans.ts
 // (PLAN_LIMITS). Update here if that file's prices ever change - this is
 // now the one place both the homepage and the Flow product page read from.
+// Regular prices only - the discounted student price (R149 Basic / R249
+// Pro) is shown separately on the Flow product page, not duplicated here.
 export const FLOW_TIERS: TierCard[] = [
   {
     name: "Free Forever",
@@ -48,7 +50,7 @@ export const FLOW_TIERS: TierCard[] = [
   },
   {
     name: "Basic",
-    price: "R149",
+    price: "R199",
     cadence: "per month",
     who: "Higher run limits and included usage credits for growing automation needs.",
     credits: "Includes monthly AI, SMS, voice, and WhatsApp allocation.",
@@ -56,7 +58,7 @@ export const FLOW_TIERS: TierCard[] = [
   },
   {
     name: "Pro",
-    price: "R249",
+    price: "R399",
     cadence: "per month",
     who: "The highest run limits, storage, and included usage on Flow.",
     credits: "Includes the largest monthly AI, SMS, voice, and WhatsApp allocation.",

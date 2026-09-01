@@ -15,9 +15,9 @@ import Testimonials from "@/components/sections/Testimonials";
 export const Route = createFileRoute("/")({
   head: () =>
     buildHead({
-      title: "AI Systems That Run Your Business While You Grow It",
+      title: "Synkra Technologies, AI Automation for South African Businesses",
       description:
-        "Synkra builds AI automation for South African businesses. Done-for-you AI agents through Synkra Agency, or build your own with Synkra Flow and Synkra Chat.",
+        "Synkra Technologies is a South African company building AI voice agents, workflow automation, and custom AI systems for small businesses. Build it yourself for free with Synkra Flow, or have Synkra's team build and run it for you.",
       path: "/",
     }),
   component: HomePage,

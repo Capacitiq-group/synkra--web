@@ -6,7 +6,7 @@ const DEMOS = [
     key: "voice",
     label: "AI Voice Agent",
     heading: "Hear what your callers would hear.",
-    body: "A caller rings your business at 21:40 on a Saturday. The agent answers on the first ring, understands what they need, checks your calendar, and books them in — all before your competitor has even seen a missed call notification.",
+    body: "A caller rings your business at 21:40 on a Saturday. The agent answers on the first ring, understands what they need, checks your calendar, and books them in, before your competitor has even seen a missed call notification.",
     transcript: [
       { who: "Caller", line: "Hi, are you open tomorrow? I need a quote." },
       { who: "Synkra", line: "We are. I can book you a quote call tomorrow at 09:00 or 14:00 — which suits you?" },

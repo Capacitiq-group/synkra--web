@@ -27,9 +27,12 @@ export default function WhySynkra() {
             that can afford enterprise software.
           </h2>
           <p className="body-text mt-8 max-w-[640px]">
-            Most automation companies price for enterprises. We built our own
-            infrastructure so the same quality of system works for a
-            business doing R500,000 a year, not only one doing R50 million.
+            Most companies in this space resell a platform built by someone
+            else, with their own name on top. Synkra builds the automation
+            itself. That's the reason pricing can work for a business doing
+            R500,000 a year, not only one doing R50 million. There's no
+            vendor markup sitting between what you pay and what it costs to
+            run.
           </p>
         </div>
 
