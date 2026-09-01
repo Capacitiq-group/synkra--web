@@ -13,6 +13,12 @@ const SERVICES = [
   { to: "/services/custom-ai-systems", label: "Custom AI Systems" },
 ];
 
+const PRODUCTS = [
+  { to: "/products/flow", label: "Flow" },
+  { to: "/products/chat", label: "Chat" },
+  { to: "/services", label: "Agency Services" },
+];
+
 const UTILITIES = [
   { to: "/utilities/qr-code-generator", label: "QR Code Generator" },
   { to: "/utilities/background-remover", label: "Background Remover" },
@@ -56,7 +62,7 @@ export default function Footer() {
     <footer className="px-4 pb-8 pt-12 lg:px-8">
       <div className="container-main">
         <div className="relative overflow-hidden rounded-[2rem] border border-white/5 bg-[#252430] p-8 pb-40 lg:p-14 lg:pb-56">
-          <div className="relative z-10 grid gap-12 lg:grid-cols-5">
+          <div className="relative z-10 grid gap-12 sm:grid-cols-2 lg:grid-cols-6">
             <div>
               <p className="text-sm leading-relaxed text-white/60">
                 Synkra Technologies builds AI automation systems for South
@@ -69,6 +75,22 @@ export default function Footer() {
               >
                 Get in touch →
               </Link>
+            </div>
+
+            <div>
+              <p className="label-tag mb-5">Products</p>
+              <ul className="space-y-3">
+                {PRODUCTS.map((p) => (
+                  <li key={p.label}>
+                    <Link
+                      to={p.to}
+                      className="text-sm text-white/60 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline"
+                    >
+                      {p.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             <div>

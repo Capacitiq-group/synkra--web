@@ -9,25 +9,39 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TalkToUsRouteImport } from './routes/talk-to-us'
 import { Route as RoiCalculatorRouteImport } from './routes/roi-calculator'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as HelpRouteImport } from './routes/help'
+import { Route as GetAQuoteRouteImport } from './routes/get-a-quote'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/_admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as UtilitiesIndexRouteImport } from './routes/utilities.index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as PartnerIndexRouteImport } from './routes/partner.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as UtilitiesQrCodeGeneratorRouteImport } from './routes/utilities.qr-code-generator'
+import { Route as UtilitiesImageConverterRouteImport } from './routes/utilities.image-converter'
+import { Route as UtilitiesImageCompressorRouteImport } from './routes/utilities.image-compressor'
+import { Route as UtilitiesFileConverterRouteImport } from './routes/utilities.file-converter'
+import { Route as UtilitiesFileCompressorRouteImport } from './routes/utilities.file-compressor'
+import { Route as UtilitiesEmailSignatureGeneratorRouteImport } from './routes/utilities.email-signature-generator'
+import { Route as UtilitiesCsvCleanerRouteImport } from './routes/utilities.csv-cleaner'
+import { Route as UtilitiesBackgroundRemoverRouteImport } from './routes/utilities.background-remover'
 import { Route as ServicesSpeedToLeadRouteImport } from './routes/services.speed-to-lead'
 import { Route as ServicesLeadReactivationRouteImport } from './routes/services.lead-reactivation'
-import { Route as ServicesAiWhatsappAgentRouteImport } from './routes/services.ai-whatsapp-agent'
-import { Route as ServicesAiWebWidgetRouteImport } from './routes/services.ai-web-widget'
+import { Route as ServicesCustomAiSystemsRouteImport } from './routes/services.custom-ai-systems'
+import { Route as ServicesCustomAgenticAiRouteImport } from './routes/services.custom-agentic-ai'
 import { Route as ServicesAiVoiceAgentRouteImport } from './routes/services.ai-voice-agent'
-import { Route as ServicesAiKnowledgeBaseRouteImport } from './routes/services.ai-knowledge-base'
+import { Route as ProductsFlowRouteImport } from './routes/products.flow'
+import { Route as ProductsChatRouteImport } from './routes/products.chat'
 import { Route as PortfolioSlugRouteImport } from './routes/portfolio.$slug'
 import { Route as PartnerReferralRouteImport } from './routes/partner.referral'
+import { Route as PartnerIntegrationRouteImport } from './routes/partner.integration'
 import { Route as PartnerAgencyRouteImport } from './routes/partner.agency'
 import { Route as LegalTermsOfServiceRouteImport } from './routes/legal.terms-of-service'
 import { Route as LegalRefundPolicyRouteImport } from './routes/legal.refund-policy'
@@ -51,6 +65,11 @@ import { Route as AdminAdminDashboardPortfolioIdRouteImport } from './routes/_ad
 import { Route as AdminAdminDashboardClientsIdRouteImport } from './routes/_admin.admin.dashboard.clients.$id'
 import { Route as AdminAdminDashboardBlogIdRouteImport } from './routes/_admin.admin.dashboard.blog.$id'
 
+const TalkToUsRoute = TalkToUsRouteImport.update({
+  id: '/talk-to-us',
+  path: '/talk-to-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RoiCalculatorRoute = RoiCalculatorRouteImport.update({
   id: '/roi-calculator',
   path: '/roi-calculator',
@@ -69,6 +88,11 @@ const PortfolioRoute = PortfolioRouteImport.update({
 const HelpRoute = HelpRouteImport.update({
   id: '/help',
   path: '/help',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GetAQuoteRoute = GetAQuoteRouteImport.update({
+  id: '/get-a-quote',
+  path: '/get-a-quote',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -90,9 +114,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UtilitiesIndexRoute = UtilitiesIndexRouteImport.update({
+  id: '/utilities/',
+  path: '/utilities/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
   id: '/services/',
   path: '/services/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsIndexRoute = ProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PartnerIndexRoute = PartnerIndexRouteImport.update({
@@ -105,6 +139,50 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UtilitiesQrCodeGeneratorRoute =
+  UtilitiesQrCodeGeneratorRouteImport.update({
+    id: '/utilities/qr-code-generator',
+    path: '/utilities/qr-code-generator',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const UtilitiesImageConverterRoute = UtilitiesImageConverterRouteImport.update({
+  id: '/utilities/image-converter',
+  path: '/utilities/image-converter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UtilitiesImageCompressorRoute =
+  UtilitiesImageCompressorRouteImport.update({
+    id: '/utilities/image-compressor',
+    path: '/utilities/image-compressor',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const UtilitiesFileConverterRoute = UtilitiesFileConverterRouteImport.update({
+  id: '/utilities/file-converter',
+  path: '/utilities/file-converter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UtilitiesFileCompressorRoute = UtilitiesFileCompressorRouteImport.update({
+  id: '/utilities/file-compressor',
+  path: '/utilities/file-compressor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UtilitiesEmailSignatureGeneratorRoute =
+  UtilitiesEmailSignatureGeneratorRouteImport.update({
+    id: '/utilities/email-signature-generator',
+    path: '/utilities/email-signature-generator',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const UtilitiesCsvCleanerRoute = UtilitiesCsvCleanerRouteImport.update({
+  id: '/utilities/csv-cleaner',
+  path: '/utilities/csv-cleaner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UtilitiesBackgroundRemoverRoute =
+  UtilitiesBackgroundRemoverRouteImport.update({
+    id: '/utilities/background-remover',
+    path: '/utilities/background-remover',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ServicesSpeedToLeadRoute = ServicesSpeedToLeadRouteImport.update({
   id: '/services/speed-to-lead',
   path: '/services/speed-to-lead',
@@ -116,14 +194,14 @@ const ServicesLeadReactivationRoute =
     path: '/services/lead-reactivation',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ServicesAiWhatsappAgentRoute = ServicesAiWhatsappAgentRouteImport.update({
-  id: '/services/ai-whatsapp-agent',
-  path: '/services/ai-whatsapp-agent',
+const ServicesCustomAiSystemsRoute = ServicesCustomAiSystemsRouteImport.update({
+  id: '/services/custom-ai-systems',
+  path: '/services/custom-ai-systems',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesAiWebWidgetRoute = ServicesAiWebWidgetRouteImport.update({
-  id: '/services/ai-web-widget',
-  path: '/services/ai-web-widget',
+const ServicesCustomAgenticAiRoute = ServicesCustomAgenticAiRouteImport.update({
+  id: '/services/custom-agentic-ai',
+  path: '/services/custom-agentic-ai',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesAiVoiceAgentRoute = ServicesAiVoiceAgentRouteImport.update({
@@ -131,9 +209,14 @@ const ServicesAiVoiceAgentRoute = ServicesAiVoiceAgentRouteImport.update({
   path: '/services/ai-voice-agent',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesAiKnowledgeBaseRoute = ServicesAiKnowledgeBaseRouteImport.update({
-  id: '/services/ai-knowledge-base',
-  path: '/services/ai-knowledge-base',
+const ProductsFlowRoute = ProductsFlowRouteImport.update({
+  id: '/products/flow',
+  path: '/products/flow',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsChatRoute = ProductsChatRouteImport.update({
+  id: '/products/chat',
+  path: '/products/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PortfolioSlugRoute = PortfolioSlugRouteImport.update({
@@ -144,6 +227,11 @@ const PortfolioSlugRoute = PortfolioSlugRouteImport.update({
 const PartnerReferralRoute = PartnerReferralRouteImport.update({
   id: '/partner/referral',
   path: '/partner/referral',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnerIntegrationRoute = PartnerIntegrationRouteImport.update({
+  id: '/partner/integration',
+  path: '/partner/integration',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PartnerAgencyRoute = PartnerAgencyRouteImport.update({
@@ -272,10 +360,12 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/get-a-quote': typeof GetAQuoteRoute
   '/help': typeof HelpRoute
   '/portfolio': typeof PortfolioRouteWithChildren
   '/pricing': typeof PricingRoute
   '/roi-calculator': typeof RoiCalculatorRoute
+  '/talk-to-us': typeof TalkToUsRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/mfa': typeof AdminMfaRoute
   '/api/submit-form': typeof ApiSubmitFormRoute
@@ -284,17 +374,29 @@ export interface FileRoutesByFullPath {
   '/legal/refund-policy': typeof LegalRefundPolicyRoute
   '/legal/terms-of-service': typeof LegalTermsOfServiceRoute
   '/partner/agency': typeof PartnerAgencyRoute
+  '/partner/integration': typeof PartnerIntegrationRoute
   '/partner/referral': typeof PartnerReferralRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
-  '/services/ai-knowledge-base': typeof ServicesAiKnowledgeBaseRoute
+  '/products/chat': typeof ProductsChatRoute
+  '/products/flow': typeof ProductsFlowRoute
   '/services/ai-voice-agent': typeof ServicesAiVoiceAgentRoute
-  '/services/ai-web-widget': typeof ServicesAiWebWidgetRoute
-  '/services/ai-whatsapp-agent': typeof ServicesAiWhatsappAgentRoute
+  '/services/custom-agentic-ai': typeof ServicesCustomAgenticAiRoute
+  '/services/custom-ai-systems': typeof ServicesCustomAiSystemsRoute
   '/services/lead-reactivation': typeof ServicesLeadReactivationRoute
   '/services/speed-to-lead': typeof ServicesSpeedToLeadRoute
+  '/utilities/background-remover': typeof UtilitiesBackgroundRemoverRoute
+  '/utilities/csv-cleaner': typeof UtilitiesCsvCleanerRoute
+  '/utilities/email-signature-generator': typeof UtilitiesEmailSignatureGeneratorRoute
+  '/utilities/file-compressor': typeof UtilitiesFileCompressorRoute
+  '/utilities/file-converter': typeof UtilitiesFileConverterRoute
+  '/utilities/image-compressor': typeof UtilitiesImageCompressorRoute
+  '/utilities/image-converter': typeof UtilitiesImageConverterRoute
+  '/utilities/qr-code-generator': typeof UtilitiesQrCodeGeneratorRoute
   '/blog/': typeof BlogIndexRoute
   '/partner/': typeof PartnerIndexRoute
+  '/products/': typeof ProductsIndexRoute
   '/services/': typeof ServicesIndexRoute
+  '/utilities/': typeof UtilitiesIndexRoute
   '/admin/dashboard': typeof AdminAdminDashboardRouteWithChildren
   '/api/admin/upload': typeof ApiAdminUploadRoute
   '/admin/dashboard/audit': typeof AdminAdminDashboardAuditRoute
@@ -314,10 +416,12 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/get-a-quote': typeof GetAQuoteRoute
   '/help': typeof HelpRoute
   '/portfolio': typeof PortfolioRouteWithChildren
   '/pricing': typeof PricingRoute
   '/roi-calculator': typeof RoiCalculatorRoute
+  '/talk-to-us': typeof TalkToUsRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/mfa': typeof AdminMfaRoute
   '/api/submit-form': typeof ApiSubmitFormRoute
@@ -326,17 +430,29 @@ export interface FileRoutesByTo {
   '/legal/refund-policy': typeof LegalRefundPolicyRoute
   '/legal/terms-of-service': typeof LegalTermsOfServiceRoute
   '/partner/agency': typeof PartnerAgencyRoute
+  '/partner/integration': typeof PartnerIntegrationRoute
   '/partner/referral': typeof PartnerReferralRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
-  '/services/ai-knowledge-base': typeof ServicesAiKnowledgeBaseRoute
+  '/products/chat': typeof ProductsChatRoute
+  '/products/flow': typeof ProductsFlowRoute
   '/services/ai-voice-agent': typeof ServicesAiVoiceAgentRoute
-  '/services/ai-web-widget': typeof ServicesAiWebWidgetRoute
-  '/services/ai-whatsapp-agent': typeof ServicesAiWhatsappAgentRoute
+  '/services/custom-agentic-ai': typeof ServicesCustomAgenticAiRoute
+  '/services/custom-ai-systems': typeof ServicesCustomAiSystemsRoute
   '/services/lead-reactivation': typeof ServicesLeadReactivationRoute
   '/services/speed-to-lead': typeof ServicesSpeedToLeadRoute
+  '/utilities/background-remover': typeof UtilitiesBackgroundRemoverRoute
+  '/utilities/csv-cleaner': typeof UtilitiesCsvCleanerRoute
+  '/utilities/email-signature-generator': typeof UtilitiesEmailSignatureGeneratorRoute
+  '/utilities/file-compressor': typeof UtilitiesFileCompressorRoute
+  '/utilities/file-converter': typeof UtilitiesFileConverterRoute
+  '/utilities/image-compressor': typeof UtilitiesImageCompressorRoute
+  '/utilities/image-converter': typeof UtilitiesImageConverterRoute
+  '/utilities/qr-code-generator': typeof UtilitiesQrCodeGeneratorRoute
   '/blog': typeof BlogIndexRoute
   '/partner': typeof PartnerIndexRoute
+  '/products': typeof ProductsIndexRoute
   '/services': typeof ServicesIndexRoute
+  '/utilities': typeof UtilitiesIndexRoute
   '/api/admin/upload': typeof ApiAdminUploadRoute
   '/admin/dashboard/audit': typeof AdminAdminDashboardAuditRoute
   '/admin/dashboard/blog': typeof AdminAdminDashboardBlogRouteWithChildren
@@ -357,10 +473,12 @@ export interface FileRoutesById {
   '/_admin': typeof AdminRouteWithChildren
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/get-a-quote': typeof GetAQuoteRoute
   '/help': typeof HelpRoute
   '/portfolio': typeof PortfolioRouteWithChildren
   '/pricing': typeof PricingRoute
   '/roi-calculator': typeof RoiCalculatorRoute
+  '/talk-to-us': typeof TalkToUsRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/mfa': typeof AdminMfaRoute
   '/api/submit-form': typeof ApiSubmitFormRoute
@@ -369,17 +487,29 @@ export interface FileRoutesById {
   '/legal/refund-policy': typeof LegalRefundPolicyRoute
   '/legal/terms-of-service': typeof LegalTermsOfServiceRoute
   '/partner/agency': typeof PartnerAgencyRoute
+  '/partner/integration': typeof PartnerIntegrationRoute
   '/partner/referral': typeof PartnerReferralRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
-  '/services/ai-knowledge-base': typeof ServicesAiKnowledgeBaseRoute
+  '/products/chat': typeof ProductsChatRoute
+  '/products/flow': typeof ProductsFlowRoute
   '/services/ai-voice-agent': typeof ServicesAiVoiceAgentRoute
-  '/services/ai-web-widget': typeof ServicesAiWebWidgetRoute
-  '/services/ai-whatsapp-agent': typeof ServicesAiWhatsappAgentRoute
+  '/services/custom-agentic-ai': typeof ServicesCustomAgenticAiRoute
+  '/services/custom-ai-systems': typeof ServicesCustomAiSystemsRoute
   '/services/lead-reactivation': typeof ServicesLeadReactivationRoute
   '/services/speed-to-lead': typeof ServicesSpeedToLeadRoute
+  '/utilities/background-remover': typeof UtilitiesBackgroundRemoverRoute
+  '/utilities/csv-cleaner': typeof UtilitiesCsvCleanerRoute
+  '/utilities/email-signature-generator': typeof UtilitiesEmailSignatureGeneratorRoute
+  '/utilities/file-compressor': typeof UtilitiesFileCompressorRoute
+  '/utilities/file-converter': typeof UtilitiesFileConverterRoute
+  '/utilities/image-compressor': typeof UtilitiesImageCompressorRoute
+  '/utilities/image-converter': typeof UtilitiesImageConverterRoute
+  '/utilities/qr-code-generator': typeof UtilitiesQrCodeGeneratorRoute
   '/blog/': typeof BlogIndexRoute
   '/partner/': typeof PartnerIndexRoute
+  '/products/': typeof ProductsIndexRoute
   '/services/': typeof ServicesIndexRoute
+  '/utilities/': typeof UtilitiesIndexRoute
   '/_admin/admin/dashboard': typeof AdminAdminDashboardRouteWithChildren
   '/api/admin/upload': typeof ApiAdminUploadRoute
   '/_admin/admin/dashboard/audit': typeof AdminAdminDashboardAuditRoute
@@ -401,10 +531,12 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/get-a-quote'
     | '/help'
     | '/portfolio'
     | '/pricing'
     | '/roi-calculator'
+    | '/talk-to-us'
     | '/admin/login'
     | '/admin/mfa'
     | '/api/submit-form'
@@ -413,17 +545,29 @@ export interface FileRouteTypes {
     | '/legal/refund-policy'
     | '/legal/terms-of-service'
     | '/partner/agency'
+    | '/partner/integration'
     | '/partner/referral'
     | '/portfolio/$slug'
-    | '/services/ai-knowledge-base'
+    | '/products/chat'
+    | '/products/flow'
     | '/services/ai-voice-agent'
-    | '/services/ai-web-widget'
-    | '/services/ai-whatsapp-agent'
+    | '/services/custom-agentic-ai'
+    | '/services/custom-ai-systems'
     | '/services/lead-reactivation'
     | '/services/speed-to-lead'
+    | '/utilities/background-remover'
+    | '/utilities/csv-cleaner'
+    | '/utilities/email-signature-generator'
+    | '/utilities/file-compressor'
+    | '/utilities/file-converter'
+    | '/utilities/image-compressor'
+    | '/utilities/image-converter'
+    | '/utilities/qr-code-generator'
     | '/blog/'
     | '/partner/'
+    | '/products/'
     | '/services/'
+    | '/utilities/'
     | '/admin/dashboard'
     | '/api/admin/upload'
     | '/admin/dashboard/audit'
@@ -443,10 +587,12 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/get-a-quote'
     | '/help'
     | '/portfolio'
     | '/pricing'
     | '/roi-calculator'
+    | '/talk-to-us'
     | '/admin/login'
     | '/admin/mfa'
     | '/api/submit-form'
@@ -455,17 +601,29 @@ export interface FileRouteTypes {
     | '/legal/refund-policy'
     | '/legal/terms-of-service'
     | '/partner/agency'
+    | '/partner/integration'
     | '/partner/referral'
     | '/portfolio/$slug'
-    | '/services/ai-knowledge-base'
+    | '/products/chat'
+    | '/products/flow'
     | '/services/ai-voice-agent'
-    | '/services/ai-web-widget'
-    | '/services/ai-whatsapp-agent'
+    | '/services/custom-agentic-ai'
+    | '/services/custom-ai-systems'
     | '/services/lead-reactivation'
     | '/services/speed-to-lead'
+    | '/utilities/background-remover'
+    | '/utilities/csv-cleaner'
+    | '/utilities/email-signature-generator'
+    | '/utilities/file-compressor'
+    | '/utilities/file-converter'
+    | '/utilities/image-compressor'
+    | '/utilities/image-converter'
+    | '/utilities/qr-code-generator'
     | '/blog'
     | '/partner'
+    | '/products'
     | '/services'
+    | '/utilities'
     | '/api/admin/upload'
     | '/admin/dashboard/audit'
     | '/admin/dashboard/blog'
@@ -485,10 +643,12 @@ export interface FileRouteTypes {
     | '/_admin'
     | '/about'
     | '/contact'
+    | '/get-a-quote'
     | '/help'
     | '/portfolio'
     | '/pricing'
     | '/roi-calculator'
+    | '/talk-to-us'
     | '/admin/login'
     | '/admin/mfa'
     | '/api/submit-form'
@@ -497,17 +657,29 @@ export interface FileRouteTypes {
     | '/legal/refund-policy'
     | '/legal/terms-of-service'
     | '/partner/agency'
+    | '/partner/integration'
     | '/partner/referral'
     | '/portfolio/$slug'
-    | '/services/ai-knowledge-base'
+    | '/products/chat'
+    | '/products/flow'
     | '/services/ai-voice-agent'
-    | '/services/ai-web-widget'
-    | '/services/ai-whatsapp-agent'
+    | '/services/custom-agentic-ai'
+    | '/services/custom-ai-systems'
     | '/services/lead-reactivation'
     | '/services/speed-to-lead'
+    | '/utilities/background-remover'
+    | '/utilities/csv-cleaner'
+    | '/utilities/email-signature-generator'
+    | '/utilities/file-compressor'
+    | '/utilities/file-converter'
+    | '/utilities/image-compressor'
+    | '/utilities/image-converter'
+    | '/utilities/qr-code-generator'
     | '/blog/'
     | '/partner/'
+    | '/products/'
     | '/services/'
+    | '/utilities/'
     | '/_admin/admin/dashboard'
     | '/api/admin/upload'
     | '/_admin/admin/dashboard/audit'
@@ -529,10 +701,12 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  GetAQuoteRoute: typeof GetAQuoteRoute
   HelpRoute: typeof HelpRoute
   PortfolioRoute: typeof PortfolioRouteWithChildren
   PricingRoute: typeof PricingRoute
   RoiCalculatorRoute: typeof RoiCalculatorRoute
+  TalkToUsRoute: typeof TalkToUsRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminMfaRoute: typeof AdminMfaRoute
   ApiSubmitFormRoute: typeof ApiSubmitFormRoute
@@ -541,21 +715,40 @@ export interface RootRouteChildren {
   LegalRefundPolicyRoute: typeof LegalRefundPolicyRoute
   LegalTermsOfServiceRoute: typeof LegalTermsOfServiceRoute
   PartnerAgencyRoute: typeof PartnerAgencyRoute
+  PartnerIntegrationRoute: typeof PartnerIntegrationRoute
   PartnerReferralRoute: typeof PartnerReferralRoute
-  ServicesAiKnowledgeBaseRoute: typeof ServicesAiKnowledgeBaseRoute
+  ProductsChatRoute: typeof ProductsChatRoute
+  ProductsFlowRoute: typeof ProductsFlowRoute
   ServicesAiVoiceAgentRoute: typeof ServicesAiVoiceAgentRoute
-  ServicesAiWebWidgetRoute: typeof ServicesAiWebWidgetRoute
-  ServicesAiWhatsappAgentRoute: typeof ServicesAiWhatsappAgentRoute
+  ServicesCustomAgenticAiRoute: typeof ServicesCustomAgenticAiRoute
+  ServicesCustomAiSystemsRoute: typeof ServicesCustomAiSystemsRoute
   ServicesLeadReactivationRoute: typeof ServicesLeadReactivationRoute
   ServicesSpeedToLeadRoute: typeof ServicesSpeedToLeadRoute
+  UtilitiesBackgroundRemoverRoute: typeof UtilitiesBackgroundRemoverRoute
+  UtilitiesCsvCleanerRoute: typeof UtilitiesCsvCleanerRoute
+  UtilitiesEmailSignatureGeneratorRoute: typeof UtilitiesEmailSignatureGeneratorRoute
+  UtilitiesFileCompressorRoute: typeof UtilitiesFileCompressorRoute
+  UtilitiesFileConverterRoute: typeof UtilitiesFileConverterRoute
+  UtilitiesImageCompressorRoute: typeof UtilitiesImageCompressorRoute
+  UtilitiesImageConverterRoute: typeof UtilitiesImageConverterRoute
+  UtilitiesQrCodeGeneratorRoute: typeof UtilitiesQrCodeGeneratorRoute
   BlogIndexRoute: typeof BlogIndexRoute
   PartnerIndexRoute: typeof PartnerIndexRoute
+  ProductsIndexRoute: typeof ProductsIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
+  UtilitiesIndexRoute: typeof UtilitiesIndexRoute
   ApiAdminUploadRoute: typeof ApiAdminUploadRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/talk-to-us': {
+      id: '/talk-to-us'
+      path: '/talk-to-us'
+      fullPath: '/talk-to-us'
+      preLoaderRoute: typeof TalkToUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/roi-calculator': {
       id: '/roi-calculator'
       path: '/roi-calculator'
@@ -582,6 +775,13 @@ declare module '@tanstack/react-router' {
       path: '/help'
       fullPath: '/help'
       preLoaderRoute: typeof HelpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/get-a-quote': {
+      id: '/get-a-quote'
+      path: '/get-a-quote'
+      fullPath: '/get-a-quote'
+      preLoaderRoute: typeof GetAQuoteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -612,11 +812,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/utilities/': {
+      id: '/utilities/'
+      path: '/utilities'
+      fullPath: '/utilities/'
+      preLoaderRoute: typeof UtilitiesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/': {
       id: '/services/'
       path: '/services'
       fullPath: '/services/'
       preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/': {
+      id: '/products/'
+      path: '/products'
+      fullPath: '/products/'
+      preLoaderRoute: typeof ProductsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/partner/': {
@@ -633,6 +847,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/utilities/qr-code-generator': {
+      id: '/utilities/qr-code-generator'
+      path: '/utilities/qr-code-generator'
+      fullPath: '/utilities/qr-code-generator'
+      preLoaderRoute: typeof UtilitiesQrCodeGeneratorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/utilities/image-converter': {
+      id: '/utilities/image-converter'
+      path: '/utilities/image-converter'
+      fullPath: '/utilities/image-converter'
+      preLoaderRoute: typeof UtilitiesImageConverterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/utilities/image-compressor': {
+      id: '/utilities/image-compressor'
+      path: '/utilities/image-compressor'
+      fullPath: '/utilities/image-compressor'
+      preLoaderRoute: typeof UtilitiesImageCompressorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/utilities/file-converter': {
+      id: '/utilities/file-converter'
+      path: '/utilities/file-converter'
+      fullPath: '/utilities/file-converter'
+      preLoaderRoute: typeof UtilitiesFileConverterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/utilities/file-compressor': {
+      id: '/utilities/file-compressor'
+      path: '/utilities/file-compressor'
+      fullPath: '/utilities/file-compressor'
+      preLoaderRoute: typeof UtilitiesFileCompressorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/utilities/email-signature-generator': {
+      id: '/utilities/email-signature-generator'
+      path: '/utilities/email-signature-generator'
+      fullPath: '/utilities/email-signature-generator'
+      preLoaderRoute: typeof UtilitiesEmailSignatureGeneratorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/utilities/csv-cleaner': {
+      id: '/utilities/csv-cleaner'
+      path: '/utilities/csv-cleaner'
+      fullPath: '/utilities/csv-cleaner'
+      preLoaderRoute: typeof UtilitiesCsvCleanerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/utilities/background-remover': {
+      id: '/utilities/background-remover'
+      path: '/utilities/background-remover'
+      fullPath: '/utilities/background-remover'
+      preLoaderRoute: typeof UtilitiesBackgroundRemoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/speed-to-lead': {
       id: '/services/speed-to-lead'
       path: '/services/speed-to-lead'
@@ -647,18 +917,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesLeadReactivationRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/ai-whatsapp-agent': {
-      id: '/services/ai-whatsapp-agent'
-      path: '/services/ai-whatsapp-agent'
-      fullPath: '/services/ai-whatsapp-agent'
-      preLoaderRoute: typeof ServicesAiWhatsappAgentRouteImport
+    '/services/custom-ai-systems': {
+      id: '/services/custom-ai-systems'
+      path: '/services/custom-ai-systems'
+      fullPath: '/services/custom-ai-systems'
+      preLoaderRoute: typeof ServicesCustomAiSystemsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/ai-web-widget': {
-      id: '/services/ai-web-widget'
-      path: '/services/ai-web-widget'
-      fullPath: '/services/ai-web-widget'
-      preLoaderRoute: typeof ServicesAiWebWidgetRouteImport
+    '/services/custom-agentic-ai': {
+      id: '/services/custom-agentic-ai'
+      path: '/services/custom-agentic-ai'
+      fullPath: '/services/custom-agentic-ai'
+      preLoaderRoute: typeof ServicesCustomAgenticAiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/ai-voice-agent': {
@@ -668,11 +938,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesAiVoiceAgentRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/ai-knowledge-base': {
-      id: '/services/ai-knowledge-base'
-      path: '/services/ai-knowledge-base'
-      fullPath: '/services/ai-knowledge-base'
-      preLoaderRoute: typeof ServicesAiKnowledgeBaseRouteImport
+    '/products/flow': {
+      id: '/products/flow'
+      path: '/products/flow'
+      fullPath: '/products/flow'
+      preLoaderRoute: typeof ProductsFlowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/chat': {
+      id: '/products/chat'
+      path: '/products/chat'
+      fullPath: '/products/chat'
+      preLoaderRoute: typeof ProductsChatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/portfolio/$slug': {
@@ -687,6 +964,13 @@ declare module '@tanstack/react-router' {
       path: '/partner/referral'
       fullPath: '/partner/referral'
       preLoaderRoute: typeof PartnerReferralRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partner/integration': {
+      id: '/partner/integration'
+      path: '/partner/integration'
+      fullPath: '/partner/integration'
+      preLoaderRoute: typeof PartnerIntegrationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/partner/agency': {
@@ -943,10 +1227,12 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRouteWithChildren,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  GetAQuoteRoute: GetAQuoteRoute,
   HelpRoute: HelpRoute,
   PortfolioRoute: PortfolioRouteWithChildren,
   PricingRoute: PricingRoute,
   RoiCalculatorRoute: RoiCalculatorRoute,
+  TalkToUsRoute: TalkToUsRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminMfaRoute: AdminMfaRoute,
   ApiSubmitFormRoute: ApiSubmitFormRoute,
@@ -955,16 +1241,28 @@ const rootRouteChildren: RootRouteChildren = {
   LegalRefundPolicyRoute: LegalRefundPolicyRoute,
   LegalTermsOfServiceRoute: LegalTermsOfServiceRoute,
   PartnerAgencyRoute: PartnerAgencyRoute,
+  PartnerIntegrationRoute: PartnerIntegrationRoute,
   PartnerReferralRoute: PartnerReferralRoute,
-  ServicesAiKnowledgeBaseRoute: ServicesAiKnowledgeBaseRoute,
+  ProductsChatRoute: ProductsChatRoute,
+  ProductsFlowRoute: ProductsFlowRoute,
   ServicesAiVoiceAgentRoute: ServicesAiVoiceAgentRoute,
-  ServicesAiWebWidgetRoute: ServicesAiWebWidgetRoute,
-  ServicesAiWhatsappAgentRoute: ServicesAiWhatsappAgentRoute,
+  ServicesCustomAgenticAiRoute: ServicesCustomAgenticAiRoute,
+  ServicesCustomAiSystemsRoute: ServicesCustomAiSystemsRoute,
   ServicesLeadReactivationRoute: ServicesLeadReactivationRoute,
   ServicesSpeedToLeadRoute: ServicesSpeedToLeadRoute,
+  UtilitiesBackgroundRemoverRoute: UtilitiesBackgroundRemoverRoute,
+  UtilitiesCsvCleanerRoute: UtilitiesCsvCleanerRoute,
+  UtilitiesEmailSignatureGeneratorRoute: UtilitiesEmailSignatureGeneratorRoute,
+  UtilitiesFileCompressorRoute: UtilitiesFileCompressorRoute,
+  UtilitiesFileConverterRoute: UtilitiesFileConverterRoute,
+  UtilitiesImageCompressorRoute: UtilitiesImageCompressorRoute,
+  UtilitiesImageConverterRoute: UtilitiesImageConverterRoute,
+  UtilitiesQrCodeGeneratorRoute: UtilitiesQrCodeGeneratorRoute,
   BlogIndexRoute: BlogIndexRoute,
   PartnerIndexRoute: PartnerIndexRoute,
+  ProductsIndexRoute: ProductsIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
+  UtilitiesIndexRoute: UtilitiesIndexRoute,
   ApiAdminUploadRoute: ApiAdminUploadRoute,
 }
 export const routeTree = rootRouteImport
