@@ -13,6 +13,12 @@ const SERVICES = [
   { to: "/services/custom-ai-systems", label: "Custom AI Systems" },
 ];
 
+const PRODUCTS = [
+  { to: "/products/flow", label: "Flow" },
+  { to: "/products/chat", label: "Chat" },
+  { to: "/services", label: "Agency Services" },
+];
+
 const UTILITIES = [
   { to: "/utilities/qr-code-generator", label: "QR Code Generator" },
   { to: "/utilities/background-remover", label: "Background Remover" },
