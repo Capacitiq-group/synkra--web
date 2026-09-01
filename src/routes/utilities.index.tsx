@@ -5,9 +5,9 @@ import { UTILITIES } from "@/data/utilities";
 export const Route = createFileRoute("/utilities/")({
   head: () =>
     buildHead({
-      title: "Free Business Utilities",
+      title: "Free Business Tools for South African Small Businesses",
       description:
-        "Free tools for South African businesses: QR code generator, background remover, image and file compressors, and more. No account required.",
+        "Free tools from Synkra Technologies for South African small businesses. A QR code generator, image and file tools, a CSV cleaner, and an email signature generator. No account required.",
       path: "/utilities",
     }),
   component: UtilitiesIndex,
@@ -19,11 +19,11 @@ function UtilitiesIndex() {
       <div className="container-main section-padding">
         <p className="label-tag">Free Tools</p>
         <h1 className="heading-display mt-6 max-w-[900px]">
-          Free utilities for South African businesses. No account required.
+          Free tools for South African businesses, no account required
         </h1>
         <p className="body-text mt-8 max-w-[640px] text-lg">
-          Quick tools you can use right now, free. No sign-up, nothing
-          stored longer than it takes to process your file.
+          Quick tools you can use right now, free. Nothing is stored longer
+          than it takes to process your file.
         </p>
       </div>
 

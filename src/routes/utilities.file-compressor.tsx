@@ -60,7 +60,7 @@ function Page() {
         <p className="body-text mt-6 max-w-[600px]">
           Shrink PDF and DOCX file sizes by recompressing embedded images.
           For plain images, use the Image Compressor instead. Nothing is
-          stored — your file is deleted the moment processing finishes.
+          stored. Your file is deleted the moment processing finishes.
         </p>
       </div>
       <div className="container-main"><div className="hairline" /></div>
@@ -70,7 +70,7 @@ function Page() {
             accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             file={file}
             onFile={(f) => { setFile(f); setResultBlob(null); setStats(null); }}
-            hint="PDF or DOCX — up to 25 MB"
+            hint="PDF or DOCX, up to 25 MB"
           />
           <div>
             <label className="label-tag block">Embedded image quality ({imageQuality})</label>

@@ -18,7 +18,7 @@ export const PORTFOLIO_CATEGORIES = [
   { label: "AI Voice Agent", slug: "ai-voice-agent" },
   { label: "Speed to Lead", slug: "speed-to-lead" },
   { label: "Lead Reactivation", slug: "lead-reactivation" },
-  { label: "Custom Agentic AI", slug: "custom-agentic-ai" },
+  { label: "Custom AI Systems", slug: "custom-ai-systems" },
 ] as const;
 
 export const portfolioItems: PortfolioItem[] = [];

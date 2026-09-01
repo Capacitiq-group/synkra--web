@@ -72,7 +72,7 @@ function Page() {
         <p className="body-text mt-6 max-w-[600px]">
           Build a clean HTML email signature you can paste into Gmail,
           Outlook, or any mail client. Your logo, if you add one, must be a
-          publicly reachable image link — this tool doesn't accept uploads
+          publicly reachable image link. This tool doesn't accept uploads
           or host images for you.
         </p>
       </div>

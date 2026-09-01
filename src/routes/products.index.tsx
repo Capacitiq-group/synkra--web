@@ -5,9 +5,9 @@ import { PRODUCT_CONTENT } from "@/data/productContent";
 export const Route = createFileRoute("/products/")({
   head: () =>
     buildHead({
-      title: "Products",
+      title: "Synkra Flow and Synkra Chat, Self-Serve AI Tools",
       description:
-        "Synkra Flow and Synkra Chat: self-serve AI automation and communication tools you build and run yourself.",
+        "Synkra Flow and Synkra Chat: self-serve AI automation and communication tools you build and run yourself. Free to start.",
       path: "/products",
     }),
   component: ProductsIndex,
@@ -25,8 +25,7 @@ function ProductsIndex() {
           </h1>
           <p className="body-text mt-8 max-w-[640px] text-lg">
             Prefer to build and run it yourself rather than have us do it
-            for you? Flow and Chat are self-serve, priced to start free, and
-            run on the same infrastructure as everything else we build.
+            for you? Flow and Chat are self-serve, and priced to start free.
           </p>
         </div>
       </section>

@@ -154,7 +154,7 @@ function QrGeneratorPage() {
         <p className="body-text mt-6 max-w-[600px]">
           Create a QR code for a link, WiFi network, contact card, and more.
           Customise the colours, make the background transparent, and add
-          your own logo. Nothing is stored — generated on demand, every
+          your own logo. Nothing is stored. Generated on demand, every
           time.
         </p>
       </div>
@@ -301,7 +301,7 @@ function QrGeneratorPage() {
                 placeholder="https://example.com/logo.png"
               />
               <p className="mt-1 text-xs text-white/40">
-                Must be a publicly reachable image link (PNG, JPEG, or WebP) — this
+                Must be a publicly reachable image link (PNG, JPEG, or WebP). This
                 tool fetches it, it doesn't accept uploads. Error correction is
                 automatically raised to High when a logo is used.
               </p>

@@ -92,7 +92,7 @@ export const helpCenterQuestions: HelpQuestion[] = [
     category: "Onboarding and Delivery",
     question: "What happens seven days after going live?",
     answer:
-      "We send a genuine check-in to find out how the first week went and whether anything needs adjusting based on real usage. This is not automated — a real person reaches out.",
+      "We send a genuine check-in to find out how the first week went and whether anything needs adjusting based on real usage. This is not automated. A real person reaches out.",
   },
   {
     category: "Account Management",

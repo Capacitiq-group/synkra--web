@@ -177,10 +177,10 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
     servicePage: "/services/lead-reactivation",
     brochure: "/brochures/lead-reactivation.pdf",
   },
-  "custom-agentic-ai": {
-    slug: "custom-agentic-ai",
+  "custom-ai-systems": {
+    slug: "custom-ai-systems",
     number: "04",
-    serviceLabel: "Custom Agentic AI",
+    serviceLabel: "Custom AI Systems",
     title:
       "An AI system built to actually do the work, not just answer questions about it.",
     subtitle:
@@ -236,7 +236,7 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
         "The repeatable work eating your team's time does not need a person doing it by hand.",
       body: "We can have your first process running within 48 hours of onboarding being complete.",
     },
-    servicePage: "/services/custom-agentic-ai",
-    brochure: "/brochures/custom-agentic-ai.pdf",
+    servicePage: "/services/custom-ai-systems",
+    brochure: "/brochures/custom-ai-systems.pdf",
   },
 };

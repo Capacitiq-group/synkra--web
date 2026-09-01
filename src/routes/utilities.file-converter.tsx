@@ -21,7 +21,7 @@ const MODES: { key: Mode; label: string; accept: string; hint: string; endpoint:
     key: "pdf-to-images",
     label: "PDF → Images",
     accept: ".pdf,application/pdf",
-    hint: "PDF — up to 25 MB. Returns a ZIP of PNG pages.",
+    hint: "PDF, up to 25 MB. Returns a ZIP of PNG pages.",
     endpoint: "/file/convert/pdf-to-images",
     download: "pdf-pages.zip",
   },
@@ -29,7 +29,7 @@ const MODES: { key: Mode; label: string; accept: string; hint: string; endpoint:
     key: "csv-to-xlsx",
     label: "CSV → XLSX",
     accept: ".csv,text/csv",
-    hint: "CSV — up to 25 MB",
+    hint: "CSV, up to 25 MB",
     endpoint: "/file/convert/csv-to-xlsx",
     download: "converted.xlsx",
   },
@@ -37,7 +37,7 @@ const MODES: { key: Mode; label: string; accept: string; hint: string; endpoint:
     key: "docx-to-pdf",
     label: "DOCX → PDF",
     accept: ".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    hint: "DOCX — up to 25 MB",
+    hint: "DOCX, up to 25 MB",
     endpoint: "/file/convert/docx-to-pdf",
     download: "converted.pdf",
   },
@@ -89,7 +89,7 @@ function Page() {
         <p className="label-tag">Free Tool</p>
         <h1 className="heading-display mt-6 max-w-[800px]">File Converter</h1>
         <p className="body-text mt-6 max-w-[600px]">
-          Convert PDF pages to images, or CSV to XLSX. Nothing is stored —
+          Convert PDF pages to images, or CSV to XLSX. Nothing is stored,
           your file is deleted the moment processing finishes.
         </p>
       </div>

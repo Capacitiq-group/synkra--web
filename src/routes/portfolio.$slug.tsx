@@ -18,7 +18,7 @@ export const Route = createFileRoute("/portfolio/$slug")({
         path: "/portfolio",
       });
     return buildHead({
-      title: `${item.title} — Portfolio`,
+      title: `${item.title}, Portfolio`,
       description: item.description,
       path: `/portfolio/${item.slug}`,
     });

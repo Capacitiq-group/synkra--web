@@ -8,7 +8,7 @@ export const Route = createFileRoute("/blog/")({
     buildHead({
       title: "Blog",
       description:
-        "Practical writing on AI automation for South African businesses — what works, what it costs, and how to put it into your operation.",
+        "Practical writing on AI automation for South African businesses: what works, what it costs, and how to put it into your operation.",
       path: "/blog",
     }),
   loader: async () => {

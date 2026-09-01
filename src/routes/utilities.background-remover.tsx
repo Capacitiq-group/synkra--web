@@ -56,14 +56,14 @@ function Page() {
         <h1 className="heading-display mt-6 max-w-[800px]">Background Remover</h1>
         <p className="body-text mt-6 max-w-[600px]">
           Remove the background from any image automatically. Nothing is
-          stored — your file is deleted the moment processing finishes.
+          stored. Your file is deleted the moment processing finishes.
         </p>
       </div>
       <div className="container-main"><div className="hairline" /></div>
       <div className="container-main section-padding">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
           <div className="space-y-6">
-            <FileDropzone accept="image/jpeg,image/png,image/webp" file={file} onFile={setFile} hint="JPG, PNG, or WebP — up to 15 MB" />
+            <FileDropzone accept="image/jpeg,image/png,image/webp" file={file} onFile={setFile} hint="JPG, PNG, or WebP, up to 15 MB" />
             <button onClick={run} disabled={!file || busy} className="btn-primary w-full justify-center disabled:opacity-60">
               {busy ? "Removing background..." : "Remove background"}
             </button>

@@ -150,13 +150,13 @@ function PartnerPage() {
               <p className="body-sm mt-3">
                 A structured application about your platform's API, customer
                 base, and where an integration would create value for both
-                sides. Not a commission programme — a technology partnership.
+                sides. Not a commission programme, a technology partnership.
               </p>
               <div className="hairline my-8" />
               <p className="label-tag">Who this is for</p>
               <p className="body-sm mt-3">
-                Platform owners and product teams, not individual referrers —
-                see Agency and Referral Partners above for that.
+                Platform owners and product teams, not individual referrers.
+                See Agency and Referral Partners above for that.
               </p>
               <Link
                 to="/partner/integration"
@@ -215,7 +215,7 @@ function PartnerPage() {
             <p className="body-sm mt-4 max-w-[680px]">
               If two partners refer the same client, the partner whose client
               pays first receives the commission. Registration timestamps your
-              claim. The rule is enforced automatically — no disputes, no grey
+              claim. The rule is enforced automatically: no disputes, no grey
               areas.
             </p>
           </div>

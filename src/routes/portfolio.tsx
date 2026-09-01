@@ -10,7 +10,7 @@ import {
 export const Route = createFileRoute("/portfolio")({
   head: () =>
     buildHead({
-      title: "Portfolio — Concept and Client Work",
+      title: "Portfolio, Concept and Client Work",
       description:
         "Browse Synkra's portfolio of AI automation work and client results across every service we build.",
       path: "/portfolio",

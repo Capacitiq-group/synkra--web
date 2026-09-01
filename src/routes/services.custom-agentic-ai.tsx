@@ -1,16 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { buildHead } from "@/lib/seo";
-import ServicePageLayout from "@/components/layout/ServicePageLayout";
-import { SERVICE_CONTENT } from "@/data/serviceContent";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
-const data = SERVICE_CONTENT["custom-agentic-ai"];
-
+// Renamed to /services/custom-ai-systems - "Custom Agentic AI" tested as
+// confusing/jargon-y, kept only as a redirect so any existing links,
+// bookmarks, or indexed search results still land somewhere real.
 export const Route = createFileRoute("/services/custom-agentic-ai")({
-  head: () =>
-    buildHead({
-      title: data.serviceLabel,
-      description: data.subtitle,
-      path: "/services/custom-agentic-ai",
-    }),
-  component: () => <ServicePageLayout data={data} />,
+  beforeLoad: () => {
+    throw redirect({ to: "/services/custom-ai-systems" });
+  },
 });

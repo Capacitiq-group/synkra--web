@@ -57,7 +57,7 @@ function Page() {
         <p className="label-tag">Free Tool</p>
         <h1 className="heading-display mt-6 max-w-[800px]">Image Converter</h1>
         <p className="body-text mt-6 max-w-[600px]">
-          Convert between JPG, PNG, and WebP. Nothing is stored — your file
+          Convert between JPG, PNG, and WebP. Nothing is stored, your file
           is deleted the moment processing finishes.
         </p>
       </div>
@@ -65,7 +65,7 @@ function Page() {
       <div className="container-main section-padding">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
           <div className="space-y-6">
-            <FileDropzone accept="image/jpeg,image/png,image/webp" file={file} onFile={setFile} hint="JPG, PNG, or WebP — up to 15 MB" />
+            <FileDropzone accept="image/jpeg,image/png,image/webp" file={file} onFile={setFile} hint="JPG, PNG, or WebP, up to 15 MB" />
             <div>
               <label className="label-tag block">Convert to</label>
               <div className="mt-2 flex gap-2">

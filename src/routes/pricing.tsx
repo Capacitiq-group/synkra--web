@@ -6,7 +6,7 @@ import ROILink from "@/components/sections/ROILink";
 export const Route = createFileRoute("/pricing")({
   head: () =>
     buildHead({
-      title: "Pricing — Synkra",
+      title: "Pricing, Synkra Technologies",
       description:
         "Transparent setup fees, monthly retainers, and usage rates for every Synkra AI service. No contracts, no surprises.",
       path: "/pricing",
@@ -22,14 +22,14 @@ type ServiceRow = {
 };
 
 // Matches each service's actual pricing.mode in serviceContent.ts - the
-// three "simple" services show one starting price, Custom Agentic AI's
+// three "simple" services show one starting price, Custom AI Systems'
 // figures are its Essential (lowest) tier. Full detail lives on each
 // service's own page, this table is a starting-price comparison only.
 const SERVICE_ROWS: ServiceRow[] = [
   { name: "AI Voice Agent", slug: "ai-voice-agent", monthlyFrom: "R700/month", setupFrom: "R2,500" },
   { name: "Speed to Lead", slug: "speed-to-lead", monthlyFrom: "R700/month", setupFrom: "R3,000" },
   { name: "Lead Reactivation", slug: "lead-reactivation", monthlyFrom: "R800/month", setupFrom: "R3,500" },
-  { name: "Custom Agentic AI", slug: "custom-agentic-ai", monthlyFrom: "R1,500/month", setupFrom: "R5,000" },
+  { name: "Custom AI Systems", slug: "custom-ai-systems", monthlyFrom: "R1,500/month", setupFrom: "R5,000" },
 ];
 
 const USAGE_ROWS: { what: string; rate: string }[] = [
@@ -103,7 +103,7 @@ function PricingPage() {
         <p className="body-text mt-8 max-w-[600px]">
           Every Synkra service has a once-off setup fee and a monthly retainer
           that includes a free credit allocation. You only pay for what you use
-          beyond that — and you can cancel any time.
+          beyond that, and you can cancel any time.
         </p>
       </section>
 
@@ -162,9 +162,9 @@ function PricingPage() {
         <p className="body-text mt-6 max-w-[580px]">
           AI Voice Agent, Speed to Lead, and Lead Reactivation each have one
           straightforward monthly price plus a setup fee that depends on
-          complexity. Custom Agentic AI is scoped in three tiers since the
+          complexity. Custom AI Systems is scoped in three tiers since the
           work itself varies far more from client to client. Usage beyond
-          your included allowance is metered — R5 per call minute, R0.50 per
+          your included allowance is metered: R5 per call minute, R0.50 per
           WhatsApp reply, and R1.50 per broadcast message, the same rate
           regardless of which service you use.
         </p>
@@ -180,7 +180,7 @@ function PricingPage() {
         </h2>
         <p className="body-text mt-6 max-w-[580px]">
           Setup fees vary by complexity, integrations, and configuration
-          requirements. The numbers below are starting points — open a
+          requirements. The numbers below are starting points. Open a
           service page for the full picture, or request a quote for an
           exact number based on your business.
         </p>

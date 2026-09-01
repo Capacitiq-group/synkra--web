@@ -21,7 +21,7 @@ const OPERATIONS: { key: string; label: string; hint: string }[] = [
   { key: "remove_duplicates", label: "Remove duplicate rows", hint: "Keeps only the first occurrence." },
   { key: "standardise_headers", label: "Standardise column headers", hint: "Lowercase, spaces become underscores." },
   { key: "standardise_casing", label: "Title Case text columns", hint: "Applies Title Case to text values." },
-  { key: "validate_emails", label: "Flag invalid emails", hint: "Adds a _valid column next to any email column — doesn't delete rows." },
+  { key: "validate_emails", label: "Flag invalid emails", hint: "Adds a _valid column next to any email column. Doesn't delete rows." },
   { key: "flag_bad_phones", label: "Flag malformed phone numbers", hint: "Adds a _valid column next to any phone column." },
   { key: "normalise_dates", label: "Normalise dates to YYYY-MM-DD", hint: "Best-effort parse of columns with 'date' in the name." },
 ];
@@ -84,14 +84,14 @@ function Page() {
         <h1 className="heading-display mt-6 max-w-[800px]">CSV Cleaner</h1>
         <p className="body-text mt-6 max-w-[600px]">
           Clean up messy spreadsheet exports before you import them
-          anywhere else. Pick exactly which operations to run — nothing
+          anywhere else. Pick exactly which operations to run. Nothing
           happens to your data that you didn't ask for.
         </p>
       </div>
       <div className="container-main"><div className="hairline" /></div>
       <div className="container-main section-padding">
         <div className="mx-auto max-w-[640px] space-y-8">
-          <FileDropzone accept=".csv,text/csv" file={file} onFile={(f) => { setFile(f); setResultBlob(null); }} hint="CSV — up to 10 MB" />
+          <FileDropzone accept=".csv,text/csv" file={file} onFile={(f) => { setFile(f); setResultBlob(null); }} hint="CSV, up to 10 MB" />
 
           <div>
             <p className="label-tag">Operations</p>

@@ -63,7 +63,7 @@ function Page() {
         <h1 className="heading-display mt-6 max-w-[800px]">Image Compressor</h1>
         <p className="body-text mt-6 max-w-[600px]">
           Shrink JPG, PNG, and WebP file sizes without losing quality.
-          Nothing is stored — your file is deleted the moment processing
+          Nothing is stored. Your file is deleted the moment processing
           finishes.
         </p>
       </div>
@@ -71,7 +71,7 @@ function Page() {
       <div className="container-main section-padding">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
           <div className="space-y-6">
-            <FileDropzone accept="image/jpeg,image/png,image/webp" file={file} onFile={setFile} hint="JPG, PNG, or WebP — up to 15 MB" />
+            <FileDropzone accept="image/jpeg,image/png,image/webp" file={file} onFile={setFile} hint="JPG, PNG, or WebP, up to 15 MB" />
             <div>
               <label className="label-tag block">Quality ({quality})</label>
               <input type="range" min={1} max={95} value={quality} onChange={(e) => setQuality(Number(e.target.value))} className="mt-2 w-full" />

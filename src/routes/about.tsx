@@ -32,7 +32,7 @@ function AboutPage() {
           </h1>
           <p className="body-text mt-8 max-w-[620px] text-left text-lg">
             Most AI automation companies price their services for enterprises.
-            We built ours for the businesses that need it most — the clinic
+            We built ours for the businesses that need it most: the clinic
             missing calls after hours, the estate agent losing leads to faster
             competitors, the small logistics company drowning in WhatsApp
             messages with a two-person team.
@@ -52,11 +52,12 @@ function AboutPage() {
             </div>
             <div className="text-left">
               <p className="body-text max-w-[560px]">
-                Most agencies running services like ours pay for cloud platforms
-                that charge them more as their client base grows. Those costs
-                get passed to you. We built our entire infrastructure on servers
-                we own and software we host ourselves. Our costs do not scale
-                with our growth and neither does what we charge you.
+                Most companies in this space resell a platform built by
+                someone else, with their own name on top. Synkra builds the
+                automation itself. That's the reason pricing can work for a
+                business doing R500,000 a year, not only one doing R50
+                million. There's no vendor markup sitting between what you
+                pay and what it costs to run.
               </p>
             </div>
           </div>
@@ -90,9 +91,8 @@ function AboutPage() {
             Synkra is a South African automation company built by a focused team
             that builds well, moves fast, and stands behind everything we
             deliver. We do not have a large office or a large team. We have the
-            right people, the right infrastructure, and a straightforward
-            commitment to making automation accessible to every business that
-            needs it.
+            right people and a straightforward commitment to making automation
+            accessible to every business that needs it.
           </p>
         </div>
       </section>

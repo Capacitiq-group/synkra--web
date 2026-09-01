@@ -86,12 +86,12 @@ function GetAQuotePage() {
             {result.sent ? "Quote sent" : "Quote created"}
           </p>
           <h1 className="heading-display mt-6">
-            {result.tier[0].toUpperCase() + result.tier.slice(1)} tier — R{result.setup.toLocaleString()} setup,
+            {result.tier[0].toUpperCase() + result.tier.slice(1)} tier: R{result.setup.toLocaleString()} setup,
             R{result.monthly.toLocaleString()}/month
           </h1>
           <p className="body-text mx-auto mt-6 max-w-[520px]">
             {result.sent
-              ? "A formal quotation has been emailed to you directly. Check your inbox — you can accept it straight from there."
+              ? "A formal quotation has been emailed to you directly. Check your inbox, you can accept it straight from there."
               : "Your answers need a quick look from our team before the formal quotation goes out. We'll be in touch shortly."}
           </p>
         </div>
@@ -108,7 +108,7 @@ function GetAQuotePage() {
         </h1>
         <p className="body-text mt-6 max-w-[520px]">
           This isn't a ballpark. Based on your answers, you'll get an
-          exact setup fee and monthly price — and where the answers are
+          exact setup fee and monthly price, and where the answers are
           clear-cut, a formal quotation lands in your inbox automatically.
         </p>
       </div>

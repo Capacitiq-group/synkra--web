@@ -13,15 +13,15 @@ const SERVICE_ORDER = [
   "ai-voice-agent",
   "speed-to-lead",
   "lead-reactivation",
-  "custom-agentic-ai",
+  "custom-ai-systems",
 ] as const;
 
 export const Route = createFileRoute("/services/")({
   head: () =>
     buildHead({
-      title: "AI Automation Services",
+      title: "AI Automation Services for South African Businesses",
       description:
-        "Voice agents, speed-to-lead, lead reactivation, and custom agentic AI — built for South African businesses.",
+        "Synkra Technologies builds AI voice agents, speed to lead systems, lead reactivation, and custom AI systems for South African small businesses. Done for you, fully managed.",
       path: "/services",
     }),
   component: ServicesIndex,

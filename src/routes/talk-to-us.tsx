@@ -82,7 +82,7 @@ function TalkToUsPage() {
         </h1>
         <p className="body-text mt-6 max-w-[520px]">
           Tell us a bit about what you need. No obligation, no sales
-          pressure — usually 10 to 15 minutes to figure out if and how we
+          pressure, usually 10 to 15 minutes to figure out if and how we
           can help.
         </p>
       </div>

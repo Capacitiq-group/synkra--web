@@ -201,13 +201,13 @@ function HiringTab() {
           <p className="label-tag">WHAT YOU WOULD PAY A HUMAN EMPLOYEE</p>
           <div className="mt-4 space-y-2">
             <p className="text-base text-white">
-              Monthly salary — {formatCurrency(salary)}
+              Monthly salary: {formatCurrency(salary)}
             </p>
             <p className="text-base text-white">
-              Hours available — {hours} hours per day, 5 days per week
+              Hours available: {hours} hours per day, 5 days per week
             </p>
             <p className="text-base text-white">
-              Annual cost — {formatCurrency(annualHumanCost)}
+              Annual cost: {formatCurrency(annualHumanCost)}
             </p>
           </div>
           <p className="mt-3 text-sm text-white/40">
@@ -220,12 +220,12 @@ function HiringTab() {
         <div>
           <p className="label-tag">WHAT YOU PAY SYNKRA</p>
           <div className="mt-4 space-y-2">
-            <p className="text-base text-white">Monthly fee — From R700</p>
+            <p className="text-base text-white">Monthly fee: From R700</p>
             <p className="text-base text-white">
-              Hours available — 24 hours per day, 7 days per week, 365 days per
+              Hours available: 24 hours per day, 7 days per week, 365 days per
               year
             </p>
-            <p className="text-base text-white">Annual cost — From R8,400</p>
+            <p className="text-base text-white">Annual cost: From R8,400</p>
           </div>
         </div>
 
@@ -303,13 +303,13 @@ function DIYTab() {
           <p className="label-tag">WHAT THIS IS COSTING YOU EVERY MONTH</p>
           <div className="mt-4 space-y-2">
             <p className="text-base text-white">
-              Hours spent per month — {hoursMonth} hours
+              Hours spent per month: {hoursMonth} hours
             </p>
             <p className="text-base text-white">
-              Rand value of that time — {formatCurrency(monthlyCost)}
+              Rand value of that time: {formatCurrency(monthlyCost)}
             </p>
             <p className="text-base text-white">
-              What you could be doing instead — {formatCurrency(monthlyCost)}{" "}
+              What you could be doing instead: {formatCurrency(monthlyCost)}{" "}
               worth of revenue-generating work
             </p>
           </div>

@@ -9,7 +9,7 @@ const DEMOS = [
     body: "A caller rings your business at 21:40 on a Saturday. The agent answers on the first ring, understands what they need, checks your calendar, and books them in, before your competitor has even seen a missed call notification.",
     transcript: [
       { who: "Caller", line: "Hi, are you open tomorrow? I need a quote." },
-      { who: "Synkra", line: "We are. I can book you a quote call tomorrow at 09:00 or 14:00 — which suits you?" },
+      { who: "Synkra", line: "We are. I can book you a quote call tomorrow at 09:00 or 14:00, which suits you?" },
       { who: "Caller", line: "Nine works." },
       { who: "Synkra", line: "Booked. You will get an SMS confirmation in a moment. Anything else I can help with?" },
     ],
@@ -32,10 +32,10 @@ const DEMOS = [
     heading: "Every new lead called within 90 seconds.",
     body: "A form submission triggers an immediate outbound call, a WhatsApp message, and a CRM record. The lead speaks to your business while they are still on your website.",
     transcript: [
-      { who: "Trigger", line: "Website form submitted — 00:00" },
-      { who: "Synkra", line: "Outbound call placed — 00:41" },
-      { who: "Synkra", line: "Lead qualified and booked — 03:12" },
-      { who: "Synkra", line: "CRM updated and team notified — 03:14" },
+      { who: "Trigger", line: "Website form submitted (00:00)" },
+      { who: "Synkra", line: "Outbound call placed (00:41)" },
+      { who: "Synkra", line: "Lead qualified and booked (03:12)" },
+      { who: "Synkra", line: "CRM updated and team notified (03:14)" },
     ],
   },
 ] as const;

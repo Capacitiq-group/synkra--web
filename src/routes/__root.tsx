@@ -87,7 +87,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           content: "width=device-width, initial-scale=1",
         },
         { name: "theme-color", content: "#0a0a0a" },
-        { title: "Synkra — AI Systems That Run Your Business While You Grow It" },
+        { title: "Synkra Technologies, AI Automation for South African Businesses" },
         {
           name: "description",
           content:
