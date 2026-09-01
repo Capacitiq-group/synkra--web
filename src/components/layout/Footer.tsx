@@ -78,6 +78,22 @@ export default function Footer() {
             </div>
 
             <div>
+              <p className="label-tag mb-5">Products</p>
+              <ul className="space-y-3">
+                {PRODUCTS.map((p) => (
+                  <li key={p.label}>
+                    <Link
+                      to={p.to}
+                      className="text-sm text-white/60 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline"
+                    >
+                      {p.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
               <p className="label-tag mb-5">Services</p>
               <ul className="space-y-3">
                 {SERVICES.map((s) => (
