@@ -39,7 +39,8 @@ function IndustriesIndex() {
             {INDUSTRY_LIST.map((industry) => (
               <Link
                 key={industry.slug}
-                to={`/industries/${industry.slug}` as string}
+                to="/industries/$slug"
+                params={{ slug: industry.slug }}
                 className="card-dark block transition-colors hover:border-white/15"
               >
                 <p className="label-tag green-text text-left">
