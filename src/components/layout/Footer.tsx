@@ -5,6 +5,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import { INDUSTRY_LIST } from "@/data/industryContent";
 
 const SERVICES = [
   { to: "/services/ai-voice-agent", label: "AI Voice Agent" },
@@ -62,7 +63,7 @@ export default function Footer() {
     <footer className="px-4 pb-8 pt-12 lg:px-8">
       <div className="container-main">
         <div className="relative overflow-hidden rounded-[2rem] border border-white/5 bg-[#252430] p-8 pb-40 lg:p-14 lg:pb-56">
-          <div className="relative z-10 grid gap-12 sm:grid-cols-2 lg:grid-cols-6">
+          <div className="relative z-10 grid gap-12 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
             <div>
               <p className="text-sm leading-relaxed text-white/60">
                 Synkra Technologies builds AI automation systems for South
@@ -108,6 +109,25 @@ export default function Footer() {
                 ))}
               </ul>
             </div>
+
+            <div>
+              <p className="label-tag mb-5">Industries</p>
+              <ul className="space-y-3">
+                {INDUSTRY_LIST.map((industry) => (
+                  <li key={industry.slug}>
+                    <Link
+                      to="/industries/$slug"
+                      params={{ slug: industry.slug }}
+                      className="text-sm text-white/60 transition-colors hover:text-white focus-visible:underline focus-visible:text-white focus-visible:outline-none"
+                    >
+                      {industry.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+
 
             <div>
               <p className="label-tag mb-5">Free Utilities</p>

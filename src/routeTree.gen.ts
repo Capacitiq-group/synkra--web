@@ -23,6 +23,7 @@ import { Route as UtilitiesIndexRouteImport } from './routes/utilities.index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as PartnerIndexRouteImport } from './routes/partner.index'
+import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as UtilitiesQrCodeGeneratorRouteImport } from './routes/utilities.qr-code-generator'
 import { Route as UtilitiesImageConverterRouteImport } from './routes/utilities.image-converter'
@@ -46,6 +47,7 @@ import { Route as PartnerAgencyRouteImport } from './routes/partner.agency'
 import { Route as LegalTermsOfServiceRouteImport } from './routes/legal.terms-of-service'
 import { Route as LegalRefundPolicyRouteImport } from './routes/legal.refund-policy'
 import { Route as LegalPrivacyPolicyRouteImport } from './routes/legal.privacy-policy'
+import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ApiSubmitFormRouteImport } from './routes/api/submit-form'
 import { Route as AdminMfaRouteImport } from './routes/admin.mfa'
@@ -132,6 +134,11 @@ const ProductsIndexRoute = ProductsIndexRouteImport.update({
 const PartnerIndexRoute = PartnerIndexRouteImport.update({
   id: '/partner/',
   path: '/partner/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndustriesIndexRoute = IndustriesIndexRouteImport.update({
+  id: '/industries/',
+  path: '/industries/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -254,6 +261,11 @@ const LegalPrivacyPolicyRoute = LegalPrivacyPolicyRouteImport.update({
   path: '/legal/privacy-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IndustriesSlugRoute = IndustriesSlugRouteImport.update({
+  id: '/industries/$slug',
+  path: '/industries/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/blog/$slug',
   path: '/blog/$slug',
@@ -370,6 +382,7 @@ export interface FileRoutesByFullPath {
   '/admin/mfa': typeof AdminMfaRoute
   '/api/submit-form': typeof ApiSubmitFormRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/industries/$slug': typeof IndustriesSlugRoute
   '/legal/privacy-policy': typeof LegalPrivacyPolicyRoute
   '/legal/refund-policy': typeof LegalRefundPolicyRoute
   '/legal/terms-of-service': typeof LegalTermsOfServiceRoute
@@ -393,6 +406,7 @@ export interface FileRoutesByFullPath {
   '/utilities/image-converter': typeof UtilitiesImageConverterRoute
   '/utilities/qr-code-generator': typeof UtilitiesQrCodeGeneratorRoute
   '/blog/': typeof BlogIndexRoute
+  '/industries/': typeof IndustriesIndexRoute
   '/partner/': typeof PartnerIndexRoute
   '/products/': typeof ProductsIndexRoute
   '/services/': typeof ServicesIndexRoute
@@ -426,6 +440,7 @@ export interface FileRoutesByTo {
   '/admin/mfa': typeof AdminMfaRoute
   '/api/submit-form': typeof ApiSubmitFormRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/industries/$slug': typeof IndustriesSlugRoute
   '/legal/privacy-policy': typeof LegalPrivacyPolicyRoute
   '/legal/refund-policy': typeof LegalRefundPolicyRoute
   '/legal/terms-of-service': typeof LegalTermsOfServiceRoute
@@ -449,6 +464,7 @@ export interface FileRoutesByTo {
   '/utilities/image-converter': typeof UtilitiesImageConverterRoute
   '/utilities/qr-code-generator': typeof UtilitiesQrCodeGeneratorRoute
   '/blog': typeof BlogIndexRoute
+  '/industries': typeof IndustriesIndexRoute
   '/partner': typeof PartnerIndexRoute
   '/products': typeof ProductsIndexRoute
   '/services': typeof ServicesIndexRoute
@@ -483,6 +499,7 @@ export interface FileRoutesById {
   '/admin/mfa': typeof AdminMfaRoute
   '/api/submit-form': typeof ApiSubmitFormRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/industries/$slug': typeof IndustriesSlugRoute
   '/legal/privacy-policy': typeof LegalPrivacyPolicyRoute
   '/legal/refund-policy': typeof LegalRefundPolicyRoute
   '/legal/terms-of-service': typeof LegalTermsOfServiceRoute
@@ -506,6 +523,7 @@ export interface FileRoutesById {
   '/utilities/image-converter': typeof UtilitiesImageConverterRoute
   '/utilities/qr-code-generator': typeof UtilitiesQrCodeGeneratorRoute
   '/blog/': typeof BlogIndexRoute
+  '/industries/': typeof IndustriesIndexRoute
   '/partner/': typeof PartnerIndexRoute
   '/products/': typeof ProductsIndexRoute
   '/services/': typeof ServicesIndexRoute
@@ -541,6 +559,7 @@ export interface FileRouteTypes {
     | '/admin/mfa'
     | '/api/submit-form'
     | '/blog/$slug'
+    | '/industries/$slug'
     | '/legal/privacy-policy'
     | '/legal/refund-policy'
     | '/legal/terms-of-service'
@@ -564,6 +583,7 @@ export interface FileRouteTypes {
     | '/utilities/image-converter'
     | '/utilities/qr-code-generator'
     | '/blog/'
+    | '/industries/'
     | '/partner/'
     | '/products/'
     | '/services/'
@@ -597,6 +617,7 @@ export interface FileRouteTypes {
     | '/admin/mfa'
     | '/api/submit-form'
     | '/blog/$slug'
+    | '/industries/$slug'
     | '/legal/privacy-policy'
     | '/legal/refund-policy'
     | '/legal/terms-of-service'
@@ -620,6 +641,7 @@ export interface FileRouteTypes {
     | '/utilities/image-converter'
     | '/utilities/qr-code-generator'
     | '/blog'
+    | '/industries'
     | '/partner'
     | '/products'
     | '/services'
@@ -653,6 +675,7 @@ export interface FileRouteTypes {
     | '/admin/mfa'
     | '/api/submit-form'
     | '/blog/$slug'
+    | '/industries/$slug'
     | '/legal/privacy-policy'
     | '/legal/refund-policy'
     | '/legal/terms-of-service'
@@ -676,6 +699,7 @@ export interface FileRouteTypes {
     | '/utilities/image-converter'
     | '/utilities/qr-code-generator'
     | '/blog/'
+    | '/industries/'
     | '/partner/'
     | '/products/'
     | '/services/'
@@ -711,6 +735,7 @@ export interface RootRouteChildren {
   AdminMfaRoute: typeof AdminMfaRoute
   ApiSubmitFormRoute: typeof ApiSubmitFormRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  IndustriesSlugRoute: typeof IndustriesSlugRoute
   LegalPrivacyPolicyRoute: typeof LegalPrivacyPolicyRoute
   LegalRefundPolicyRoute: typeof LegalRefundPolicyRoute
   LegalTermsOfServiceRoute: typeof LegalTermsOfServiceRoute
@@ -733,6 +758,7 @@ export interface RootRouteChildren {
   UtilitiesImageConverterRoute: typeof UtilitiesImageConverterRoute
   UtilitiesQrCodeGeneratorRoute: typeof UtilitiesQrCodeGeneratorRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  IndustriesIndexRoute: typeof IndustriesIndexRoute
   PartnerIndexRoute: typeof PartnerIndexRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
@@ -838,6 +864,13 @@ declare module '@tanstack/react-router' {
       path: '/partner'
       fullPath: '/partner/'
       preLoaderRoute: typeof PartnerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industries/': {
+      id: '/industries/'
+      path: '/industries'
+      fullPath: '/industries/'
+      preLoaderRoute: typeof IndustriesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -999,6 +1032,13 @@ declare module '@tanstack/react-router' {
       path: '/legal/privacy-policy'
       fullPath: '/legal/privacy-policy'
       preLoaderRoute: typeof LegalPrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industries/$slug': {
+      id: '/industries/$slug'
+      path: '/industries/$slug'
+      fullPath: '/industries/$slug'
+      preLoaderRoute: typeof IndustriesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/$slug': {
@@ -1237,6 +1277,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminMfaRoute: AdminMfaRoute,
   ApiSubmitFormRoute: ApiSubmitFormRoute,
   BlogSlugRoute: BlogSlugRoute,
+  IndustriesSlugRoute: IndustriesSlugRoute,
   LegalPrivacyPolicyRoute: LegalPrivacyPolicyRoute,
   LegalRefundPolicyRoute: LegalRefundPolicyRoute,
   LegalTermsOfServiceRoute: LegalTermsOfServiceRoute,
@@ -1259,6 +1300,7 @@ const rootRouteChildren: RootRouteChildren = {
   UtilitiesImageConverterRoute: UtilitiesImageConverterRoute,
   UtilitiesQrCodeGeneratorRoute: UtilitiesQrCodeGeneratorRoute,
   BlogIndexRoute: BlogIndexRoute,
+  IndustriesIndexRoute: IndustriesIndexRoute,
   PartnerIndexRoute: PartnerIndexRoute,
   ProductsIndexRoute: ProductsIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
