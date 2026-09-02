@@ -111,6 +111,25 @@ export default function Footer() {
             </div>
 
             <div>
+              <p className="label-tag mb-5">Industries</p>
+              <ul className="space-y-3">
+                {INDUSTRY_LIST.map((industry) => (
+                  <li key={industry.slug}>
+                    <Link
+                      to="/industries/$slug"
+                      params={{ slug: industry.slug }}
+                      className="text-sm text-white/60 transition-colors hover:text-white focus-visible:underline focus-visible:text-white focus-visible:outline-none"
+                    >
+                      {industry.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+
+
+            <div>
               <p className="label-tag mb-5">Free Utilities</p>
               <ul className="space-y-3">
                 {UTILITIES.map((u) => (
