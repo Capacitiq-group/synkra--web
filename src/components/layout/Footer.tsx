@@ -63,7 +63,7 @@ export default function Footer() {
     <footer className="px-4 pb-8 pt-12 lg:px-8">
       <div className="container-main">
         <div className="relative overflow-hidden rounded-[2rem] border border-white/5 bg-[#252430] p-8 pb-40 lg:p-14 lg:pb-56">
-          <div className="relative z-10 grid gap-12 sm:grid-cols-2 lg:grid-cols-6">
+          <div className="relative z-10 grid gap-12 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
             <div>
               <p className="text-sm leading-relaxed text-white/60">
                 Synkra Technologies builds AI automation systems for South
