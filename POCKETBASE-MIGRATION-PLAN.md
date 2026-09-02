@@ -24,7 +24,7 @@ creates the `users` record directly in client-hub's own PocketBase. web-main
 never needs to hold subscription data at all.
 
 - **Flow Subscribe CTAs** → link straight to
-  `https://client.synkra.co.za/checkout?plan={tier}`. No new code on
+  `https://flow.synkra.co.za/checkout?plan={tier}`. No new code on
   web-main beyond the link itself.
 - **Chat Subscribe CTAs** → no checkout tier exists for Chat yet
   (`PURCHASABLE_TIERS` in client-hub is `["basic", "pro"]`, both Flow-only

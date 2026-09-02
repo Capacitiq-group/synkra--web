@@ -47,7 +47,7 @@ const COMPANY = [
 const SIGN_IN_OPTIONS = [
   { href: "https://chat.synkra.co.za", label: "Synkra Chat" },
   { href: "https://flow.synkra.co.za", label: "Synkra Flow" },
-  { href: "https://client.synkra.co.za", label: "Agency Client Portal" },
+  { href: "https://flow.synkra.co.za", label: "Agency Client Portal" },
 ];
 
 const LEGAL = [

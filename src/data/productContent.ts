@@ -62,7 +62,7 @@ export const PRODUCT_CONTENT: Record<"flow" | "chat", ProductPageContent> = {
     },
     cta: {
       label: "Start with Synkra Flow",
-      href: "https://client.synkra.co.za/checkout?plan=free",
+      href: "https://flow.synkra.co.za/checkout?plan=free",
       external: true,
     },
   },
