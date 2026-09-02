@@ -23,6 +23,7 @@ import { Route as UtilitiesIndexRouteImport } from './routes/utilities.index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as PartnerIndexRouteImport } from './routes/partner.index'
+import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as UtilitiesQrCodeGeneratorRouteImport } from './routes/utilities.qr-code-generator'
 import { Route as UtilitiesImageConverterRouteImport } from './routes/utilities.image-converter'
@@ -132,6 +133,11 @@ const ProductsIndexRoute = ProductsIndexRouteImport.update({
 const PartnerIndexRoute = PartnerIndexRouteImport.update({
   id: '/partner/',
   path: '/partner/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndustriesIndexRoute = IndustriesIndexRouteImport.update({
+  id: '/industries/',
+  path: '/industries/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -393,6 +399,7 @@ export interface FileRoutesByFullPath {
   '/utilities/image-converter': typeof UtilitiesImageConverterRoute
   '/utilities/qr-code-generator': typeof UtilitiesQrCodeGeneratorRoute
   '/blog/': typeof BlogIndexRoute
+  '/industries/': typeof IndustriesIndexRoute
   '/partner/': typeof PartnerIndexRoute
   '/products/': typeof ProductsIndexRoute
   '/services/': typeof ServicesIndexRoute
@@ -449,6 +456,7 @@ export interface FileRoutesByTo {
   '/utilities/image-converter': typeof UtilitiesImageConverterRoute
   '/utilities/qr-code-generator': typeof UtilitiesQrCodeGeneratorRoute
   '/blog': typeof BlogIndexRoute
+  '/industries': typeof IndustriesIndexRoute
   '/partner': typeof PartnerIndexRoute
   '/products': typeof ProductsIndexRoute
   '/services': typeof ServicesIndexRoute
@@ -506,6 +514,7 @@ export interface FileRoutesById {
   '/utilities/image-converter': typeof UtilitiesImageConverterRoute
   '/utilities/qr-code-generator': typeof UtilitiesQrCodeGeneratorRoute
   '/blog/': typeof BlogIndexRoute
+  '/industries/': typeof IndustriesIndexRoute
   '/partner/': typeof PartnerIndexRoute
   '/products/': typeof ProductsIndexRoute
   '/services/': typeof ServicesIndexRoute
@@ -564,6 +573,7 @@ export interface FileRouteTypes {
     | '/utilities/image-converter'
     | '/utilities/qr-code-generator'
     | '/blog/'
+    | '/industries/'
     | '/partner/'
     | '/products/'
     | '/services/'
@@ -620,6 +630,7 @@ export interface FileRouteTypes {
     | '/utilities/image-converter'
     | '/utilities/qr-code-generator'
     | '/blog'
+    | '/industries'
     | '/partner'
     | '/products'
     | '/services'
@@ -676,6 +687,7 @@ export interface FileRouteTypes {
     | '/utilities/image-converter'
     | '/utilities/qr-code-generator'
     | '/blog/'
+    | '/industries/'
     | '/partner/'
     | '/products/'
     | '/services/'
@@ -733,6 +745,7 @@ export interface RootRouteChildren {
   UtilitiesImageConverterRoute: typeof UtilitiesImageConverterRoute
   UtilitiesQrCodeGeneratorRoute: typeof UtilitiesQrCodeGeneratorRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  IndustriesIndexRoute: typeof IndustriesIndexRoute
   PartnerIndexRoute: typeof PartnerIndexRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
@@ -838,6 +851,13 @@ declare module '@tanstack/react-router' {
       path: '/partner'
       fullPath: '/partner/'
       preLoaderRoute: typeof PartnerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industries/': {
+      id: '/industries/'
+      path: '/industries'
+      fullPath: '/industries/'
+      preLoaderRoute: typeof IndustriesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -1259,6 +1279,7 @@ const rootRouteChildren: RootRouteChildren = {
   UtilitiesImageConverterRoute: UtilitiesImageConverterRoute,
   UtilitiesQrCodeGeneratorRoute: UtilitiesQrCodeGeneratorRoute,
   BlogIndexRoute: BlogIndexRoute,
+  IndustriesIndexRoute: IndustriesIndexRoute,
   PartnerIndexRoute: PartnerIndexRoute,
   ProductsIndexRoute: ProductsIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
