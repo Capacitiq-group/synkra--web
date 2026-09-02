@@ -5,6 +5,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import { INDUSTRY_LIST } from "@/data/industryContent";
 
 const SERVICES = [
   { to: "/services/ai-voice-agent", label: "AI Voice Agent" },
