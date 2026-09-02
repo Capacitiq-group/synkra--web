@@ -47,6 +47,7 @@ import { Route as PartnerAgencyRouteImport } from './routes/partner.agency'
 import { Route as LegalTermsOfServiceRouteImport } from './routes/legal.terms-of-service'
 import { Route as LegalRefundPolicyRouteImport } from './routes/legal.refund-policy'
 import { Route as LegalPrivacyPolicyRouteImport } from './routes/legal.privacy-policy'
+import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ApiSubmitFormRouteImport } from './routes/api/submit-form'
 import { Route as AdminMfaRouteImport } from './routes/admin.mfa'
@@ -260,6 +261,11 @@ const LegalPrivacyPolicyRoute = LegalPrivacyPolicyRouteImport.update({
   path: '/legal/privacy-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IndustriesSlugRoute = IndustriesSlugRouteImport.update({
+  id: '/industries/$slug',
+  path: '/industries/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/blog/$slug',
   path: '/blog/$slug',
@@ -376,6 +382,7 @@ export interface FileRoutesByFullPath {
   '/admin/mfa': typeof AdminMfaRoute
   '/api/submit-form': typeof ApiSubmitFormRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/industries/$slug': typeof IndustriesSlugRoute
   '/legal/privacy-policy': typeof LegalPrivacyPolicyRoute
   '/legal/refund-policy': typeof LegalRefundPolicyRoute
   '/legal/terms-of-service': typeof LegalTermsOfServiceRoute
@@ -433,6 +440,7 @@ export interface FileRoutesByTo {
   '/admin/mfa': typeof AdminMfaRoute
   '/api/submit-form': typeof ApiSubmitFormRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/industries/$slug': typeof IndustriesSlugRoute
   '/legal/privacy-policy': typeof LegalPrivacyPolicyRoute
   '/legal/refund-policy': typeof LegalRefundPolicyRoute
   '/legal/terms-of-service': typeof LegalTermsOfServiceRoute
@@ -491,6 +499,7 @@ export interface FileRoutesById {
   '/admin/mfa': typeof AdminMfaRoute
   '/api/submit-form': typeof ApiSubmitFormRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/industries/$slug': typeof IndustriesSlugRoute
   '/legal/privacy-policy': typeof LegalPrivacyPolicyRoute
   '/legal/refund-policy': typeof LegalRefundPolicyRoute
   '/legal/terms-of-service': typeof LegalTermsOfServiceRoute
@@ -550,6 +559,7 @@ export interface FileRouteTypes {
     | '/admin/mfa'
     | '/api/submit-form'
     | '/blog/$slug'
+    | '/industries/$slug'
     | '/legal/privacy-policy'
     | '/legal/refund-policy'
     | '/legal/terms-of-service'
@@ -607,6 +617,7 @@ export interface FileRouteTypes {
     | '/admin/mfa'
     | '/api/submit-form'
     | '/blog/$slug'
+    | '/industries/$slug'
     | '/legal/privacy-policy'
     | '/legal/refund-policy'
     | '/legal/terms-of-service'
@@ -664,6 +675,7 @@ export interface FileRouteTypes {
     | '/admin/mfa'
     | '/api/submit-form'
     | '/blog/$slug'
+    | '/industries/$slug'
     | '/legal/privacy-policy'
     | '/legal/refund-policy'
     | '/legal/terms-of-service'
@@ -723,6 +735,7 @@ export interface RootRouteChildren {
   AdminMfaRoute: typeof AdminMfaRoute
   ApiSubmitFormRoute: typeof ApiSubmitFormRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  IndustriesSlugRoute: typeof IndustriesSlugRoute
   LegalPrivacyPolicyRoute: typeof LegalPrivacyPolicyRoute
   LegalRefundPolicyRoute: typeof LegalRefundPolicyRoute
   LegalTermsOfServiceRoute: typeof LegalTermsOfServiceRoute
@@ -1021,6 +1034,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LegalPrivacyPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/industries/$slug': {
+      id: '/industries/$slug'
+      path: '/industries/$slug'
+      fullPath: '/industries/$slug'
+      preLoaderRoute: typeof IndustriesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/$slug': {
       id: '/blog/$slug'
       path: '/blog/$slug'
@@ -1257,6 +1277,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminMfaRoute: AdminMfaRoute,
   ApiSubmitFormRoute: ApiSubmitFormRoute,
   BlogSlugRoute: BlogSlugRoute,
+  IndustriesSlugRoute: IndustriesSlugRoute,
   LegalPrivacyPolicyRoute: LegalPrivacyPolicyRoute,
   LegalRefundPolicyRoute: LegalRefundPolicyRoute,
   LegalTermsOfServiceRoute: LegalTermsOfServiceRoute,
