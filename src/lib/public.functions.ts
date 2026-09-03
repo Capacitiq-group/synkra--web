@@ -13,7 +13,7 @@ function publicClient(): PocketBase {
 export const listPublicTestimonials = createServerFn({ method: "GET" }).handler(async () => {
   const pb = publicClient();
   try {
-    const records = await pb.collection("clients").getFullList({
+    const records = await pb.collection("testimonial_clients").getFullList({
       filter: pb.filter("testimonial_published = true && testimonial != ''"),
       fields: "id,company_name,contact_name,testimonial,logo_url",
       sort: "-created",
