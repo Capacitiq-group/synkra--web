@@ -77,7 +77,7 @@ export const overviewStats = createServerFn({ method: "GET" })
 export const listClients = createServerFn({ method: "GET" })
   .middleware([requireAdminAuth])
   .handler(async ({ context }) => {
-    return context.pb.collection("clients").getFullList({ sort: "-created" });
+    return context.pb.collection("testimonial_clients").getFullList({ sort: "-created" });
   });
 
 export const getClient = createServerFn({ method: "GET" })
@@ -87,7 +87,7 @@ export const getClient = createServerFn({ method: "GET" })
     const pb = context.pb;
     let client;
     try {
-      client = await pb.collection("clients").getOne(data.id);
+      client = await pb.collection("testimonial_clients").getOne(data.id);
     } catch {
       throw new Error("Not found");
     }
