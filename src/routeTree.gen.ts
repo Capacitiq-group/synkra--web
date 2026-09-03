@@ -9,97 +9,72 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TalkToUsRouteImport } from './routes/talk-to-us'
-import { Route as RoiCalculatorRouteImport } from './routes/roi-calculator'
-import { Route as PricingRouteImport } from './routes/pricing'
-import { Route as PortfolioRouteImport } from './routes/portfolio'
-import { Route as HelpRouteImport } from './routes/help'
-import { Route as GetAQuoteRouteImport } from './routes/get-a-quote'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as AdminRouteImport } from './routes/_admin'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as UtilitiesIndexRouteImport } from './routes/utilities.index'
-import { Route as ServicesIndexRouteImport } from './routes/services.index'
-import { Route as ProductsIndexRouteImport } from './routes/products.index'
-import { Route as PartnerIndexRouteImport } from './routes/partner.index'
-import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
-import { Route as BlogIndexRouteImport } from './routes/blog.index'
-import { Route as UtilitiesQrCodeGeneratorRouteImport } from './routes/utilities.qr-code-generator'
-import { Route as UtilitiesImageConverterRouteImport } from './routes/utilities.image-converter'
-import { Route as UtilitiesImageCompressorRouteImport } from './routes/utilities.image-compressor'
-import { Route as UtilitiesFileConverterRouteImport } from './routes/utilities.file-converter'
-import { Route as UtilitiesFileCompressorRouteImport } from './routes/utilities.file-compressor'
-import { Route as UtilitiesEmailSignatureGeneratorRouteImport } from './routes/utilities.email-signature-generator'
-import { Route as UtilitiesCsvCleanerRouteImport } from './routes/utilities.csv-cleaner'
-import { Route as UtilitiesBackgroundRemoverRouteImport } from './routes/utilities.background-remover'
-import { Route as ServicesSpeedToLeadRouteImport } from './routes/services.speed-to-lead'
-import { Route as ServicesLeadReactivationRouteImport } from './routes/services.lead-reactivation'
-import { Route as ServicesCustomAiSystemsRouteImport } from './routes/services.custom-ai-systems'
-import { Route as ServicesCustomAgenticAiRouteImport } from './routes/services.custom-agentic-ai'
-import { Route as ServicesAiVoiceAgentRouteImport } from './routes/services.ai-voice-agent'
-import { Route as ProductsFlowRouteImport } from './routes/products.flow'
-import { Route as ProductsChatRouteImport } from './routes/products.chat'
-import { Route as PortfolioSlugRouteImport } from './routes/portfolio.$slug'
-import { Route as PartnerReferralRouteImport } from './routes/partner.referral'
-import { Route as PartnerIntegrationRouteImport } from './routes/partner.integration'
-import { Route as PartnerAgencyRouteImport } from './routes/partner.agency'
-import { Route as LegalTermsOfServiceRouteImport } from './routes/legal.terms-of-service'
-import { Route as LegalRefundPolicyRouteImport } from './routes/legal.refund-policy'
-import { Route as LegalPrivacyPolicyRouteImport } from './routes/legal.privacy-policy'
-import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
-import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
-import { Route as ApiSubmitFormRouteImport } from './routes/api/submit-form'
-import { Route as AdminMfaRouteImport } from './routes/admin.mfa'
+import { Route as AdminRouteImport } from './routes/_admin'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as GetAQuoteRouteImport } from './routes/get-a-quote'
+import { Route as HelpRouteImport } from './routes/help'
+import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as RoiCalculatorRouteImport } from './routes/roi-calculator'
+import { Route as TalkToUsRouteImport } from './routes/talk-to-us'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
-import { Route as ApiAdminUploadRouteImport } from './routes/api/admin.upload'
+import { Route as AdminMfaRouteImport } from './routes/admin.mfa'
+import { Route as ApiSubmitFormRouteImport } from './routes/api/submit-form'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
+import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
+import { Route as LegalPrivacyPolicyRouteImport } from './routes/legal.privacy-policy'
+import { Route as LegalRefundPolicyRouteImport } from './routes/legal.refund-policy'
+import { Route as LegalTermsOfServiceRouteImport } from './routes/legal.terms-of-service'
+import { Route as PartnerIndexRouteImport } from './routes/partner.index'
+import { Route as PartnerAgencyRouteImport } from './routes/partner.agency'
+import { Route as PartnerIntegrationRouteImport } from './routes/partner.integration'
+import { Route as PartnerReferralRouteImport } from './routes/partner.referral'
+import { Route as PortfolioSlugRouteImport } from './routes/portfolio.$slug'
+import { Route as ProductsIndexRouteImport } from './routes/products.index'
+import { Route as ProductsChatRouteImport } from './routes/products.chat'
+import { Route as ProductsFlowRouteImport } from './routes/products.flow'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ServicesAiVoiceAgentRouteImport } from './routes/services.ai-voice-agent'
+import { Route as ServicesCustomAgenticAiRouteImport } from './routes/services.custom-agentic-ai'
+import { Route as ServicesCustomAiSystemsRouteImport } from './routes/services.custom-ai-systems'
+import { Route as ServicesLeadReactivationRouteImport } from './routes/services.lead-reactivation'
+import { Route as ServicesSpeedToLeadRouteImport } from './routes/services.speed-to-lead'
+import { Route as UtilitiesIndexRouteImport } from './routes/utilities.index'
+import { Route as UtilitiesBackgroundRemoverRouteImport } from './routes/utilities.background-remover'
+import { Route as UtilitiesCsvCleanerRouteImport } from './routes/utilities.csv-cleaner'
+import { Route as UtilitiesEmailSignatureGeneratorRouteImport } from './routes/utilities.email-signature-generator'
+import { Route as UtilitiesFileCompressorRouteImport } from './routes/utilities.file-compressor'
+import { Route as UtilitiesFileConverterRouteImport } from './routes/utilities.file-converter'
+import { Route as UtilitiesImageCompressorRouteImport } from './routes/utilities.image-compressor'
+import { Route as UtilitiesImageConverterRouteImport } from './routes/utilities.image-converter'
+import { Route as UtilitiesQrCodeGeneratorRouteImport } from './routes/utilities.qr-code-generator'
 import { Route as AdminAdminDashboardRouteImport } from './routes/_admin.admin.dashboard'
+import { Route as ApiAdminUploadRouteImport } from './routes/api/admin.upload'
 import { Route as AdminAdminDashboardIndexRouteImport } from './routes/_admin.admin.dashboard.index'
-import { Route as AdminAdminDashboardSubmissionsRouteImport } from './routes/_admin.admin.dashboard.submissions'
-import { Route as AdminAdminDashboardSettingsRouteImport } from './routes/_admin.admin.dashboard.settings'
-import { Route as AdminAdminDashboardServicesRouteImport } from './routes/_admin.admin.dashboard.services'
-import { Route as AdminAdminDashboardPortfolioRouteImport } from './routes/_admin.admin.dashboard.portfolio'
-import { Route as AdminAdminDashboardPartnersRouteImport } from './routes/_admin.admin.dashboard.partners'
-import { Route as AdminAdminDashboardClientsRouteImport } from './routes/_admin.admin.dashboard.clients'
-import { Route as AdminAdminDashboardBlogRouteImport } from './routes/_admin.admin.dashboard.blog'
 import { Route as AdminAdminDashboardAuditRouteImport } from './routes/_admin.admin.dashboard.audit'
-import { Route as AdminAdminDashboardPortfolioIdRouteImport } from './routes/_admin.admin.dashboard.portfolio.$id'
-import { Route as AdminAdminDashboardClientsIdRouteImport } from './routes/_admin.admin.dashboard.clients.$id'
+import { Route as AdminAdminDashboardBlogRouteImport } from './routes/_admin.admin.dashboard.blog'
+import { Route as AdminAdminDashboardClientsRouteImport } from './routes/_admin.admin.dashboard.clients'
+import { Route as AdminAdminDashboardPartnersRouteImport } from './routes/_admin.admin.dashboard.partners'
+import { Route as AdminAdminDashboardPortfolioRouteImport } from './routes/_admin.admin.dashboard.portfolio'
+import { Route as AdminAdminDashboardServicesRouteImport } from './routes/_admin.admin.dashboard.services'
+import { Route as AdminAdminDashboardSettingsRouteImport } from './routes/_admin.admin.dashboard.settings'
+import { Route as AdminAdminDashboardSubmissionsRouteImport } from './routes/_admin.admin.dashboard.submissions'
 import { Route as AdminAdminDashboardBlogIdRouteImport } from './routes/_admin.admin.dashboard.blog.$id'
+import { Route as AdminAdminDashboardClientsIdRouteImport } from './routes/_admin.admin.dashboard.clients.$id'
+import { Route as AdminAdminDashboardPortfolioIdRouteImport } from './routes/_admin.admin.dashboard.portfolio.$id'
 
-const TalkToUsRoute = TalkToUsRouteImport.update({
-  id: '/talk-to-us',
-  path: '/talk-to-us',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RoiCalculatorRoute = RoiCalculatorRouteImport.update({
-  id: '/roi-calculator',
-  path: '/roi-calculator',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PricingRoute = PricingRouteImport.update({
-  id: '/pricing',
-  path: '/pricing',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PortfolioRoute = PortfolioRouteImport.update({
-  id: '/portfolio',
-  path: '/portfolio',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HelpRoute = HelpRouteImport.update({
-  id: '/help',
-  path: '/help',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GetAQuoteRoute = GetAQuoteRouteImport.update({
-  id: '/get-a-quote',
-  path: '/get-a-quote',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
+const AdminRoute = AdminRouteImport.update({
+  id: '/_admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -107,38 +82,59 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/_admin',
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const UtilitiesIndexRoute = UtilitiesIndexRouteImport.update({
-  id: '/utilities/',
-  path: '/utilities/',
+const GetAQuoteRoute = GetAQuoteRouteImport.update({
+  id: '/get-a-quote',
+  path: '/get-a-quote',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesIndexRoute = ServicesIndexRouteImport.update({
-  id: '/services/',
-  path: '/services/',
+const HelpRoute = HelpRouteImport.update({
+  id: '/help',
+  path: '/help',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProductsIndexRoute = ProductsIndexRouteImport.update({
-  id: '/products/',
-  path: '/products/',
+const PortfolioRoute = PortfolioRouteImport.update({
+  id: '/portfolio',
+  path: '/portfolio',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PartnerIndexRoute = PartnerIndexRouteImport.update({
-  id: '/partner/',
-  path: '/partner/',
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndustriesIndexRoute = IndustriesIndexRouteImport.update({
-  id: '/industries/',
-  path: '/industries/',
+const RoiCalculatorRoute = RoiCalculatorRouteImport.update({
+  id: '/roi-calculator',
+  path: '/roi-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TalkToUsRoute = TalkToUsRouteImport.update({
+  id: '/talk-to-us',
+  path: '/talk-to-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminMfaRoute = AdminMfaRouteImport.update({
+  id: '/admin/mfa',
+  path: '/admin/mfa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSubmitFormRoute = ApiSubmitFormRouteImport.update({
+  id: '/api/submit-form',
+  path: '/api/submit-form',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -146,53 +142,94 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const UtilitiesQrCodeGeneratorRoute =
-  UtilitiesQrCodeGeneratorRouteImport.update({
-    id: '/utilities/qr-code-generator',
-    path: '/utilities/qr-code-generator',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const UtilitiesImageConverterRoute = UtilitiesImageConverterRouteImport.update({
-  id: '/utilities/image-converter',
-  path: '/utilities/image-converter',
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const UtilitiesImageCompressorRoute =
-  UtilitiesImageCompressorRouteImport.update({
-    id: '/utilities/image-compressor',
-    path: '/utilities/image-compressor',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const UtilitiesFileConverterRoute = UtilitiesFileConverterRouteImport.update({
-  id: '/utilities/file-converter',
-  path: '/utilities/file-converter',
+const IndustriesIndexRoute = IndustriesIndexRouteImport.update({
+  id: '/industries/',
+  path: '/industries/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const UtilitiesFileCompressorRoute = UtilitiesFileCompressorRouteImport.update({
-  id: '/utilities/file-compressor',
-  path: '/utilities/file-compressor',
+const IndustriesSlugRoute = IndustriesSlugRouteImport.update({
+  id: '/industries/$slug',
+  path: '/industries/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const UtilitiesEmailSignatureGeneratorRoute =
-  UtilitiesEmailSignatureGeneratorRouteImport.update({
-    id: '/utilities/email-signature-generator',
-    path: '/utilities/email-signature-generator',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const UtilitiesCsvCleanerRoute = UtilitiesCsvCleanerRouteImport.update({
-  id: '/utilities/csv-cleaner',
-  path: '/utilities/csv-cleaner',
+const LegalPrivacyPolicyRoute = LegalPrivacyPolicyRouteImport.update({
+  id: '/legal/privacy-policy',
+  path: '/legal/privacy-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
-const UtilitiesBackgroundRemoverRoute =
-  UtilitiesBackgroundRemoverRouteImport.update({
-    id: '/utilities/background-remover',
-    path: '/utilities/background-remover',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const ServicesSpeedToLeadRoute = ServicesSpeedToLeadRouteImport.update({
-  id: '/services/speed-to-lead',
-  path: '/services/speed-to-lead',
+const LegalRefundPolicyRoute = LegalRefundPolicyRouteImport.update({
+  id: '/legal/refund-policy',
+  path: '/legal/refund-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalTermsOfServiceRoute = LegalTermsOfServiceRouteImport.update({
+  id: '/legal/terms-of-service',
+  path: '/legal/terms-of-service',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnerIndexRoute = PartnerIndexRouteImport.update({
+  id: '/partner/',
+  path: '/partner/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnerAgencyRoute = PartnerAgencyRouteImport.update({
+  id: '/partner/agency',
+  path: '/partner/agency',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnerIntegrationRoute = PartnerIntegrationRouteImport.update({
+  id: '/partner/integration',
+  path: '/partner/integration',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnerReferralRoute = PartnerReferralRouteImport.update({
+  id: '/partner/referral',
+  path: '/partner/referral',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortfolioSlugRoute = PortfolioSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => PortfolioRoute,
+} as any)
+const ProductsIndexRoute = ProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsChatRoute = ProductsChatRouteImport.update({
+  id: '/products/chat',
+  path: '/products/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsFlowRoute = ProductsFlowRouteImport.update({
+  id: '/products/flow',
+  path: '/products/flow',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesAiVoiceAgentRoute = ServicesAiVoiceAgentRouteImport.update({
+  id: '/services/ai-voice-agent',
+  path: '/services/ai-voice-agent',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesCustomAgenticAiRoute = ServicesCustomAgenticAiRouteImport.update({
+  id: '/services/custom-agentic-ai',
+  path: '/services/custom-agentic-ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesCustomAiSystemsRoute = ServicesCustomAiSystemsRouteImport.update({
+  id: '/services/custom-ai-systems',
+  path: '/services/custom-ai-systems',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesLeadReactivationRoute =
@@ -201,100 +238,69 @@ const ServicesLeadReactivationRoute =
     path: '/services/lead-reactivation',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ServicesCustomAiSystemsRoute = ServicesCustomAiSystemsRouteImport.update({
-  id: '/services/custom-ai-systems',
-  path: '/services/custom-ai-systems',
+const ServicesSpeedToLeadRoute = ServicesSpeedToLeadRouteImport.update({
+  id: '/services/speed-to-lead',
+  path: '/services/speed-to-lead',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesCustomAgenticAiRoute = ServicesCustomAgenticAiRouteImport.update({
-  id: '/services/custom-agentic-ai',
-  path: '/services/custom-agentic-ai',
+const UtilitiesIndexRoute = UtilitiesIndexRouteImport.update({
+  id: '/utilities/',
+  path: '/utilities/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesAiVoiceAgentRoute = ServicesAiVoiceAgentRouteImport.update({
-  id: '/services/ai-voice-agent',
-  path: '/services/ai-voice-agent',
+const UtilitiesBackgroundRemoverRoute =
+  UtilitiesBackgroundRemoverRouteImport.update({
+    id: '/utilities/background-remover',
+    path: '/utilities/background-remover',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const UtilitiesCsvCleanerRoute = UtilitiesCsvCleanerRouteImport.update({
+  id: '/utilities/csv-cleaner',
+  path: '/utilities/csv-cleaner',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProductsFlowRoute = ProductsFlowRouteImport.update({
-  id: '/products/flow',
-  path: '/products/flow',
+const UtilitiesEmailSignatureGeneratorRoute =
+  UtilitiesEmailSignatureGeneratorRouteImport.update({
+    id: '/utilities/email-signature-generator',
+    path: '/utilities/email-signature-generator',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const UtilitiesFileCompressorRoute = UtilitiesFileCompressorRouteImport.update({
+  id: '/utilities/file-compressor',
+  path: '/utilities/file-compressor',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProductsChatRoute = ProductsChatRouteImport.update({
-  id: '/products/chat',
-  path: '/products/chat',
+const UtilitiesFileConverterRoute = UtilitiesFileConverterRouteImport.update({
+  id: '/utilities/file-converter',
+  path: '/utilities/file-converter',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PortfolioSlugRoute = PortfolioSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => PortfolioRoute,
-} as any)
-const PartnerReferralRoute = PartnerReferralRouteImport.update({
-  id: '/partner/referral',
-  path: '/partner/referral',
+const UtilitiesImageCompressorRoute =
+  UtilitiesImageCompressorRouteImport.update({
+    id: '/utilities/image-compressor',
+    path: '/utilities/image-compressor',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const UtilitiesImageConverterRoute = UtilitiesImageConverterRouteImport.update({
+  id: '/utilities/image-converter',
+  path: '/utilities/image-converter',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PartnerIntegrationRoute = PartnerIntegrationRouteImport.update({
-  id: '/partner/integration',
-  path: '/partner/integration',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PartnerAgencyRoute = PartnerAgencyRouteImport.update({
-  id: '/partner/agency',
-  path: '/partner/agency',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LegalTermsOfServiceRoute = LegalTermsOfServiceRouteImport.update({
-  id: '/legal/terms-of-service',
-  path: '/legal/terms-of-service',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LegalRefundPolicyRoute = LegalRefundPolicyRouteImport.update({
-  id: '/legal/refund-policy',
-  path: '/legal/refund-policy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LegalPrivacyPolicyRoute = LegalPrivacyPolicyRouteImport.update({
-  id: '/legal/privacy-policy',
-  path: '/legal/privacy-policy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IndustriesSlugRoute = IndustriesSlugRouteImport.update({
-  id: '/industries/$slug',
-  path: '/industries/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/blog/$slug',
-  path: '/blog/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiSubmitFormRoute = ApiSubmitFormRouteImport.update({
-  id: '/api/submit-form',
-  path: '/api/submit-form',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminMfaRoute = AdminMfaRouteImport.update({
-  id: '/admin/mfa',
-  path: '/admin/mfa',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminLoginRoute = AdminLoginRouteImport.update({
-  id: '/admin/login',
-  path: '/admin/login',
-  getParentRoute: () => rootRouteImport,
+const UtilitiesQrCodeGeneratorRoute =
+  UtilitiesQrCodeGeneratorRouteImport.update({
+    id: '/utilities/qr-code-generator',
+    path: '/utilities/qr-code-generator',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AdminAdminDashboardRoute = AdminAdminDashboardRouteImport.update({
+  id: '/admin/dashboard',
+  path: '/admin/dashboard',
+  getParentRoute: () => AdminRoute,
 } as any)
 const ApiAdminUploadRoute = ApiAdminUploadRouteImport.update({
   id: '/api/admin/upload',
   path: '/api/admin/upload',
   getParentRoute: () => rootRouteImport,
-} as any)
-const AdminAdminDashboardRoute = AdminAdminDashboardRouteImport.update({
-  id: '/admin/dashboard',
-  path: '/admin/dashboard',
-  getParentRoute: () => AdminRoute,
 } as any)
 const AdminAdminDashboardIndexRoute =
   AdminAdminDashboardIndexRouteImport.update({
@@ -302,28 +308,21 @@ const AdminAdminDashboardIndexRoute =
     path: '/',
     getParentRoute: () => AdminAdminDashboardRoute,
   } as any)
-const AdminAdminDashboardSubmissionsRoute =
-  AdminAdminDashboardSubmissionsRouteImport.update({
-    id: '/submissions',
-    path: '/submissions',
+const AdminAdminDashboardAuditRoute =
+  AdminAdminDashboardAuditRouteImport.update({
+    id: '/audit',
+    path: '/audit',
     getParentRoute: () => AdminAdminDashboardRoute,
   } as any)
-const AdminAdminDashboardSettingsRoute =
-  AdminAdminDashboardSettingsRouteImport.update({
-    id: '/settings',
-    path: '/settings',
-    getParentRoute: () => AdminAdminDashboardRoute,
-  } as any)
-const AdminAdminDashboardServicesRoute =
-  AdminAdminDashboardServicesRouteImport.update({
-    id: '/services',
-    path: '/services',
-    getParentRoute: () => AdminAdminDashboardRoute,
-  } as any)
-const AdminAdminDashboardPortfolioRoute =
-  AdminAdminDashboardPortfolioRouteImport.update({
-    id: '/portfolio',
-    path: '/portfolio',
+const AdminAdminDashboardBlogRoute = AdminAdminDashboardBlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => AdminAdminDashboardRoute,
+} as any)
+const AdminAdminDashboardClientsRoute =
+  AdminAdminDashboardClientsRouteImport.update({
+    id: '/clients',
+    path: '/clients',
     getParentRoute: () => AdminAdminDashboardRoute,
   } as any)
 const AdminAdminDashboardPartnersRoute =
@@ -332,34 +331,29 @@ const AdminAdminDashboardPartnersRoute =
     path: '/partners',
     getParentRoute: () => AdminAdminDashboardRoute,
   } as any)
-const AdminAdminDashboardClientsRoute =
-  AdminAdminDashboardClientsRouteImport.update({
-    id: '/clients',
-    path: '/clients',
+const AdminAdminDashboardPortfolioRoute =
+  AdminAdminDashboardPortfolioRouteImport.update({
+    id: '/portfolio',
+    path: '/portfolio',
     getParentRoute: () => AdminAdminDashboardRoute,
   } as any)
-const AdminAdminDashboardBlogRoute = AdminAdminDashboardBlogRouteImport.update({
-  id: '/blog',
-  path: '/blog',
-  getParentRoute: () => AdminAdminDashboardRoute,
-} as any)
-const AdminAdminDashboardAuditRoute =
-  AdminAdminDashboardAuditRouteImport.update({
-    id: '/audit',
-    path: '/audit',
+const AdminAdminDashboardServicesRoute =
+  AdminAdminDashboardServicesRouteImport.update({
+    id: '/services',
+    path: '/services',
     getParentRoute: () => AdminAdminDashboardRoute,
   } as any)
-const AdminAdminDashboardPortfolioIdRoute =
-  AdminAdminDashboardPortfolioIdRouteImport.update({
-    id: '/$id',
-    path: '/$id',
-    getParentRoute: () => AdminAdminDashboardPortfolioRoute,
+const AdminAdminDashboardSettingsRoute =
+  AdminAdminDashboardSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AdminAdminDashboardRoute,
   } as any)
-const AdminAdminDashboardClientsIdRoute =
-  AdminAdminDashboardClientsIdRouteImport.update({
-    id: '/$id',
-    path: '/$id',
-    getParentRoute: () => AdminAdminDashboardClientsRoute,
+const AdminAdminDashboardSubmissionsRoute =
+  AdminAdminDashboardSubmissionsRouteImport.update({
+    id: '/submissions',
+    path: '/submissions',
+    getParentRoute: () => AdminAdminDashboardRoute,
   } as any)
 const AdminAdminDashboardBlogIdRoute =
   AdminAdminDashboardBlogIdRouteImport.update({
@@ -367,10 +361,23 @@ const AdminAdminDashboardBlogIdRoute =
     path: '/$id',
     getParentRoute: () => AdminAdminDashboardBlogRoute,
   } as any)
+const AdminAdminDashboardClientsIdRoute =
+  AdminAdminDashboardClientsIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => AdminAdminDashboardClientsRoute,
+  } as any)
+const AdminAdminDashboardPortfolioIdRoute =
+  AdminAdminDashboardPortfolioIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => AdminAdminDashboardPortfolioRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/get-a-quote': typeof GetAQuoteRoute
   '/help': typeof HelpRoute
@@ -429,6 +436,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/get-a-quote': typeof GetAQuoteRoute
   '/help': typeof HelpRoute
@@ -488,6 +496,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_admin': typeof AdminRouteWithChildren
   '/about': typeof AboutRoute
+  '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/get-a-quote': typeof GetAQuoteRoute
   '/help': typeof HelpRoute
@@ -548,6 +557,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/checkout'
     | '/contact'
     | '/get-a-quote'
     | '/help'
@@ -606,6 +616,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/checkout'
     | '/contact'
     | '/get-a-quote'
     | '/help'
@@ -664,6 +675,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_admin'
     | '/about'
+    | '/checkout'
     | '/contact'
     | '/get-a-quote'
     | '/help'
@@ -724,6 +736,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
   AboutRoute: typeof AboutRoute
+  CheckoutRoute: typeof CheckoutRoute
   ContactRoute: typeof ContactRoute
   GetAQuoteRoute: typeof GetAQuoteRoute
   HelpRoute: typeof HelpRoute
@@ -768,60 +781,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/talk-to-us': {
-      id: '/talk-to-us'
-      path: '/talk-to-us'
-      fullPath: '/talk-to-us'
-      preLoaderRoute: typeof TalkToUsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/roi-calculator': {
-      id: '/roi-calculator'
-      path: '/roi-calculator'
-      fullPath: '/roi-calculator'
-      preLoaderRoute: typeof RoiCalculatorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pricing': {
-      id: '/pricing'
-      path: '/pricing'
-      fullPath: '/pricing'
-      preLoaderRoute: typeof PricingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/portfolio': {
-      id: '/portfolio'
-      path: '/portfolio'
-      fullPath: '/portfolio'
-      preLoaderRoute: typeof PortfolioRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/help': {
-      id: '/help'
-      path: '/help'
-      fullPath: '/help'
-      preLoaderRoute: typeof HelpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/get-a-quote': {
-      id: '/get-a-quote'
-      path: '/get-a-quote'
-      fullPath: '/get-a-quote'
-      preLoaderRoute: typeof GetAQuoteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_admin': {
@@ -831,235 +795,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/utilities/': {
-      id: '/utilities/'
-      path: '/utilities'
-      fullPath: '/utilities/'
-      preLoaderRoute: typeof UtilitiesIndexRouteImport
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/': {
-      id: '/services/'
-      path: '/services'
-      fullPath: '/services/'
-      preLoaderRoute: typeof ServicesIndexRouteImport
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/products/': {
-      id: '/products/'
-      path: '/products'
-      fullPath: '/products/'
-      preLoaderRoute: typeof ProductsIndexRouteImport
+    '/get-a-quote': {
+      id: '/get-a-quote'
+      path: '/get-a-quote'
+      fullPath: '/get-a-quote'
+      preLoaderRoute: typeof GetAQuoteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/partner/': {
-      id: '/partner/'
-      path: '/partner'
-      fullPath: '/partner/'
-      preLoaderRoute: typeof PartnerIndexRouteImport
+    '/help': {
+      id: '/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof HelpRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/industries/': {
-      id: '/industries/'
-      path: '/industries'
-      fullPath: '/industries/'
-      preLoaderRoute: typeof IndustriesIndexRouteImport
+    '/portfolio': {
+      id: '/portfolio'
+      path: '/portfolio'
+      fullPath: '/portfolio'
+      preLoaderRoute: typeof PortfolioRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog/': {
-      id: '/blog/'
-      path: '/blog'
-      fullPath: '/blog/'
-      preLoaderRoute: typeof BlogIndexRouteImport
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/utilities/qr-code-generator': {
-      id: '/utilities/qr-code-generator'
-      path: '/utilities/qr-code-generator'
-      fullPath: '/utilities/qr-code-generator'
-      preLoaderRoute: typeof UtilitiesQrCodeGeneratorRouteImport
+    '/roi-calculator': {
+      id: '/roi-calculator'
+      path: '/roi-calculator'
+      fullPath: '/roi-calculator'
+      preLoaderRoute: typeof RoiCalculatorRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/utilities/image-converter': {
-      id: '/utilities/image-converter'
-      path: '/utilities/image-converter'
-      fullPath: '/utilities/image-converter'
-      preLoaderRoute: typeof UtilitiesImageConverterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/utilities/image-compressor': {
-      id: '/utilities/image-compressor'
-      path: '/utilities/image-compressor'
-      fullPath: '/utilities/image-compressor'
-      preLoaderRoute: typeof UtilitiesImageCompressorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/utilities/file-converter': {
-      id: '/utilities/file-converter'
-      path: '/utilities/file-converter'
-      fullPath: '/utilities/file-converter'
-      preLoaderRoute: typeof UtilitiesFileConverterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/utilities/file-compressor': {
-      id: '/utilities/file-compressor'
-      path: '/utilities/file-compressor'
-      fullPath: '/utilities/file-compressor'
-      preLoaderRoute: typeof UtilitiesFileCompressorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/utilities/email-signature-generator': {
-      id: '/utilities/email-signature-generator'
-      path: '/utilities/email-signature-generator'
-      fullPath: '/utilities/email-signature-generator'
-      preLoaderRoute: typeof UtilitiesEmailSignatureGeneratorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/utilities/csv-cleaner': {
-      id: '/utilities/csv-cleaner'
-      path: '/utilities/csv-cleaner'
-      fullPath: '/utilities/csv-cleaner'
-      preLoaderRoute: typeof UtilitiesCsvCleanerRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/utilities/background-remover': {
-      id: '/utilities/background-remover'
-      path: '/utilities/background-remover'
-      fullPath: '/utilities/background-remover'
-      preLoaderRoute: typeof UtilitiesBackgroundRemoverRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services/speed-to-lead': {
-      id: '/services/speed-to-lead'
-      path: '/services/speed-to-lead'
-      fullPath: '/services/speed-to-lead'
-      preLoaderRoute: typeof ServicesSpeedToLeadRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services/lead-reactivation': {
-      id: '/services/lead-reactivation'
-      path: '/services/lead-reactivation'
-      fullPath: '/services/lead-reactivation'
-      preLoaderRoute: typeof ServicesLeadReactivationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services/custom-ai-systems': {
-      id: '/services/custom-ai-systems'
-      path: '/services/custom-ai-systems'
-      fullPath: '/services/custom-ai-systems'
-      preLoaderRoute: typeof ServicesCustomAiSystemsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services/custom-agentic-ai': {
-      id: '/services/custom-agentic-ai'
-      path: '/services/custom-agentic-ai'
-      fullPath: '/services/custom-agentic-ai'
-      preLoaderRoute: typeof ServicesCustomAgenticAiRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services/ai-voice-agent': {
-      id: '/services/ai-voice-agent'
-      path: '/services/ai-voice-agent'
-      fullPath: '/services/ai-voice-agent'
-      preLoaderRoute: typeof ServicesAiVoiceAgentRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/products/flow': {
-      id: '/products/flow'
-      path: '/products/flow'
-      fullPath: '/products/flow'
-      preLoaderRoute: typeof ProductsFlowRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/products/chat': {
-      id: '/products/chat'
-      path: '/products/chat'
-      fullPath: '/products/chat'
-      preLoaderRoute: typeof ProductsChatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/portfolio/$slug': {
-      id: '/portfolio/$slug'
-      path: '/$slug'
-      fullPath: '/portfolio/$slug'
-      preLoaderRoute: typeof PortfolioSlugRouteImport
-      parentRoute: typeof PortfolioRoute
-    }
-    '/partner/referral': {
-      id: '/partner/referral'
-      path: '/partner/referral'
-      fullPath: '/partner/referral'
-      preLoaderRoute: typeof PartnerReferralRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/partner/integration': {
-      id: '/partner/integration'
-      path: '/partner/integration'
-      fullPath: '/partner/integration'
-      preLoaderRoute: typeof PartnerIntegrationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/partner/agency': {
-      id: '/partner/agency'
-      path: '/partner/agency'
-      fullPath: '/partner/agency'
-      preLoaderRoute: typeof PartnerAgencyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/legal/terms-of-service': {
-      id: '/legal/terms-of-service'
-      path: '/legal/terms-of-service'
-      fullPath: '/legal/terms-of-service'
-      preLoaderRoute: typeof LegalTermsOfServiceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/legal/refund-policy': {
-      id: '/legal/refund-policy'
-      path: '/legal/refund-policy'
-      fullPath: '/legal/refund-policy'
-      preLoaderRoute: typeof LegalRefundPolicyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/legal/privacy-policy': {
-      id: '/legal/privacy-policy'
-      path: '/legal/privacy-policy'
-      fullPath: '/legal/privacy-policy'
-      preLoaderRoute: typeof LegalPrivacyPolicyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/industries/$slug': {
-      id: '/industries/$slug'
-      path: '/industries/$slug'
-      fullPath: '/industries/$slug'
-      preLoaderRoute: typeof IndustriesSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/blog/$slug': {
-      id: '/blog/$slug'
-      path: '/blog/$slug'
-      fullPath: '/blog/$slug'
-      preLoaderRoute: typeof BlogSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/submit-form': {
-      id: '/api/submit-form'
-      path: '/api/submit-form'
-      fullPath: '/api/submit-form'
-      preLoaderRoute: typeof ApiSubmitFormRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/mfa': {
-      id: '/admin/mfa'
-      path: '/admin/mfa'
-      fullPath: '/admin/mfa'
-      preLoaderRoute: typeof AdminMfaRouteImport
+    '/talk-to-us': {
+      id: '/talk-to-us'
+      path: '/talk-to-us'
+      fullPath: '/talk-to-us'
+      preLoaderRoute: typeof TalkToUsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/login': {
@@ -1069,11 +865,228 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/admin/upload': {
-      id: '/api/admin/upload'
-      path: '/api/admin/upload'
-      fullPath: '/api/admin/upload'
-      preLoaderRoute: typeof ApiAdminUploadRouteImport
+    '/admin/mfa': {
+      id: '/admin/mfa'
+      path: '/admin/mfa'
+      fullPath: '/admin/mfa'
+      preLoaderRoute: typeof AdminMfaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/submit-form': {
+      id: '/api/submit-form'
+      path: '/api/submit-form'
+      fullPath: '/api/submit-form'
+      preLoaderRoute: typeof ApiSubmitFormRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industries/': {
+      id: '/industries/'
+      path: '/industries'
+      fullPath: '/industries/'
+      preLoaderRoute: typeof IndustriesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industries/$slug': {
+      id: '/industries/$slug'
+      path: '/industries/$slug'
+      fullPath: '/industries/$slug'
+      preLoaderRoute: typeof IndustriesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/privacy-policy': {
+      id: '/legal/privacy-policy'
+      path: '/legal/privacy-policy'
+      fullPath: '/legal/privacy-policy'
+      preLoaderRoute: typeof LegalPrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/refund-policy': {
+      id: '/legal/refund-policy'
+      path: '/legal/refund-policy'
+      fullPath: '/legal/refund-policy'
+      preLoaderRoute: typeof LegalRefundPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/terms-of-service': {
+      id: '/legal/terms-of-service'
+      path: '/legal/terms-of-service'
+      fullPath: '/legal/terms-of-service'
+      preLoaderRoute: typeof LegalTermsOfServiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partner/': {
+      id: '/partner/'
+      path: '/partner'
+      fullPath: '/partner/'
+      preLoaderRoute: typeof PartnerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partner/agency': {
+      id: '/partner/agency'
+      path: '/partner/agency'
+      fullPath: '/partner/agency'
+      preLoaderRoute: typeof PartnerAgencyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partner/integration': {
+      id: '/partner/integration'
+      path: '/partner/integration'
+      fullPath: '/partner/integration'
+      preLoaderRoute: typeof PartnerIntegrationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partner/referral': {
+      id: '/partner/referral'
+      path: '/partner/referral'
+      fullPath: '/partner/referral'
+      preLoaderRoute: typeof PartnerReferralRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portfolio/$slug': {
+      id: '/portfolio/$slug'
+      path: '/$slug'
+      fullPath: '/portfolio/$slug'
+      preLoaderRoute: typeof PortfolioSlugRouteImport
+      parentRoute: typeof PortfolioRoute
+    }
+    '/products/': {
+      id: '/products/'
+      path: '/products'
+      fullPath: '/products/'
+      preLoaderRoute: typeof ProductsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/chat': {
+      id: '/products/chat'
+      path: '/products/chat'
+      fullPath: '/products/chat'
+      preLoaderRoute: typeof ProductsChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/flow': {
+      id: '/products/flow'
+      path: '/products/flow'
+      fullPath: '/products/flow'
+      preLoaderRoute: typeof ProductsFlowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/ai-voice-agent': {
+      id: '/services/ai-voice-agent'
+      path: '/services/ai-voice-agent'
+      fullPath: '/services/ai-voice-agent'
+      preLoaderRoute: typeof ServicesAiVoiceAgentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/custom-agentic-ai': {
+      id: '/services/custom-agentic-ai'
+      path: '/services/custom-agentic-ai'
+      fullPath: '/services/custom-agentic-ai'
+      preLoaderRoute: typeof ServicesCustomAgenticAiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/custom-ai-systems': {
+      id: '/services/custom-ai-systems'
+      path: '/services/custom-ai-systems'
+      fullPath: '/services/custom-ai-systems'
+      preLoaderRoute: typeof ServicesCustomAiSystemsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/lead-reactivation': {
+      id: '/services/lead-reactivation'
+      path: '/services/lead-reactivation'
+      fullPath: '/services/lead-reactivation'
+      preLoaderRoute: typeof ServicesLeadReactivationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/speed-to-lead': {
+      id: '/services/speed-to-lead'
+      path: '/services/speed-to-lead'
+      fullPath: '/services/speed-to-lead'
+      preLoaderRoute: typeof ServicesSpeedToLeadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/utilities/': {
+      id: '/utilities/'
+      path: '/utilities'
+      fullPath: '/utilities/'
+      preLoaderRoute: typeof UtilitiesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/utilities/background-remover': {
+      id: '/utilities/background-remover'
+      path: '/utilities/background-remover'
+      fullPath: '/utilities/background-remover'
+      preLoaderRoute: typeof UtilitiesBackgroundRemoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/utilities/csv-cleaner': {
+      id: '/utilities/csv-cleaner'
+      path: '/utilities/csv-cleaner'
+      fullPath: '/utilities/csv-cleaner'
+      preLoaderRoute: typeof UtilitiesCsvCleanerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/utilities/email-signature-generator': {
+      id: '/utilities/email-signature-generator'
+      path: '/utilities/email-signature-generator'
+      fullPath: '/utilities/email-signature-generator'
+      preLoaderRoute: typeof UtilitiesEmailSignatureGeneratorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/utilities/file-compressor': {
+      id: '/utilities/file-compressor'
+      path: '/utilities/file-compressor'
+      fullPath: '/utilities/file-compressor'
+      preLoaderRoute: typeof UtilitiesFileCompressorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/utilities/file-converter': {
+      id: '/utilities/file-converter'
+      path: '/utilities/file-converter'
+      fullPath: '/utilities/file-converter'
+      preLoaderRoute: typeof UtilitiesFileConverterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/utilities/image-compressor': {
+      id: '/utilities/image-compressor'
+      path: '/utilities/image-compressor'
+      fullPath: '/utilities/image-compressor'
+      preLoaderRoute: typeof UtilitiesImageCompressorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/utilities/image-converter': {
+      id: '/utilities/image-converter'
+      path: '/utilities/image-converter'
+      fullPath: '/utilities/image-converter'
+      preLoaderRoute: typeof UtilitiesImageConverterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/utilities/qr-code-generator': {
+      id: '/utilities/qr-code-generator'
+      path: '/utilities/qr-code-generator'
+      fullPath: '/utilities/qr-code-generator'
+      preLoaderRoute: typeof UtilitiesQrCodeGeneratorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_admin/admin/dashboard': {
@@ -1083,60 +1096,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAdminDashboardRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/api/admin/upload': {
+      id: '/api/admin/upload'
+      path: '/api/admin/upload'
+      fullPath: '/api/admin/upload'
+      preLoaderRoute: typeof ApiAdminUploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_admin/admin/dashboard/': {
       id: '/_admin/admin/dashboard/'
       path: '/'
       fullPath: '/admin/dashboard/'
       preLoaderRoute: typeof AdminAdminDashboardIndexRouteImport
-      parentRoute: typeof AdminAdminDashboardRoute
-    }
-    '/_admin/admin/dashboard/submissions': {
-      id: '/_admin/admin/dashboard/submissions'
-      path: '/submissions'
-      fullPath: '/admin/dashboard/submissions'
-      preLoaderRoute: typeof AdminAdminDashboardSubmissionsRouteImport
-      parentRoute: typeof AdminAdminDashboardRoute
-    }
-    '/_admin/admin/dashboard/settings': {
-      id: '/_admin/admin/dashboard/settings'
-      path: '/settings'
-      fullPath: '/admin/dashboard/settings'
-      preLoaderRoute: typeof AdminAdminDashboardSettingsRouteImport
-      parentRoute: typeof AdminAdminDashboardRoute
-    }
-    '/_admin/admin/dashboard/services': {
-      id: '/_admin/admin/dashboard/services'
-      path: '/services'
-      fullPath: '/admin/dashboard/services'
-      preLoaderRoute: typeof AdminAdminDashboardServicesRouteImport
-      parentRoute: typeof AdminAdminDashboardRoute
-    }
-    '/_admin/admin/dashboard/portfolio': {
-      id: '/_admin/admin/dashboard/portfolio'
-      path: '/portfolio'
-      fullPath: '/admin/dashboard/portfolio'
-      preLoaderRoute: typeof AdminAdminDashboardPortfolioRouteImport
-      parentRoute: typeof AdminAdminDashboardRoute
-    }
-    '/_admin/admin/dashboard/partners': {
-      id: '/_admin/admin/dashboard/partners'
-      path: '/partners'
-      fullPath: '/admin/dashboard/partners'
-      preLoaderRoute: typeof AdminAdminDashboardPartnersRouteImport
-      parentRoute: typeof AdminAdminDashboardRoute
-    }
-    '/_admin/admin/dashboard/clients': {
-      id: '/_admin/admin/dashboard/clients'
-      path: '/clients'
-      fullPath: '/admin/dashboard/clients'
-      preLoaderRoute: typeof AdminAdminDashboardClientsRouteImport
-      parentRoute: typeof AdminAdminDashboardRoute
-    }
-    '/_admin/admin/dashboard/blog': {
-      id: '/_admin/admin/dashboard/blog'
-      path: '/blog'
-      fullPath: '/admin/dashboard/blog'
-      preLoaderRoute: typeof AdminAdminDashboardBlogRouteImport
       parentRoute: typeof AdminAdminDashboardRoute
     }
     '/_admin/admin/dashboard/audit': {
@@ -1146,12 +1117,61 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAdminDashboardAuditRouteImport
       parentRoute: typeof AdminAdminDashboardRoute
     }
-    '/_admin/admin/dashboard/portfolio/$id': {
-      id: '/_admin/admin/dashboard/portfolio/$id'
+    '/_admin/admin/dashboard/blog': {
+      id: '/_admin/admin/dashboard/blog'
+      path: '/blog'
+      fullPath: '/admin/dashboard/blog'
+      preLoaderRoute: typeof AdminAdminDashboardBlogRouteImport
+      parentRoute: typeof AdminAdminDashboardRoute
+    }
+    '/_admin/admin/dashboard/clients': {
+      id: '/_admin/admin/dashboard/clients'
+      path: '/clients'
+      fullPath: '/admin/dashboard/clients'
+      preLoaderRoute: typeof AdminAdminDashboardClientsRouteImport
+      parentRoute: typeof AdminAdminDashboardRoute
+    }
+    '/_admin/admin/dashboard/partners': {
+      id: '/_admin/admin/dashboard/partners'
+      path: '/partners'
+      fullPath: '/admin/dashboard/partners'
+      preLoaderRoute: typeof AdminAdminDashboardPartnersRouteImport
+      parentRoute: typeof AdminAdminDashboardRoute
+    }
+    '/_admin/admin/dashboard/portfolio': {
+      id: '/_admin/admin/dashboard/portfolio'
+      path: '/portfolio'
+      fullPath: '/admin/dashboard/portfolio'
+      preLoaderRoute: typeof AdminAdminDashboardPortfolioRouteImport
+      parentRoute: typeof AdminAdminDashboardRoute
+    }
+    '/_admin/admin/dashboard/services': {
+      id: '/_admin/admin/dashboard/services'
+      path: '/services'
+      fullPath: '/admin/dashboard/services'
+      preLoaderRoute: typeof AdminAdminDashboardServicesRouteImport
+      parentRoute: typeof AdminAdminDashboardRoute
+    }
+    '/_admin/admin/dashboard/settings': {
+      id: '/_admin/admin/dashboard/settings'
+      path: '/settings'
+      fullPath: '/admin/dashboard/settings'
+      preLoaderRoute: typeof AdminAdminDashboardSettingsRouteImport
+      parentRoute: typeof AdminAdminDashboardRoute
+    }
+    '/_admin/admin/dashboard/submissions': {
+      id: '/_admin/admin/dashboard/submissions'
+      path: '/submissions'
+      fullPath: '/admin/dashboard/submissions'
+      preLoaderRoute: typeof AdminAdminDashboardSubmissionsRouteImport
+      parentRoute: typeof AdminAdminDashboardRoute
+    }
+    '/_admin/admin/dashboard/blog/$id': {
+      id: '/_admin/admin/dashboard/blog/$id'
       path: '/$id'
-      fullPath: '/admin/dashboard/portfolio/$id'
-      preLoaderRoute: typeof AdminAdminDashboardPortfolioIdRouteImport
-      parentRoute: typeof AdminAdminDashboardPortfolioRoute
+      fullPath: '/admin/dashboard/blog/$id'
+      preLoaderRoute: typeof AdminAdminDashboardBlogIdRouteImport
+      parentRoute: typeof AdminAdminDashboardBlogRoute
     }
     '/_admin/admin/dashboard/clients/$id': {
       id: '/_admin/admin/dashboard/clients/$id'
@@ -1160,12 +1180,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAdminDashboardClientsIdRouteImport
       parentRoute: typeof AdminAdminDashboardClientsRoute
     }
-    '/_admin/admin/dashboard/blog/$id': {
-      id: '/_admin/admin/dashboard/blog/$id'
+    '/_admin/admin/dashboard/portfolio/$id': {
+      id: '/_admin/admin/dashboard/portfolio/$id'
       path: '/$id'
-      fullPath: '/admin/dashboard/blog/$id'
-      preLoaderRoute: typeof AdminAdminDashboardBlogIdRouteImport
-      parentRoute: typeof AdminAdminDashboardBlogRoute
+      fullPath: '/admin/dashboard/portfolio/$id'
+      preLoaderRoute: typeof AdminAdminDashboardPortfolioIdRouteImport
+      parentRoute: typeof AdminAdminDashboardPortfolioRoute
     }
   }
 }
@@ -1266,6 +1286,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
   AboutRoute: AboutRoute,
+  CheckoutRoute: CheckoutRoute,
   ContactRoute: ContactRoute,
   GetAQuoteRoute: GetAQuoteRoute,
   HelpRoute: HelpRoute,
