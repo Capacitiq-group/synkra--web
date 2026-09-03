@@ -41,19 +41,34 @@ function ServicesPage() {
     onError: (e: any) => toast.error(e.message),
   });
   return (
-    <div className="admin-card overflow-x-auto">
-      <table className="admin-table">
-        <thead className="text-left text-xs uppercase tracking-wider text-[color:var(--color-admin-text-muted)]">
-          <tr>
-            <th className="py-2 pr-4">Service</th><th className="py-2 pr-2">Setup</th>
-            <th className="py-2 pr-2">Basic</th><th className="py-2 pr-2">Std</th><th className="py-2 pr-2">Premium</th>
-            <th className="py-2 pr-2">Rate</th><th className="py-2 pr-2">Unit</th><th className="py-2 pr-2">Active</th><th className="py-2"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((svc: any) => <Row key={svc.id} svc={svc} onSave={(v) => save.mutate(v)} />)}
-        </tbody>
-      </table>
+    <div className="space-y-4">
+      <div
+        className="admin-card p-4 text-sm"
+        style={{ borderLeft: "4px solid var(--color-admin-warning)", background: "color-mix(in srgb, var(--color-admin-warning) 8%, transparent)" }}
+      >
+        <p className="font-medium" style={{ color: "var(--color-admin-warning)" }}>
+          Not connected to the live site
+        </p>
+        <p className="mt-1 text-[color:var(--color-admin-text-muted)]">
+          The pricing visitors actually see comes from src/data/serviceContent.ts and
+          pricingTiers.ts in the codebase, not this table. Saving a change here updates this
+          record only - it will not change anything on synkra.co.za.
+        </p>
+      </div>
+      <div className="admin-card overflow-x-auto">
+        <table className="admin-table">
+          <thead className="text-left text-xs uppercase tracking-wider text-[color:var(--color-admin-text-muted)]">
+            <tr>
+              <th className="py-2 pr-4">Service</th><th className="py-2 pr-2">Setup</th>
+              <th className="py-2 pr-2">Basic</th><th className="py-2 pr-2">Std</th><th className="py-2 pr-2">Premium</th>
+              <th className="py-2 pr-2">Rate</th><th className="py-2 pr-2">Unit</th><th className="py-2 pr-2">Active</th><th className="py-2"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((svc: any) => <Row key={svc.id} svc={svc} onSave={(v) => save.mutate(v)} />)}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
