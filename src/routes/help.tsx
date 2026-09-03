@@ -16,9 +16,9 @@ import {
 export const Route = createFileRoute("/help")({
   head: () =>
     buildHead({
-      title: "Help Centre",
+      title: "Help Centre, Synkra Technologies",
       description:
-        "Answers to every common question about Synkra services, pricing, credits, onboarding, and how everything works.",
+        "Answers to every common question about Synkra Technologies' services, pricing, credits, onboarding, and how everything works.",
       path: "/help",
     }),
   component: HelpPage,

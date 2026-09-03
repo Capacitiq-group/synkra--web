@@ -13,9 +13,9 @@ export const Route = createFileRoute("/contact")({
   validateSearch: (s) => SearchSchema.parse(s),
   head: () =>
     buildHead({
-      title: "Contact Synkra",
+      title: "Contact, Synkra Technologies",
       description:
-        "Get in touch with the Synkra team. We respond to every enquiry within 24 hours on business days.",
+        "Get in touch with the Synkra Technologies team. We respond to every enquiry within 24 hours on business days.",
       path: "/contact",
     }),
   component: ContactPage,
@@ -65,16 +65,21 @@ function ContactPage() {
               <div>
                 <p className="label-tag">Already a client</p>
                 <p className="body-sm mt-3">
-                  If you are an existing client with a support request, log into
-                  your client portal and submit a request there for faster
+                  If you are an existing client with a support request, sign
+                  in to your portal and submit a request there for faster
                   handling.
                 </p>
-                <a
-                  href="/help"
-                  className="arrow-link mt-4 inline-flex"
-                >
-                  Go to Client Portal <span className="arrow">→</span>
-                </a>
+                <div className="mt-4 flex flex-col gap-2">
+                  <a href="https://chat.synkra.co.za" className="arrow-link inline-flex">
+                    Synkra Chat <span className="arrow">→</span>
+                  </a>
+                  <a href="https://flow.synkra.co.za" className="arrow-link inline-flex">
+                    Synkra Flow <span className="arrow">→</span>
+                  </a>
+                  <a href="https://client.synkra.co.za" className="arrow-link inline-flex">
+                    Agency Client Portal <span className="arrow">→</span>
+                  </a>
+                </div>
               </div>
             </div>
           </aside>
