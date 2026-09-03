@@ -120,8 +120,8 @@ export const upsertClient = createServerFn({ method: "POST" })
     const pb = context.pb;
     const { id, ...rest } = data;
     const payload = { ...rest, email: rest.email || null };
-    if (id) return pb.collection("clients").update(id, payload);
-    return pb.collection("clients").create(payload);
+    if (id) return pb.collection("testimonial_clients").update(id, payload);
+    return pb.collection("testimonial_clients").create(payload);
   });
 
 export const setClientStatus = createServerFn({ method: "POST" })
@@ -130,7 +130,7 @@ export const setClientStatus = createServerFn({ method: "POST" })
     z.object({ id: idSchema, status: z.enum(["active", "paused", "cancelled"]) }).parse(d),
   )
   .handler(async ({ context, data }) => {
-    await context.pb.collection("clients").update(data.id, { status: data.status });
+    await context.pb.collection("testimonial_clients").update(data.id, { status: data.status });
     await audit(context, "client.status_change", "client", data.id, { status: data.status });
     return { ok: true };
   });
@@ -149,9 +149,9 @@ export const addClientCredits = createServerFn({ method: "POST" })
   )
   .handler(async ({ context, data }) => {
     const pb = context.pb;
-    const client: any = await pb.collection("clients").getOne(data.id, { fields: "credit_balance" });
+    const client: any = await pb.collection("testimonial_clients").getOne(data.id, { fields: "credit_balance" });
     const newBalance = (client.credit_balance ?? 0) + data.amount;
-    await pb.collection("clients").update(data.id, { credit_balance: newBalance });
+    await pb.collection("testimonial_clients").update(data.id, { credit_balance: newBalance });
     await pb.collection("credit_transactions").create({
       client_id: data.id,
       txn_type: data.txn_type,
