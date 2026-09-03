@@ -35,7 +35,7 @@ export const overviewStats = createServerFn({ method: "GET" })
   .handler(async ({ context }) => {
     const pb = context.pb;
     const [clients, portfolio, blog, subs] = await Promise.all([
-      pb.collection("clients").getFullList({ fields: "id,status,credit_balance" }),
+      pb.collection("testimonial_clients").getFullList({ fields: "id,status,credit_balance" }),
       pb.collection("portfolio_items").getFullList({ fields: "id,status" }),
       pb.collection("blog_posts").getFullList({ fields: "id,status" }),
       pb.collection("form_submissions").getFullList({
