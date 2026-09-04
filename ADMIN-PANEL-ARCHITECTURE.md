@@ -50,7 +50,7 @@ reads/writes, not sync.
               ▼                                  ▼
    ┌─────────────────────┐          ┌──────────────────────┐
    │  Website PocketBase   │          │  Client Hub PocketBase │
-   │  (pb-web.synkra...)   │          │  (pb.synkra.co.za)     │
+   │  (os.synkra.co.za)      │          │  (pb.synkra.co.za)     │
    └─────────────────────┘          └──────────────────────┘
 ```
 
@@ -63,7 +63,7 @@ its **own superuser (or scoped) account on each instance** — do not reuse
 
 ```
 # On the admin panel's backend only
-WEBSITE_PB_URL=https://pb-web.synkra.co.za
+WEBSITE_PB_URL=https://os.synkra.co.za
 WEBSITE_PB_ADMIN_EMAIL=admin-panel@synkra.co.za
 WEBSITE_PB_ADMIN_PASSWORD=...
 

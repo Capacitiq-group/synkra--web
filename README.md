@@ -10,6 +10,10 @@
 > For anything about databases, instances or admin identity, the canonical doc
 > above wins.
 
+> **Deployment:** one path only — Docker image on Coolify. See
+> [`DEPLOYMENT.md`](./DEPLOYMENT.md). The Vercel setup described further down in
+> this brief is historical and has been removed from the repo.
+
 
 You are building the Synkra marketing website. Synkra is a South African AI automation agency. The site is built with Next.js 14 App Router, Tailwind CSS, and deployed on Vercel. The backend for form submissions uses Supabase. This prompt covers the complete foundation — repository structure, configuration files, global design system, SEO architecture, and empty page scaffolding for every page on the site. STACK
 
