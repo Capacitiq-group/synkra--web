@@ -1,5 +1,16 @@
 # Synkra AI
 
+> **Architecture:** the canonical description of Synkra's PocketBase instances,
+> which repo uses which one, and the identity model lives in one place:
+> [`SYNKRA-ARCHITECTURE.md` in `synkra-os`](https://github.com/Capacitiq-group/synkra-os/blob/main/SYNKRA-ARCHITECTURE.md).
+> Do not restate it here — update it there.
+
+> **Note:** the prose below is the original build brief and is stale in places
+> (it describes Next.js + Supabase; this repo is TanStack Start + PocketBase).
+> For anything about databases, instances or admin identity, the canonical doc
+> above wins.
+
+
 You are building the Synkra marketing website. Synkra is a South African AI automation agency. The site is built with Next.js 14 App Router, Tailwind CSS, and deployed on Vercel. The backend for form submissions uses Supabase. This prompt covers the complete foundation — repository structure, configuration files, global design system, SEO architecture, and empty page scaffolding for every page on the site. STACK
 
 Next.js 14 with App Router
