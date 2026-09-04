@@ -1,3 +1,8 @@
+> **SUPERSEDED.** The admin panel described here as "doesn't exist as code yet"
+> is `synkra-os`, and this repo's collections were consolidated onto the shared
+> instance that `synkra-os` hosts — so the two-instance picture below is out of
+> date. Current architecture: [`SYNKRA-ARCHITECTURE.md` in `synkra-os`](https://github.com/Capacitiq-group/synkra-os/blob/main/SYNKRA-ARCHITECTURE.md).
+
 # Admin Panel ⇄ Website Communication Architecture
 
 **Status:** Design doc — the admin panel doesn't exist as code yet. This
